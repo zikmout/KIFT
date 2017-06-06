@@ -26,9 +26,7 @@ main(int argc, char *argv[])
         fprintf(stderr, "Failed to create recognizer, see log for  details\n");
         return -1;
     }
-
-    //fh = fopen("examples/goforward.raw", "rb");
-    fh = fopen("examples/four_ways.wav", "rb");
+    fh = fopen(argv[1], "rb");
     if (fh == NULL) {
         fprintf(stderr, "Unable to open input file goforward.raw\n");
         return -1;
