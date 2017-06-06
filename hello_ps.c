@@ -27,7 +27,8 @@ main(int argc, char *argv[])
         return -1;
     }
 
-    fh = fopen("examples/goforward.raw", "rb");
+    //fh = fopen("examples/goforward.raw", "rb");
+    fh = fopen("examples/four_ways.wav", "rb");
     if (fh == NULL) {
         fprintf(stderr, "Unable to open input file goforward.raw\n");
         return -1;
