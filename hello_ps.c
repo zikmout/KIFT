@@ -26,7 +26,6 @@ main(int argc, char *argv[])
         fprintf(stderr, "Failed to create recognizer, see log for  details\n");
         return -1;
     }
-
     fh = fopen(argv[1], "rb");
     if (fh == NULL) {
         fprintf(stderr, "Unable to open input file goforward.raw\n");
