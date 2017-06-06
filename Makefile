@@ -2,7 +2,7 @@
 
 NAME		:= melonf**ckers
 
-SRC			:=	hello_ps.c				
+SRC			:=	hello_ps.c
 
 OBJ			:= $(SRC:%.c=%.o)
 
