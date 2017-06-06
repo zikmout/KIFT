@@ -14,6 +14,7 @@ main(int argc, char *argv[])
     config = cmd_ln_init(NULL, ps_args(), TRUE,
                  "-hmm", MODELDIR "/en-us/en-us",
                  "-lm", MODELDIR "/en-us/en-us.lm.bin",
+                 "-jsgf", "hello_team.gram",
                  "-dict", MODELDIR "/en-us/cmudict-en-us.dict",
                  NULL);
     if (config == NULL) {
@@ -26,7 +27,6 @@ main(int argc, char *argv[])
         fprintf(stderr, "Failed to create recognizer, see log for  details\n");
         return -1;
     }
-    //fh = fopen("examples/goforward.raw", "rb");
     fh = fopen(argv[1], "rb");
     if (fh == NULL) {
         fprintf(stderr, "Unable to open input file goforward.raw\n");

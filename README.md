@@ -27,8 +27,14 @@
 2. Record
 
         rec --bits 16 --encoding signed-integer --endian little -c 1 record-voice.raw
+        
+3. (Optional) Test if the .raw file you just generated sounds good by converting it to .wav:
 
+        sox -r 44100 -e unsigned -b 8 -c 1 RAW_FILE_SRC.raw WAV_FILE_DST.wav
 
+    Then open it using itunes:
+
+        open WAV_FILE_DST.wav
 
 
 
