@@ -3,3 +3,4 @@
 *.wav
 *.o
 *.aiff
+*node_modules*
