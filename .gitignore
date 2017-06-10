@@ -4,3 +4,4 @@
 *.o
 *.aiff
 *node_modules*
+rethinkdb_data
