@@ -1,0 +1,12 @@
+metric.lo: metric.c ../../../include/s3/metric.h \
+  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/sphinxtrain-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/prim_type.h \
+  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/sphinxtrain-5prealpha/../sphinxbase-5prealpha/include/sphinx_config.h \
+  ../../../include/s3/div.h
+
+../../../include/s3/metric.h:
+
+/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/sphinxtrain-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/prim_type.h:
+
+/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/sphinxtrain-5prealpha/../sphinxbase-5prealpha/include/sphinx_config.h:
+
+../../../include/s3/div.h:
