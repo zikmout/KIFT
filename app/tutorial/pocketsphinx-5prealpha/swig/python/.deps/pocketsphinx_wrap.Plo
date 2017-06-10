@@ -1,614 +1,475 @@
-pocketsphinx_wrap.lo: pocketsphinx_wrap.c \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/Python.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/patchlevel.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyconfig.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pymacconfig.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/cdefs.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_symbol_aliasing.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_posix_availability.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/_limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/syslimits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/stdio.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/Availability.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/AvailabilityInternal.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_pthread/_pthread_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_va_list.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_size_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_null.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/stdio.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_off_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ssize_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/secure/_stdio.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/secure/_common.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/string.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_rsize_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_errno_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/strings.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/secure/_string.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/errno.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/errno.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/stdlib.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/wait.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_pid_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_id_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/signal.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/appleapiopts.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/signal.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/signal.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/_mcontext.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/_mcontext.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/mach/i386/_structs.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_pthread/_pthread_attr_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_sigaltstack.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ucontext.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_sigset_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_uid_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/resource.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdint.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/stdint.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_int8_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_int16_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_int32_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_int64_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uint8_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uint16_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uint32_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uint64_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_intptr_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_uintptr_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_intmax_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uintmax_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_timeval.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/endian.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/endian.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_endian.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/libkern/_OSByteOrder.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/libkern/i386/_OSByteOrder.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/alloca.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ct_rune_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_rune_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_wchar_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_u_int8_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_u_int16_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_u_int32_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_u_int64_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_dev_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_mode_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/unistd.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/unistd.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_posix_vdisable.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_seek_set.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_gid_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_useconds_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/select.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_def.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_timespec.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_time_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_suseconds_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_setsize.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_set.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_clr.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_isset.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_zero.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_copy.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_select.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_uuid_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/gethostuuid.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/assert.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyport.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/inttypes.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/inttypes.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/math.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/time.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_timeval64.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/time.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_clock_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/stat.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_blkcnt_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_blksize_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ino_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ino64_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_nlink_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_s_ifmt.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_filesec_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/ctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/runetype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_wint_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/wctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_wctrans_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_wctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_wctype_t.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pymath.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pymem.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/object.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/objimpl.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pydebug.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/unicodeobject.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdarg.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/wchar.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_mbstate_t.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/intobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/boolobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/longobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/floatobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/complexobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/rangeobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/stringobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/memoryobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/bufferobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/bytesobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/bytearrayobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/tupleobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/listobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/dictobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/enumobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/setobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/methodobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/moduleobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/funcobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/classobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/fileobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/cobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pycapsule.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/traceback.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/sliceobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/cellobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/iterobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/genobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/descrobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/warnings.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/weakrefobject.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/codecs.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyerrors.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pystate.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyarena.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/modsupport.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pythonrun.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/ceval.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/sysmodule.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/intrcheck.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/import.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/abstract.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/compile.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/code.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/eval.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyctype.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pystrtod.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pystrcmp.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/dtoa.h \
-  /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyfpe.h \
-  ../../include/pocketsphinx.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/cmd_ln.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/sphinxbase_export.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/prim_type.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinx_config.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/logmath.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fe.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fixpoint.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/feat.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/cmn.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/agc.h \
-  ../../include/pocketsphinx_export.h ../../include/cmdln_macro.h \
-  ../../include/ps_lattice.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/ngram_model.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/mmio.h \
-  ../../include/ps_mllr.h ../../include/ps_search.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fsg_model.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/glist.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/bitvec.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/ckd_alloc.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/setjmp.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/hash_table.h \
-  /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/listelem_alloc.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/float.h
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/Python.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/patchlevel.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyconfig.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pymacconfig.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/limits.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/limits.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/cdefs.h:
+pocketsphinx_wrap.lo: pocketsphinx_wrap.c /usr/include/stdc-predef.h \
+ /usr/include/python2.7/Python.h /usr/include/python2.7/patchlevel.h \
+ /usr/include/python2.7/pyconfig.h \
+ /usr/include/x86_64-linux-gnu/python2.7/pyconfig.h \
+ /usr/include/python2.7/pymacconfig.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/features.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h \
+ /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/string.h \
+ /usr/include/xlocale.h /usr/include/x86_64-linux-gnu/bits/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/string3.h /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/sigset.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h /usr/include/assert.h \
+ /usr/include/python2.7/pyport.h /usr/include/inttypes.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/huge_val.h \
+ /usr/include/x86_64-linux-gnu/bits/huge_valf.h \
+ /usr/include/x86_64-linux-gnu/bits/huge_vall.h \
+ /usr/include/x86_64-linux-gnu/bits/inf.h \
+ /usr/include/x86_64-linux-gnu/bits/nan.h \
+ /usr/include/x86_64-linux-gnu/bits/mathdef.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathinline.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/python2.7/pymath.h /usr/include/python2.7/pymem.h \
+ /usr/include/python2.7/object.h /usr/include/python2.7/objimpl.h \
+ /usr/include/python2.7/pydebug.h /usr/include/python2.7/unicodeobject.h \
+ /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+ /usr/include/python2.7/intobject.h /usr/include/python2.7/boolobject.h \
+ /usr/include/python2.7/longobject.h /usr/include/python2.7/floatobject.h \
+ /usr/include/python2.7/complexobject.h \
+ /usr/include/python2.7/rangeobject.h \
+ /usr/include/python2.7/stringobject.h \
+ /usr/include/python2.7/memoryobject.h \
+ /usr/include/python2.7/bufferobject.h \
+ /usr/include/python2.7/bytesobject.h \
+ /usr/include/python2.7/bytearrayobject.h \
+ /usr/include/python2.7/tupleobject.h /usr/include/python2.7/listobject.h \
+ /usr/include/python2.7/dictobject.h /usr/include/python2.7/enumobject.h \
+ /usr/include/python2.7/setobject.h /usr/include/python2.7/methodobject.h \
+ /usr/include/python2.7/moduleobject.h \
+ /usr/include/python2.7/funcobject.h /usr/include/python2.7/classobject.h \
+ /usr/include/python2.7/fileobject.h /usr/include/python2.7/cobject.h \
+ /usr/include/python2.7/pycapsule.h /usr/include/python2.7/traceback.h \
+ /usr/include/python2.7/sliceobject.h /usr/include/python2.7/cellobject.h \
+ /usr/include/python2.7/iterobject.h /usr/include/python2.7/genobject.h \
+ /usr/include/python2.7/descrobject.h /usr/include/python2.7/warnings.h \
+ /usr/include/python2.7/weakrefobject.h /usr/include/python2.7/codecs.h \
+ /usr/include/python2.7/pyerrors.h /usr/include/python2.7/pystate.h \
+ /usr/include/python2.7/pyarena.h /usr/include/python2.7/modsupport.h \
+ /usr/include/python2.7/pythonrun.h /usr/include/python2.7/ceval.h \
+ /usr/include/python2.7/sysmodule.h /usr/include/python2.7/intrcheck.h \
+ /usr/include/python2.7/import.h /usr/include/python2.7/abstract.h \
+ /usr/include/python2.7/compile.h /usr/include/python2.7/code.h \
+ /usr/include/python2.7/eval.h /usr/include/python2.7/pyctype.h \
+ /usr/include/python2.7/pystrtod.h /usr/include/python2.7/pystrcmp.h \
+ /usr/include/python2.7/dtoa.h /usr/include/python2.7/pyfpe.h \
+ /usr/include/signal.h /usr/include/x86_64-linux-gnu/bits/signum.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/include/setjmp.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp2.h \
+ ../../include/pocketsphinx.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/cmd_ln.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/sphinxbase_export.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/prim_type.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinx_config.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/logmath.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fe.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fixpoint.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/feat.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/cmn.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/agc.h \
+ ../../include/pocketsphinx_export.h ../../include/cmdln_macro.h \
+ ../../include/ps_lattice.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/ngram_model.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/mmio.h \
+ ../../include/ps_mllr.h ../../include/ps_search.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fsg_model.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/glist.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/bitvec.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/ckd_alloc.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/hash_table.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/listelem_alloc.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/float.h
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_symbol_aliasing.h:
+/usr/include/stdc-predef.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_posix_availability.h:
+/usr/include/python2.7/Python.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/limits.h:
+/usr/include/python2.7/patchlevel.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/limits.h:
+/usr/include/python2.7/pyconfig.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/_limits.h:
+/usr/include/x86_64-linux-gnu/python2.7/pyconfig.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/syslimits.h:
+/usr/include/python2.7/pymacconfig.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/stdio.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/Availability.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/AvailabilityInternal.h:
+/usr/include/limits.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types.h:
+/usr/include/features.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types.h:
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/_types.h:
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/_types.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_pthread/_pthread_types.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_va_list.h:
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_size_t.h:
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_null.h:
+/usr/include/linux/limits.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/stdio.h:
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_off_t.h:
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ssize_t.h:
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/secure/_stdio.h:
+/usr/include/stdio.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/secure/_common.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/string.h:
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_rsize_t.h:
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_errno_t.h:
+/usr/include/libio.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/strings.h:
+/usr/include/_G_config.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/secure/_string.h:
+/usr/include/wchar.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/errno.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/errno.h:
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/stdlib.h:
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/wait.h:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_pid_t.h:
+/usr/include/string.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_id_t.h:
+/usr/include/xlocale.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/signal.h:
+/usr/include/x86_64-linux-gnu/bits/string.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/appleapiopts.h:
+/usr/include/x86_64-linux-gnu/bits/string2.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/signal.h:
+/usr/include/endian.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/signal.h:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/_mcontext.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/_mcontext.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/mach/i386/_structs.h:
+/usr/include/stdlib.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_pthread/_pthread_attr_t.h:
+/usr/include/x86_64-linux-gnu/bits/string3.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_sigaltstack.h:
+/usr/include/errno.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ucontext.h:
+/usr/include/x86_64-linux-gnu/bits/errno.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_sigset_t.h:
+/usr/include/linux/errno.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_uid_t.h:
+/usr/include/x86_64-linux-gnu/asm/errno.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/resource.h:
+/usr/include/asm-generic/errno.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdint.h:
+/usr/include/asm-generic/errno-base.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/stdint.h:
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_int8_t.h:
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_int16_t.h:
+/usr/include/x86_64-linux-gnu/sys/types.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_int32_t.h:
+/usr/include/time.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_int64_t.h:
+/usr/include/x86_64-linux-gnu/sys/select.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uint8_t.h:
+/usr/include/x86_64-linux-gnu/bits/select.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uint16_t.h:
+/usr/include/x86_64-linux-gnu/bits/sigset.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uint32_t.h:
+/usr/include/x86_64-linux-gnu/bits/time.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uint64_t.h:
+/usr/include/x86_64-linux-gnu/bits/select2.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_intptr_t.h:
+/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_uintptr_t.h:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_intmax_t.h:
+/usr/include/alloca.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_uintmax_t.h:
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_timeval.h:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/endian.h:
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/endian.h:
+/usr/include/unistd.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_endian.h:
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/libkern/_OSByteOrder.h:
+/usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/libkern/i386/_OSByteOrder.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/alloca.h:
+/usr/include/getopt.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ct_rune_t.h:
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_rune_t.h:
+/usr/include/assert.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_wchar_t.h:
+/usr/include/python2.7/pyport.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/machine/types.h:
+/usr/include/inttypes.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/i386/types.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_u_int8_t.h:
+/usr/include/stdint.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_u_int16_t.h:
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_u_int32_t.h:
+/usr/include/math.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_u_int64_t.h:
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_dev_t.h:
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_mode_t.h:
+/usr/include/x86_64-linux-gnu/bits/huge_val.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/unistd.h:
+/usr/include/x86_64-linux-gnu/bits/huge_valf.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/unistd.h:
+/usr/include/x86_64-linux-gnu/bits/huge_vall.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_posix_vdisable.h:
+/usr/include/x86_64-linux-gnu/bits/inf.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_seek_set.h:
+/usr/include/x86_64-linux-gnu/bits/nan.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_gid_t.h:
+/usr/include/x86_64-linux-gnu/bits/mathdef.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_useconds_t.h:
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/select.h:
+/usr/include/x86_64-linux-gnu/bits/mathinline.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_def.h:
+/usr/include/x86_64-linux-gnu/sys/time.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_timespec.h:
+/usr/include/x86_64-linux-gnu/bits/timex.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_time_t.h:
+/usr/include/x86_64-linux-gnu/sys/stat.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_suseconds_t.h:
+/usr/include/x86_64-linux-gnu/bits/stat.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_setsize.h:
+/usr/include/python2.7/pymath.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_set.h:
+/usr/include/python2.7/pymem.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_clr.h:
+/usr/include/python2.7/object.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_isset.h:
+/usr/include/python2.7/objimpl.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_zero.h:
+/usr/include/python2.7/pydebug.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_fd_copy.h:
+/usr/include/python2.7/unicodeobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_select.h:
+/usr/include/ctype.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_uuid_t.h:
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/gethostuuid.h:
+/usr/include/python2.7/intobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/assert.h:
+/usr/include/python2.7/boolobject.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyport.h:
+/usr/include/python2.7/longobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/inttypes.h:
+/usr/include/python2.7/floatobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/inttypes.h:
+/usr/include/python2.7/complexobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/math.h:
+/usr/include/python2.7/rangeobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/time.h:
+/usr/include/python2.7/stringobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_timeval64.h:
+/usr/include/python2.7/memoryobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/time.h:
+/usr/include/python2.7/bufferobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_clock_t.h:
+/usr/include/python2.7/bytesobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/stat.h:
+/usr/include/python2.7/bytearrayobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_blkcnt_t.h:
+/usr/include/python2.7/tupleobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_blksize_t.h:
+/usr/include/python2.7/listobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ino_t.h:
+/usr/include/python2.7/dictobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_ino64_t.h:
+/usr/include/python2.7/enumobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_nlink_t.h:
+/usr/include/python2.7/setobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_s_ifmt.h:
+/usr/include/python2.7/methodobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_filesec_t.h:
+/usr/include/python2.7/moduleobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/ctype.h:
+/usr/include/python2.7/funcobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/runetype.h:
+/usr/include/python2.7/classobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_wint_t.h:
+/usr/include/python2.7/fileobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/wctype.h:
+/usr/include/python2.7/cobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_wctrans_t.h:
+/usr/include/python2.7/pycapsule.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_wctype.h:
+/usr/include/python2.7/traceback.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/_types/_wctype_t.h:
+/usr/include/python2.7/sliceobject.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pymath.h:
+/usr/include/python2.7/cellobject.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pymem.h:
+/usr/include/python2.7/iterobject.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/object.h:
+/usr/include/python2.7/genobject.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/objimpl.h:
+/usr/include/python2.7/descrobject.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pydebug.h:
+/usr/include/python2.7/warnings.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/unicodeobject.h:
+/usr/include/python2.7/weakrefobject.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdarg.h:
+/usr/include/python2.7/codecs.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/wchar.h:
+/usr/include/python2.7/pyerrors.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_mbstate_t.h:
+/usr/include/python2.7/pystate.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/intobject.h:
+/usr/include/python2.7/pyarena.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/boolobject.h:
+/usr/include/python2.7/modsupport.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/longobject.h:
+/usr/include/python2.7/pythonrun.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/floatobject.h:
+/usr/include/python2.7/ceval.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/complexobject.h:
+/usr/include/python2.7/sysmodule.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/rangeobject.h:
+/usr/include/python2.7/intrcheck.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/stringobject.h:
+/usr/include/python2.7/import.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/memoryobject.h:
+/usr/include/python2.7/abstract.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/bufferobject.h:
+/usr/include/python2.7/compile.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/bytesobject.h:
+/usr/include/python2.7/code.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/bytearrayobject.h:
+/usr/include/python2.7/eval.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/tupleobject.h:
+/usr/include/python2.7/pyctype.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/listobject.h:
+/usr/include/python2.7/pystrtod.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/dictobject.h:
+/usr/include/python2.7/pystrcmp.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/enumobject.h:
+/usr/include/python2.7/dtoa.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/setobject.h:
+/usr/include/python2.7/pyfpe.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/methodobject.h:
+/usr/include/signal.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/moduleobject.h:
+/usr/include/x86_64-linux-gnu/bits/signum.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/funcobject.h:
+/usr/include/x86_64-linux-gnu/bits/siginfo.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/classobject.h:
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/fileobject.h:
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/cobject.h:
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pycapsule.h:
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/traceback.h:
+/usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/sliceobject.h:
+/usr/include/setjmp.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/cellobject.h:
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/iterobject.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/genobject.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/descrobject.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/warnings.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/weakrefobject.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/codecs.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyerrors.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pystate.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyarena.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/modsupport.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pythonrun.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/ceval.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/sysmodule.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/intrcheck.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/import.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/abstract.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/compile.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/code.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/eval.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyctype.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pystrtod.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pystrcmp.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/dtoa.h:
-
-/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pyfpe.h:
+/usr/include/x86_64-linux-gnu/bits/setjmp2.h:
 
 ../../include/pocketsphinx.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/cmd_ln.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/cmd_ln.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/sphinxbase_export.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/sphinxbase_export.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/prim_type.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/prim_type.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinx_config.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinx_config.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/logmath.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/logmath.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fe.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fe.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fixpoint.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fixpoint.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/feat.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/feat.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/cmn.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/cmn.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/agc.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/agc.h:
 
 ../../include/pocketsphinx_export.h:
 
@@ -616,26 +477,24 @@ pocketsphinx_wrap.lo: pocketsphinx_wrap.c \
 
 ../../include/ps_lattice.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/ngram_model.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/ngram_model.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/mmio.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/mmio.h:
 
 ../../include/ps_mllr.h:
 
 ../../include/ps_search.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fsg_model.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/fsg_model.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/glist.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/glist.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/bitvec.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/bitvec.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/ckd_alloc.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/ckd_alloc.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/setjmp.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/hash_table.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/hash_table.h:
+/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/listelem_alloc.h:
 
-/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/pocketsphinx-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/listelem_alloc.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/float.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/float.h:

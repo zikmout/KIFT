@@ -1,15 +1,15 @@
-prefix=/nfs/2017/a/aoudin/Projects/KIFT/SPHINX/sphinxbase-5prealpha
+prefix=/var/www/html/app/tutorial/sphinxbase-5prealpha
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
-libs="-lpthread -lm -lblas -llapack "
+libs="-lpthread -lm "
 datadir=${prefix}/share/sphinxbase
 
 Name: SphinxBase
 Description: Shared components for Sphinx speech recognition
 Version: 5prealpha
 URL: http://www.cmusphinx.org/
-Libs: -L${libdir} -lsphinxbase -lsphinxad -lpthread -lm -lblas -llapack 
+Libs: -L${libdir} -lsphinxbase -lsphinxad -lpthread -lm 
 Libs.private: ${libs}
 Cflags: -I${includedir} -I${includedir}/sphinxbase
 

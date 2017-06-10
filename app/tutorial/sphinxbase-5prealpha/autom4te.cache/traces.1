@@ -70,6 +70,9 @@ m4trace:configure.ac:4: -1- m4_pattern_allow([^sharedstatedir$])
 m4trace:configure.ac:4: -1- AC_SUBST([localstatedir], ['${prefix}/var'])
 m4trace:configure.ac:4: -1- AC_SUBST_TRACE([localstatedir])
 m4trace:configure.ac:4: -1- m4_pattern_allow([^localstatedir$])
+m4trace:configure.ac:4: -1- AC_SUBST([runstatedir], ['${localstatedir}/run'])
+m4trace:configure.ac:4: -1- AC_SUBST_TRACE([runstatedir])
+m4trace:configure.ac:4: -1- m4_pattern_allow([^runstatedir$])
 m4trace:configure.ac:4: -1- AC_SUBST([includedir], ['${prefix}/include'])
 m4trace:configure.ac:4: -1- AC_SUBST_TRACE([includedir])
 m4trace:configure.ac:4: -1- m4_pattern_allow([^includedir$])
@@ -553,7 +556,7 @@ m4trace:configure.ac:28: -1- m4_pattern_allow([^AC_APPLE_UNIVERSAL_BUILD$])
 m4trace:configure.ac:28: -1- AH_OUTPUT([AC_APPLE_UNIVERSAL_BUILD], [/* Define if building universal (internal helper macro) */
 @%:@undef AC_APPLE_UNIVERSAL_BUILD])
 m4trace:configure.ac:29: -1- _m4_warn([obsolete], [The macro `AC_TYPE_SIGNAL' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/types.m4:759: AC_TYPE_SIGNAL is expanded from...
+You should run autoupdate.], [../../lib/autoconf/types.m4:746: AC_TYPE_SIGNAL is expanded from...
 configure.ac:29: the top level])
 m4trace:configure.ac:29: -1- AC_DEFINE_TRACE_LITERAL([RETSIGTYPE])
 m4trace:configure.ac:29: -1- m4_pattern_allow([^RETSIGTYPE$])
@@ -632,15 +635,15 @@ m4trace:configure.ac:98: -1- AC_SUBST_TRACE([USE_THREADS_FALSE])
 m4trace:configure.ac:98: -1- m4_pattern_allow([^USE_THREADS_FALSE$])
 m4trace:configure.ac:98: -1- _AM_SUBST_NOTMAKE([USE_THREADS_TRUE])
 m4trace:configure.ac:98: -1- _AM_SUBST_NOTMAKE([USE_THREADS_FALSE])
-m4trace:configure.ac:114: -1- AC_DEFINE_TRACE_LITERAL([FIXED_POINT])
-m4trace:configure.ac:114: -1- m4_pattern_allow([^FIXED_POINT$])
-m4trace:configure.ac:114: -1- AC_DEFINE_TRACE_LITERAL([FIXED_POINT])
-m4trace:configure.ac:114: -1- m4_pattern_allow([^FIXED_POINT$])
-m4trace:configure.ac:114: -1- AH_OUTPUT([FIXED_POINT], [/* Use fixed-point computation */
+m4trace:configure.ac:104: -1- AC_DEFINE_TRACE_LITERAL([FIXED_POINT])
+m4trace:configure.ac:104: -1- m4_pattern_allow([^FIXED_POINT$])
+m4trace:configure.ac:104: -1- AC_DEFINE_TRACE_LITERAL([FIXED_POINT])
+m4trace:configure.ac:104: -1- m4_pattern_allow([^FIXED_POINT$])
+m4trace:configure.ac:104: -1- AH_OUTPUT([FIXED_POINT], [/* Use fixed-point computation */
 @%:@undef FIXED_POINT])
-m4trace:configure.ac:114: -1- AC_DEFINE_TRACE_LITERAL([DEFAULT_RADIX])
-m4trace:configure.ac:114: -1- m4_pattern_allow([^DEFAULT_RADIX$])
-m4trace:configure.ac:114: -1- AH_OUTPUT([DEFAULT_RADIX], [/* Default radix point for fixed-point */
+m4trace:configure.ac:104: -1- AC_DEFINE_TRACE_LITERAL([DEFAULT_RADIX])
+m4trace:configure.ac:104: -1- m4_pattern_allow([^DEFAULT_RADIX$])
+m4trace:configure.ac:104: -1- AH_OUTPUT([DEFAULT_RADIX], [/* Default radix point for fixed-point */
 @%:@undef DEFAULT_RADIX])
 m4trace:configure.ac:115: -1- AM_CONDITIONAL([FIXED_POINT], [test x$fixed_point = xtrue])
 m4trace:configure.ac:115: -1- AC_SUBST([FIXED_POINT_TRUE])
@@ -651,22 +654,22 @@ m4trace:configure.ac:115: -1- AC_SUBST_TRACE([FIXED_POINT_FALSE])
 m4trace:configure.ac:115: -1- m4_pattern_allow([^FIXED_POINT_FALSE$])
 m4trace:configure.ac:115: -1- _AM_SUBST_NOTMAKE([FIXED_POINT_TRUE])
 m4trace:configure.ac:115: -1- _AM_SUBST_NOTMAKE([FIXED_POINT_FALSE])
-m4trace:configure.ac:124: -2- AC_DEFINE_TRACE_LITERAL([SPHINX_DEBUG])
-m4trace:configure.ac:124: -2- m4_pattern_allow([^SPHINX_DEBUG$])
-m4trace:configure.ac:124: -2- AH_OUTPUT([SPHINX_DEBUG], [/* Enable debugging output */
+m4trace:configure.ac:123: -2- AC_DEFINE_TRACE_LITERAL([SPHINX_DEBUG])
+m4trace:configure.ac:123: -2- m4_pattern_allow([^SPHINX_DEBUG$])
+m4trace:configure.ac:123: -2- AH_OUTPUT([SPHINX_DEBUG], [/* Enable debugging output */
 @%:@undef SPHINX_DEBUG])
-m4trace:configure.ac:143: -1- AH_OUTPUT([HAVE_LIBPULSE_SIMPLE], [/* Define to 1 if you have the `pulse-simple\' library (-lpulse-simple). */
+m4trace:configure.ac:132: -1- AH_OUTPUT([HAVE_LIBPULSE_SIMPLE], [/* Define to 1 if you have the `pulse-simple\' library (-lpulse-simple). */
 @%:@undef HAVE_LIBPULSE_SIMPLE])
-m4trace:configure.ac:143: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBPULSE_SIMPLE])
-m4trace:configure.ac:143: -1- m4_pattern_allow([^HAVE_LIBPULSE_SIMPLE$])
-m4trace:configure.ac:143: -1- AH_OUTPUT([HAVE_LIBPULSE], [/* Define to 1 if you have the `pulse\' library (-lpulse). */
+m4trace:configure.ac:132: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBPULSE_SIMPLE])
+m4trace:configure.ac:132: -1- m4_pattern_allow([^HAVE_LIBPULSE_SIMPLE$])
+m4trace:configure.ac:132: -1- AH_OUTPUT([HAVE_LIBPULSE], [/* Define to 1 if you have the `pulse\' library (-lpulse). */
 @%:@undef HAVE_LIBPULSE])
-m4trace:configure.ac:143: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBPULSE])
-m4trace:configure.ac:143: -1- m4_pattern_allow([^HAVE_LIBPULSE$])
-m4trace:configure.ac:143: -1- AH_OUTPUT([HAVE_LIBASOUND], [/* Define to 1 if you have the `asound\' library (-lasound). */
+m4trace:configure.ac:132: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBPULSE])
+m4trace:configure.ac:132: -1- m4_pattern_allow([^HAVE_LIBPULSE$])
+m4trace:configure.ac:132: -1- AH_OUTPUT([HAVE_LIBASOUND], [/* Define to 1 if you have the `asound\' library (-lasound). */
 @%:@undef HAVE_LIBASOUND])
-m4trace:configure.ac:143: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBASOUND])
-m4trace:configure.ac:143: -1- m4_pattern_allow([^HAVE_LIBASOUND$])
+m4trace:configure.ac:132: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBASOUND])
+m4trace:configure.ac:132: -1- m4_pattern_allow([^HAVE_LIBASOUND$])
 m4trace:configure.ac:170: -1- AC_SUBST([ad_cppflags])
 m4trace:configure.ac:170: -1- AC_SUBST_TRACE([ad_cppflags])
 m4trace:configure.ac:170: -1- m4_pattern_allow([^ad_cppflags$])
@@ -761,7 +764,7 @@ m4trace:configure.ac:193: -1- AC_SUBST_TRACE([BUILD_SWIG_FALSE])
 m4trace:configure.ac:193: -1- m4_pattern_allow([^BUILD_SWIG_FALSE$])
 m4trace:configure.ac:193: -1- _AM_SUBST_NOTMAKE([BUILD_SWIG_TRUE])
 m4trace:configure.ac:193: -1- _AM_SUBST_NOTMAKE([BUILD_SWIG_FALSE])
-m4trace:configure.ac:238: -1- AC_CONFIG_FILES([
+m4trace:configure.ac:197: -1- AC_CONFIG_FILES([
 sphinxbase.pc
 Makefile
 include/Makefile

@@ -69,6 +69,9 @@ m4trace:configure.ac:3: -1- m4_pattern_allow([^sharedstatedir$])
 m4trace:configure.ac:3: -1- AC_SUBST([localstatedir], ['${prefix}/var'])
 m4trace:configure.ac:3: -1- AC_SUBST_TRACE([localstatedir])
 m4trace:configure.ac:3: -1- m4_pattern_allow([^localstatedir$])
+m4trace:configure.ac:3: -1- AC_SUBST([runstatedir], ['${localstatedir}/run'])
+m4trace:configure.ac:3: -1- AC_SUBST_TRACE([runstatedir])
+m4trace:configure.ac:3: -1- m4_pattern_allow([^runstatedir$])
 m4trace:configure.ac:3: -1- AC_SUBST([includedir], ['${prefix}/include'])
 m4trace:configure.ac:3: -1- AC_SUBST_TRACE([includedir])
 m4trace:configure.ac:3: -1- m4_pattern_allow([^includedir$])
@@ -555,30 +558,30 @@ m4trace:configure.ac:17: -1- m4_pattern_allow([^HAVE_LIBG2C$])
 m4trace:configure.ac:19: -1- AC_SUBST([PERL])
 m4trace:configure.ac:19: -1- AC_SUBST_TRACE([PERL])
 m4trace:configure.ac:19: -1- m4_pattern_allow([^PERL$])
-m4trace:configure.ac:104: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
-m4trace:configure.ac:104: -1- m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
-m4trace:configure.ac:104: -1- AC_SUBST([PKG_CONFIG])
-m4trace:configure.ac:104: -1- AC_SUBST_TRACE([PKG_CONFIG])
-m4trace:configure.ac:104: -1- m4_pattern_allow([^PKG_CONFIG$])
-m4trace:configure.ac:104: -1- AC_SUBST([PKG_CONFIG])
-m4trace:configure.ac:104: -1- AC_SUBST_TRACE([PKG_CONFIG])
-m4trace:configure.ac:104: -1- m4_pattern_allow([^PKG_CONFIG$])
-m4trace:configure.ac:104: -1- AC_SUBST([SphinxBase_CFLAGS])
-m4trace:configure.ac:104: -1- AC_SUBST_TRACE([SphinxBase_CFLAGS])
-m4trace:configure.ac:104: -1- m4_pattern_allow([^SphinxBase_CFLAGS$])
-m4trace:configure.ac:104: -1- AC_SUBST([SphinxBase_LIBS])
-m4trace:configure.ac:104: -1- AC_SUBST_TRACE([SphinxBase_LIBS])
-m4trace:configure.ac:104: -1- m4_pattern_allow([^SphinxBase_LIBS$])
-m4trace:configure.ac:131: -2- _m4_warn([obsolete], [The macro `AC_ERROR' is obsolete.
+m4trace:configure.ac:98: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
+m4trace:configure.ac:98: -1- m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
+m4trace:configure.ac:98: -1- AC_SUBST([PKG_CONFIG])
+m4trace:configure.ac:98: -1- AC_SUBST_TRACE([PKG_CONFIG])
+m4trace:configure.ac:98: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:98: -1- AC_SUBST([PKG_CONFIG])
+m4trace:configure.ac:98: -1- AC_SUBST_TRACE([PKG_CONFIG])
+m4trace:configure.ac:98: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:98: -1- AC_SUBST([SphinxBase_CFLAGS])
+m4trace:configure.ac:98: -1- AC_SUBST_TRACE([SphinxBase_CFLAGS])
+m4trace:configure.ac:98: -1- m4_pattern_allow([^SphinxBase_CFLAGS$])
+m4trace:configure.ac:98: -1- AC_SUBST([SphinxBase_LIBS])
+m4trace:configure.ac:98: -1- AC_SUBST_TRACE([SphinxBase_LIBS])
+m4trace:configure.ac:98: -1- m4_pattern_allow([^SphinxBase_LIBS$])
+m4trace:configure.ac:128: -2- _m4_warn([obsolete], [The macro `AC_ERROR' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/oldnames.m4:34: AC_ERROR is expanded from...
-configure.ac:131: the top level])
-m4trace:configure.ac:131: -1- _m4_warn([cross], [cannot check for file existence when cross compiling], [../../lib/autoconf/general.m4:2791: AC_CHECK_FILE is expanded from...
-configure.ac:131: the top level])
-m4trace:configure.ac:144: -2- _m4_warn([obsolete], [The macro `AC_ERROR' is obsolete.
+configure.ac:128: the top level])
+m4trace:configure.ac:127: -1- _m4_warn([cross], [cannot check for file existence when cross compiling], [../../lib/autoconf/general.m4:2788: AC_CHECK_FILE is expanded from...
+configure.ac:127: the top level])
+m4trace:configure.ac:141: -2- _m4_warn([obsolete], [The macro `AC_ERROR' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/oldnames.m4:34: AC_ERROR is expanded from...
-configure.ac:144: the top level])
-m4trace:configure.ac:144: -1- _m4_warn([cross], [cannot check for file existence when cross compiling], [../../lib/autoconf/general.m4:2791: AC_CHECK_FILE is expanded from...
-configure.ac:144: the top level])
+configure.ac:141: the top level])
+m4trace:configure.ac:135: -1- _m4_warn([cross], [cannot check for file existence when cross compiling], [../../lib/autoconf/general.m4:2788: AC_CHECK_FILE is expanded from...
+configure.ac:135: the top level])
 m4trace:configure.ac:150: -1- AM_CONDITIONAL([G2P_DECODER], [test "x$g2p_decoder" = "xyes"])
 m4trace:configure.ac:150: -1- AC_SUBST([G2P_DECODER_TRUE])
 m4trace:configure.ac:150: -1- AC_SUBST_TRACE([G2P_DECODER_TRUE])
@@ -600,7 +603,7 @@ m4trace:configure.ac:190: -1- m4_pattern_allow([^sphinxbase$])
 m4trace:configure.ac:191: -1- AC_SUBST([sphinxbasebuild])
 m4trace:configure.ac:191: -1- AC_SUBST_TRACE([sphinxbasebuild])
 m4trace:configure.ac:191: -1- m4_pattern_allow([^sphinxbasebuild$])
-m4trace:configure.ac:237: -1- AC_CONFIG_FILES([
+m4trace:configure.ac:193: -1- AC_CONFIG_FILES([
 Makefile
 etc/Makefile
 include/Makefile

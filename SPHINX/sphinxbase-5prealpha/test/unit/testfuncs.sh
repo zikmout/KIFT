@@ -1,7 +1,7 @@
 # Utility functions and parameters for regression tests
 
 # Predefined directories you may need
-# Stupid broken CMU Facilities autoconf doesn't do /nfs/2017/a/aoudin/Projects/KIFT/SPHINX/sphinxbase-5prealpha
+# Stupid broken CMU Facilities autoconf doesn't do /home/ubuntu/SITE_WEB/SPHINX/sphinxbase-5prealpha
 builddir=../"../.."
 sourcedir=../"../.."
 tests=$sourcedir/test

@@ -23,10 +23,10 @@
 /* #undef HAVE_LIBASOUND */
 
 /* Define to 1 if you have the `blas' library (-lblas). */
-#define HAVE_LIBBLAS 1
+/* #undef HAVE_LIBBLAS */
 
 /* Define to 1 if you have the `lapack' library (-llapack). */
-#define HAVE_LIBLAPACK 1
+/* #undef HAVE_LIBLAPACK */
 
 /* Define to 1 if you have the `m' library (-lm). */
 #define HAVE_LIBM 1
