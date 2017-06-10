@@ -1,6 +1,6 @@
 exports.userReadById = function(data, connection, r, callback) {
 	
-	r.db('sipo').table('users').get(data.id).run(connection, function(err, result) {
+	r.db('kift').table('users').get(data.id).run(connection, function(err, result) {
 		if (err) callback(true, err);
 		else callback(false, result);
 	});
@@ -8,7 +8,7 @@ exports.userReadById = function(data, connection, r, callback) {
 
 exports.userRead = function(connection, r, callback) {
 	
-	r.db('sipo').table('users').run(connection, function(err, cursor) {
+	r.db('kift').table('users').run(connection, function(err, cursor) {
 		if (err) callback(true, err);
 		else { 
 			cursor.toArray(function(err, result){
@@ -20,7 +20,7 @@ exports.userRead = function(connection, r, callback) {
 
 exports.userDelete = function(data, connection, r, callback) {
 	
-	r.db('sipo').table('users').get(data.id).delete().run(connection, function(err, result) {
+	r.db('kift').table('users').get(data.id).delete().run(connection, function(err, result) {
 		if (err) callback(true, err);
 		else callback(false, result );
 	});
@@ -28,7 +28,7 @@ exports.userDelete = function(data, connection, r, callback) {
 
 exports.userCreate = function(data, connection, r, callback) {
 	
-	r.db('sipo').table('users').insert([data]).run(connection, function(err, result) {
+	r.db('kift').table('users').insert([data]).run(connection, function(err, result) {
 		if (err) callback(true, err);
 		else callback(false, { id: result.generated_keys[0] } );
 	});
