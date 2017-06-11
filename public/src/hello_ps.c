@@ -11,12 +11,18 @@ main(int argc, char *argv[])
     int rv;
     int32 score;
 
+    //    config = cmd_ln_init(NULL, ps_args(), TRUE,
+    //           "-hmm", MODELDIR "/en-us/en-us",
+    //           "-lm", MODELDIR "/en-us/en-us.lm.bin",
+    //           "-jsgf", "hello_team.gram",
+    //           "-dict", MODELDIR "/en-us/cmudict-en-us.dict",
+    //           NULL);
+
     config = cmd_ln_init(NULL, ps_args(), TRUE,
-                 "-hmm", MODELDIR "/en-us/en-us",
-                 "-lm", MODELDIR "/en-us/en-us.lm.bin",
-                 "-jsgf", "hello_team.gram",
-                 "-dict", MODELDIR "/en-us/cmudict-en-us.dict",
-                 NULL);
+			 "-hmm", MODELDIR "/en-us/en-us",
+			 "-lm","/var/www/html/app/tutorial/init.lm",
+			 "-dict", "/var/www/html/app/tutorial/init.dic",
+			 NULL);
     if (config == NULL) {
         fprintf(stderr, "Failed to create config object, see log for  details\n");
         return -1;

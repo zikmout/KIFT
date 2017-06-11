@@ -1,0 +1,1 @@
+npm install nodemon bcrypt-nodejs body-parser connect-flash cookie-parser dotenv ejs express express-session mongoose passport passport-local

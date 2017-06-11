@@ -14,6 +14,7 @@ const express = require('express'),
 
 dotenv.config();
 
+console.log(process.env.DB_PATH);
 mongoose.connect(process.env.DB_PATH);
 setupPassport();
 app.use(express['static'](staticDir));
