@@ -1,6 +1,5 @@
 ._*
 *.raw
-*.wav
 *.o
 *.aiff
 *node_modules*
