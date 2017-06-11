@@ -9,9 +9,12 @@ const express = require('express'),
   setupPassport = require('./config/setuppassport'),
   routes = require('./routes/main'),
   app = express(),
+  dotenv = require('dotenv'),
   staticDir = path.resolve(__dirname, 'public');
 
-mongoose.connect('mongodb://kiftteam:kift42@ds119772.mlab.com:19772/kift');
+dotenv.config();
+
+mongoose.connect(process.env.DB_PATH);
 setupPassport();
 app.use(express['static'](staticDir));
 
