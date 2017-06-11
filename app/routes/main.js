@@ -3,6 +3,7 @@ const express = require('express'),
   router = new express.Router(),
   signup = require('./signup'),
   login = require('./login');
+  weather = require('./weather'); //weather
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
