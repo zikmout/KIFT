@@ -1,5 +1,5 @@
 #include <pocketsphinx.h>
-
+#include <unistd.>
 int
 main(int argc, char *argv[])
 {
@@ -50,6 +50,14 @@ main(int argc, char *argv[])
     rv = ps_end_utt(ps);
     hyp = ps_get_hyp(ps, &score);
     printf("Recognized: %s\n", hyp);
+
+    if (strstr(hyp, "ALARM"))
+      {
+	printf("une alarm a ete edemNDEE");
+      }
+
+
+
 
     fclose(fh);
     ps_free(ps);
