@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KIFT - <%= title %></title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="/css/jquery-ui.css">
+  <link rel="stylesheet" href="/css/select2.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/tipsy.css" />
+  <link href="/css/pnotify.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">KIFT</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <% if (currentUser) { %>
+          <li>
+            <a href="/user/<%- currentUser.username %>"><%= currentUser.firstName %> <%= currentUser.lastName %></a>
+          </li>
+          <li><a href="/logout">Logout</a></li>
+        <% } else { %>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Sign up</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <% errors.forEach(function(error) { %>
+      <div class="alert alert-danger">
+        <%= error %>
+      </div>
+    <% }) %>
+    <% infos.forEach(function(info) { %>
+      <div class="alert alert-info">
+        <%= info %>
+      </div>
+    <% }) %>

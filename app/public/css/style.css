@@ -1,0 +1,77 @@
+#defender-block {
+  position: relative;
+}
+
+.challenge {
+	border-color: #337ab7;
+}
+
+.challenge > .panel-heading {
+	color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+
+.announcement {
+	border-color: #33b770;
+}
+
+.announcement > .panel-heading {
+	color: #fff;
+  background-color: #33b770;
+  border-color: #33b770;
+}
+
+.message {
+	border-color: #b7337a;
+}
+
+.message > .panel-heading {
+	color: #fff;
+  background-color: #b7337a;
+  border-color: #b7337a;
+}
+
+.mark-read {
+	margin-top: -29px;
+	padding-left: 17px;
+	padding-top: 13px;
+	padding-right: 17px;
+	border-top-right-radius: 4px;
+	margin-right: -16px;
+	height: 39px;
+	border-left: 1px solid #fff;
+	cursor: pointer;
+}
+
+.mark-read:hover {
+	background: #285f8f;
+}
+
+.read-notification {
+	border-color: #ddd;
+	transition: border-color .5s ease-in-out;
+	-webkit-transition: border-color .5s ease-in-out;
+	-moz-transition: border-color .5s ease-in-out;
+	-ms-transition: border-color .5s ease-in-out;
+	-o-transition: border-color .5s ease-in-out;
+}
+
+.read-notification > .panel-heading {
+	color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  transition: color background-color border-color .5s ease-in-out;
+	-webkit-transition: color background-color border-color .5s ease-in-out;
+	-moz-transition: color background-color border-color .5s ease-in-out;
+	-ms-transition: color background-color border-color .5s ease-in-out;
+	-o-transition: color background-color border-color .5s ease-in-out;
+}
+
+#notification-bell {
+	transition: color .5s ease-in-out;
+	-webkit-transition: color .5s ease-in-out;
+	-moz-transition: color .5s ease-in-out;
+	-ms-transition: color .5s ease-in-out;
+	-o-transition: color .5s ease-in-ou
+}
