@@ -30,6 +30,10 @@ router.get('/', (req, res, next) => {
 router.use('/signup', signup);
 router.use('/login', login);
 
+router.get('/kift', (req, res) => {
+  res.render('kift', {title: 'Kift'});
+})
+
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
