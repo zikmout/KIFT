@@ -1,0 +1,15 @@
+metric.lo: metric.c /usr/include/stdc-predef.h \
+ ../../../include/s3/metric.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/sphinxtrain-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/prim_type.h \
+ /home/ubuntu/SITE_WEB/app/tutorial/sphinxtrain-5prealpha/../sphinxbase-5prealpha/include/sphinx_config.h \
+ ../../../include/s3/div.h
+
+/usr/include/stdc-predef.h:
+
+../../../include/s3/metric.h:
+
+/home/ubuntu/SITE_WEB/app/tutorial/sphinxtrain-5prealpha/../sphinxbase-5prealpha/include/sphinxbase/prim_type.h:
+
+/home/ubuntu/SITE_WEB/app/tutorial/sphinxtrain-5prealpha/../sphinxbase-5prealpha/include/sphinx_config.h:
+
+../../../include/s3/div.h:
