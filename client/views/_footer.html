@@ -1,0 +1,64 @@
+  </div> <!-- .container -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-ui.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script src="/js/moment.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script src="/js/bootstrap-datetimepicker.min.js"
+    type="text/javascript"></script>
+  <script src="/js/select2.min.js" type="text/javascript"></script>
+  <script type='text/javascript' src='/js/jquery.tipsy.js'></script>
+  <script type="text/javascript" src="/js/pnotify.js"></script>
+  <script type="text/javascript" src="/js/pnotify.desktop.js"></script>
+
+  <% if (currentUser) { %>
+    <!-- Scripts for logged in Users -->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        // Start the client
+        var socket = io();
+
+        // Emits a signal to the server to make a room for the logged in user
+        socket.emit('join', {username: '<%= currentUser.username %>'});
+
+        // Receives any notification that was sent to the logged in user
+        // Then sends a browser notication (with fallback if not supported)
+        // and makes notification bell blue
+        socket.on('notification', function(notification) {
+          // TODO: findout if the current page is the notification one
+          // if it is, update the page accordingly
+          PNotify.prototype.options.styling = "bootstrap3";
+          PNotify.desktop.permission();
+          (new PNotify({
+              title: notification.title,
+              text: notification.message,
+              desktop: {
+                  icon: null, // TODO: add an icon for each notification type
+                  desktop: true
+              }
+          })).get().click(function(e) {
+              window.location.href = notification.url;
+          });
+
+          $('#notification-bell')
+            .css('color', '#337ab7')
+            .attr('original-title', 'You have unread notifications');
+        })
+
+        // UX goodies for User Profile Edit page
+        var country = '<%= currentUser.country %>',
+            gender = '<%= currentUser.gender %>';
+        if (country !== 'unknown') {
+          $('#country-selection').val(country);
+        }
+        if (gender !== 'unknown') {
+          $('#gender-selection').val(gender);
+        }
+
+      });
+    </script>
+    <script src="/js/loggedin-custom.js" type="text/javascript"></script>
+  <% } %>
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

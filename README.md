@@ -27,7 +27,7 @@
 2. Record
 
         rec --bits 16 --encoding signed-integer --endian little -c 1 record-voice.raw
-        
+
 3. (Optional) Test if the .raw file you just generated sounds good by converting it to .wav:
 
         sox -r 44100 -e unsigned -b 8 -c 1 RAW_FILE_SRC.raw WAV_FILE_DST.wav
@@ -36,7 +36,22 @@
 
         open WAV_FILE_DST.wav
 
+## About the web client
 
+You'll find the code for the web client at `./client`
+
+### How to test it
+
+1. Enter the `client` directory and install the dependencies:
+
+        cd client
+        npm install
+
+2. Run the server
+
+        npm start
+
+That's it! Refer to the rest of the team if you have more questions.
 
 ## Resources
 

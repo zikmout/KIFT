@@ -1,0 +1,13 @@
+<% include _header.html %>
+
+  <h2>Welcome to KIFT</h2>
+
+  <% users.forEach(function(user) { %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= user.firstName %> <%= user.lastName %>
+      </div>
+    </div>
+  <% }) %>
+
+<% include _footer.html %>

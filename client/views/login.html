@@ -1,0 +1,17 @@
+<% include _header.html %>
+
+  <h2>Login</h2>
+
+  <form action="/login" method="post">
+    <div class="form-group">
+      <input type="text" class="form-control" name="email"
+      placeholder="Email" autofocus required>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password"
+      placeholder="Password" required>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Login</button>
+  </form>
+
+<% include _footer.html %>
