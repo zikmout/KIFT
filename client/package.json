@@ -1,0 +1,27 @@
+{
+  "name": "KIFT",
+  "version": "1.0.0",
+  "description": "A voice recognition app",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "latest",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.6",
+    "express": "latest",
+    "express-session": "^1.15.3",
+    "mongoose": "latest",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
+  },
+  "author": "melonf**kers",
+  "license": "ISC"
+}
