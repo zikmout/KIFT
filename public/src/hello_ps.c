@@ -29,7 +29,7 @@ main(int argc, char *argv[])
     }
     fh = fopen(argv[1], "rb");
     if (fh == NULL) {
-        fprintf(stderr, "Unable to open input file goforward.raw\n");
+      fprintf(stderr, "Unable to open input file %s\n", argv[1]);
         return -1;
     }
 

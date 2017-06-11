@@ -1,6 +1,6 @@
 
 
-NAME		:= melonf**ckers
+NAME		:= kift
 
 SRC			:=	hello_ps.c
 
