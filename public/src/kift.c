@@ -3,7 +3,7 @@
 static t_cmd g_cmds[NB_INSTRUCTIONS]=
   {
     {0, NULL, NULL, 0},
-    {1, "ALARM", "SET ALARM", 1},
+    {1, "ALARM", "SET ALARM", 0},
     {2, "WEATHER RAIN", "GET WEATHER", 0},
     {3, "KITCHEN", "BRIAN IS IN THE KITCHEN", 1},
     {4, "MUSIC", "PLAY MUSIC", 0}
@@ -61,12 +61,12 @@ int main(int argc, char *argv[])
   }
 
   rv = ps_start_utt(ps);
-  //    username = argv[2];
-  //if (username == NULL)
-  //{
-  // fprintf(stderr, "Failed to assign username\n");
-  //  return (-1);
-  //}
+  username = argv[2];
+  if (username == NULL)
+  {
+   fprintf(stderr, "Failed to assign username\n");
+   return (-1);
+  }
 
   while (!feof(fh)) {
     size_t nsamp;

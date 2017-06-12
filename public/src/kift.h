@@ -14,9 +14,9 @@
 #define NB_INSTRUCTIONS 5
 #define TRANSCRIPTION_FILE "../../app/tutorial/instruction.transcription"
 #define FILEIDS_FILE "../../app/tutorial/instruction.fileids"
-#define LOG_FILE "log.txt"
-#define ID_INSTRUCTION_FILE "response_instruction.txt"
-#define NEXT_TRAIN_FILE "response_train.txt"
+#define LOG_FILE "../../app/tutorial/logs/log.txt"
+#define ID_INSTRUCTION_FILE "../../app/tutorial/logs/response_instruction.txt"
+#define NEXT_TRAIN_FILE "../../app/tutorial/logs/response_train.txt"
 #define END_OF_TRAIN  "END OF TRAIN"
 typedef struct s_cmd
 {
