@@ -1,24 +1,6 @@
-#include <string.h>
-#include <pocketsphinx.h>
-#include <unistd.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include "kift.h"
 
-#define NB_INSTRUCTIONS 3
-#define TRANSCRIPTION_FILE "../../app/tutorial/instruction.transcription"
-#define FILEIDS_FILE "../../app/tutorial/instruction.fileids"
-typedef struct s_cmd
-{
-  int id;
-  char *key_words;
-  char *train_sentence;
-}              t_cmd;
-
-t_cmd g_cmds[NB_INSTRUCTIONS]=
+static t_cmd g_cmds[NB_INSTRUCTIONS]=
   {
     {0, NULL, NULL},
     {1, "ALARM", "SET ALARM"},
@@ -47,7 +29,7 @@ int main(int argc, char *argv[])
     int rv;
     int32 score;
     char *username;
-
+   
     //    config = cmd_ln_init(NULL, ps_args(), TRUE,
     //           "-hmm", MODELDIR "/en-us/en-us",
     //           "-lm", MODELDIR "/en-us/en-us.lm.bin",
@@ -96,8 +78,9 @@ int main(int argc, char *argv[])
     int fd = 0;
     char *filename = argv[1];
     filename[strlen(argv[1]) - 4] = '\0';
-    if ((fd = open(filename, O_RDWR | O_CREAT, 0666)) == -1)
+    if ((fd = open(LOG_FILE, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
       return (-1);
+    printf("yo");
     write(fd, hyp, strlen(hyp));
     write(fd, " (", 2);
     write(fd, argv[1], strlen(argv[1]));
@@ -116,17 +99,23 @@ int main(int argc, char *argv[])
     if (!(cmd  = get_cmd_by_hyp(hyp)))
       return (-1);
     printf("id instruction %i  cmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
-    if ((fd = open(TRANSCRIPTION_FILE, O_RDWR | O_CREAT, 0666)) == -1)
+    if ((fd = open(TRANSCRIPTION_FILE, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
       return (-1);
     write(fd, cmd->train_sentence , strlen(cmd->train_sentence));
     write(fd, " (", 2);
     write(fd, argv[1], strlen(argv[1]));
     write(fd, ")\n", 2);
     close(fd);
-    if ((fd = open(FILEIDS_FILE, O_RDWR | O_CREAT, 0666)) == -1)
+    if ((fd = open(FILEIDS_FILE, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
       return (-1);
     write(fd, argv[1], strlen(argv[1]));
     write(fd, "\n", 1);
+    close(fd);
+    if ((fd = open(ID_INSTRUCTION_FILE, O_RDWR | O_CREAT , 0666)) == -1)
+      return (-1);
+   
+    dprintf(fd, "%i", cmd->id);
+    write(fd, "\0", 1);
     close(fd);
     fclose(fh);
     ps_free(ps);
