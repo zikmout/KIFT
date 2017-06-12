@@ -8,6 +8,7 @@ router.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.errors = req.flash('error');
   res.locals.infos = req.flash('info');
+  res.locals.isKift = false;
   next();
 });
 
@@ -29,6 +30,10 @@ router.get('/', (req, res, next) => {
 
 router.use('/signup', signup);
 router.use('/login', login);
+
+router.get('/playsong', (req, res) => {
+	res.render('playsong', {title: 'Listen and enjoy the music now'});
+})
 
 router.get('/kift', (req, res) => {
   res.render('kift', {title: 'Kift - Personal assistant', isKift: true});
