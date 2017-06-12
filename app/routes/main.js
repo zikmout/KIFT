@@ -3,7 +3,9 @@ const express = require('express'),
   router = new express.Router(),
   signup = require('./signup'),
   say = require('say'),
-  login = require('./login');
+  login = require('./login'),
+  async = require('async'),
+  child_process = require('child_process');
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
@@ -45,7 +47,18 @@ router.get('/:user/getgeoloc/', (req, res) => {
 	say.speak('Here is your geolocalisation ' + req.params.user);
 	res.render('getgeoloc', {title: 'User' + req.params.user + ' has been geolocalized here :'});
 })
-
+/*
+router.get('/:user/kift/', (req, res) => {
+	console.log('beginning executing kift...');
+	async.series([
+		async.apply(child_process.execFile, "echo 'simon' > simon.txt"),
+		async.apply(child_process.execFile, "echo 'toto' > toto.txt")
+		],
+		function (err, res) {
+			console.log(res);
+		});
+})
+*/
 router.get('/kift', (req, res) => {
   res.render('kift', {title: 'Kift - Personal assistant', isKift: true});
 })

@@ -4,8 +4,10 @@
   "description": "A voice recognition app",
   "main": "server.js",
   "dependencies": {
+    "async": "^2.4.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "child-process": "^1.0.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
