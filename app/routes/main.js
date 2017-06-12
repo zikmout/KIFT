@@ -49,9 +49,14 @@ router.get('/:user/getgeoloc/', (req, res) => {
 })
 /*
 router.get('/:user/kift/', (req, res) => {
-	console.log('beginning executing kift...');
-	var cmd1 = "./../public/src/kift " + "../tutorial/test_simon.wav " + req.params.user;
+console.log('beginning executing kift...');
+	var cmd1 = "../src/kift " + "../tutorial/test_simon.wav " + req.params.user;
+	console.log(cmd1);
 	async.series([
+	process.env.LD_LIBRARY_PATH='/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/lib:/home/ubuntu/SITE_WEB/app/tutorial/sphinxbase-5prealpha/lib',
+	process.env.PKG_CONFIG_PATH='/home/ubuntu/SITE_WEB/app/tutorial/sphinxbase-5prealpha:/home/ubuntu/SITE_WEB/app/tutorial/sphinxbase-5prealpha/src:/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha',
+	process.env.PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/ubuntu/SITE_WEB/app/tutorial/sphinxbase-5prealpha/bin:/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/bin:/home/ubuntu/SITE_WEB/app/tutorial/sphinxtrain-4prealpha/bin',
+	
 		async.apply(child_process.execFile, cmd1),
 		async.apply(child_process.execFile, "echo 'finito is YES' > finito.txt")
 		],
