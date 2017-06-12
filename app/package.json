@@ -14,7 +14,8 @@
     "express-session": "^1.15.3",
     "mongoose": "^4.10.5",
     "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "say": "^0.11.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

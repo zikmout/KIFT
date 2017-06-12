@@ -2,6 +2,7 @@ const express = require('express'),
   User = require('../models/user'),
   router = new express.Router(),
   signup = require('./signup'),
+  say = require('say'),
   login = require('./login');
 
 router.use((req, res, next) => {
@@ -36,10 +37,12 @@ router.get('/playsong', (req, res) => {
 })
 
 router.get('/searchweb/:word', (req, res) => {
+	say.speak('Lets go on google find out what ' + req.params.word + ' means');
 	res.redirect('http://www.google.com/search?q=' + req.params.word);
 })
 
 router.get('/:user/getgeoloc/', (req, res) => {
+	say.speak('Here is your geolocalisation ' + req.params.user);
 	res.render('getgeoloc', {title: 'User' + req.params.user + ' has been geolocalized here :'});
 })
 
