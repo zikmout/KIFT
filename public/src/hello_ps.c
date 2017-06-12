@@ -9,28 +9,31 @@
 # include <stdlib.h>
 
 #define NB_INSTRUCTIONS 3
+#define TRANSCRIPTION_FILE "../../app/tutorial/instruction.transcription"
+#define FILEIDS_FILE "../../app/tutorial/instruction.fileids"
 typedef struct s_cmd
 {
   int id;
   char *key_words;
+  char *train_sentence;
 }              t_cmd;
 
 t_cmd g_cmds[NB_INSTRUCTIONS]=
   {
-    {0, NULL},
-    {1, "ALARM"},
-    {2, "WEATHER RAIN"}
+    {0, NULL, NULL},
+    {1, "ALARM", "SET ALARM"},
+    {2, "WEATHER RAIN", "GET WEATHER"}
   };
 
-int get_id_by_hyp(const char *hyp)
+t_cmd *get_cmd_by_hyp(const char *hyp)
 {
   int i = 0;
   while (++i < NB_INSTRUCTIONS)
     {
       if (strstr(hyp, g_cmds[i].key_words))
-	return (i);
+	return (g_cmds + i);
     }
-  return (-1);  
+  return (NULL);  
   
 }
 
@@ -102,15 +105,29 @@ int main(int argc, char *argv[])
     close(fd);
     if (strstr(hyp, "ALARM"))
     {
-	printf("*** *** *** *** ***");
+	printf("*** *** *** *** ***\n");
     }
-    int id_instruction = 0;
-    if ((id_instruction = get_id_by_hyp(hyp)) == -1)
+    if (get_cmd_by_hyp(hyp) == NULL)
       {
 	fprintf(stderr, "Failed to recognize instruction\n");
 	return -1;
       }
-    printf("id instruction %i\n", get_id_by_hyp(hyp));
+    t_cmd *cmd = NULL;
+    if (!(cmd  = get_cmd_by_hyp(hyp)))
+      return (-1);
+    printf("id instruction %i  cmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
+    if ((fd = open(TRANSCRIPTION_FILE, O_RDWR | O_CREAT, 0666)) == -1)
+      return (-1);
+    write(fd, cmd->train_sentence , strlen(cmd->train_sentence));
+    write(fd, " (", 2);
+    write(fd, argv[1], strlen(argv[1]));
+    write(fd, ")\n", 2);
+    close(fd);
+    if ((fd = open(FILEIDS_FILE, O_RDWR | O_CREAT, 0666)) == -1)
+      return (-1);
+    write(fd, argv[1], strlen(argv[1]));
+    write(fd, "\n", 1);
+    close(fd);
     fclose(fh);
     ps_free(ps);
     cmd_ln_free_r(config);
