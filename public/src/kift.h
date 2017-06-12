@@ -11,18 +11,19 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-#define NB_INSTRUCTIONS 3
+#define NB_INSTRUCTIONS 5
 #define TRANSCRIPTION_FILE "../../app/tutorial/instruction.transcription"
 #define FILEIDS_FILE "../../app/tutorial/instruction.fileids"
 #define LOG_FILE "log.txt"
-#define ID_INSTRUCTION_FILE "id_inst.txt"
-
-
+#define ID_INSTRUCTION_FILE "response_instruction.txt"
+#define NEXT_TRAIN_FILE "response_train.txt"
+#define END_OF_TRAIN  "END OF TRAIN"
 typedef struct s_cmd
 {
   int id;
   char *key_words;
   char *train_sentence;
+  int is_train;
 }              t_cmd;
 
 #endif
