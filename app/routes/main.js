@@ -50,9 +50,10 @@ router.get('/:user/getgeoloc/', (req, res) => {
 /*
 router.get('/:user/kift/', (req, res) => {
 	console.log('beginning executing kift...');
+	var cmd1 = "./../public/src/kift " + "../tutorial/test_simon.wav " + req.params.user;
 	async.series([
-		async.apply(child_process.execFile, "echo 'simon' > simon.txt"),
-		async.apply(child_process.execFile, "echo 'toto' > toto.txt")
+		async.apply(child_process.execFile, cmd1),
+		async.apply(child_process.execFile, "echo 'finito is YES' > finito.txt")
 		],
 		function (err, res) {
 			console.log(res);
