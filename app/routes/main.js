@@ -31,7 +31,7 @@ router.use('/signup', signup);
 router.use('/login', login);
 
 router.get('/kift', (req, res) => {
-  res.render('kift', {title: 'Kift'});
+  res.render('kift', {title: 'Kift - Personal assistant', isKift: true});
 })
 
 router.get('/logout', (req, res) => {
