@@ -35,6 +35,10 @@ router.get('/playsong', (req, res) => {
 	res.render('playsong', {title: 'Listen and enjoy the music now'});
 })
 
+router.get('/searchweb/:word', (req, res) => {
+	res.redirect('http://www.google.com/search?q=' + req.params.word);
+})
+
 router.get('/kift', (req, res) => {
   res.render('kift', {title: 'Kift - Personal assistant', isKift: true});
 })
