@@ -1,6 +1,38 @@
+.container, .container-fluid {
+  padding: 0;
+}
+
+body {
+	overflow: hidden;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    background-color: #111;
+    width: 100%;
+    text-align: center;
+		padding: 10px;
+    color: #999;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.navbar {
+	background: #000;
+}
+
+.navbar a:hover {
+	color: #be141f !important;
+}
+
 #defender-block {
   position: relative;
 }
+
 
 .challenge {
 	border-color: #337ab7;

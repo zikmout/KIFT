@@ -33,7 +33,7 @@
       </ul>
     </div>
   </div>
-  <div class="container">
+  <div class="container<% if (isKift) { %>-fluid<% } %>">
     <% errors.forEach(function(error) { %>
       <div class="alert alert-danger">
         <%= error %>
