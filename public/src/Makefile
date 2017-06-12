@@ -2,7 +2,7 @@
 
 NAME		:= kift
 
-SRC			:=	hello_ps.c
+SRC			:=	kift.c
 
 OBJ			:= $(SRC:%.c=%.o)
 
@@ -20,7 +20,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@printf "$(GRAY)Creating $(RED)$(NAME) $(NO_COLOR)"
-	@gcc $< -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\"    `pkg-config --cflags --libs pocketsphinx sphinxbase` -o $@
+	@gcc -I. $< -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\"    `pkg-config --cflags --libs pocketsphinx sphinxbase` -o $@ 
 	@if [ -a $(NAME) ] ; \
 	then \
 		printf "\e[31G$(GREEN)✓$(NO_COLOR)\n" ; \
@@ -28,7 +28,7 @@ $(NAME): $(OBJ)
 
 %.o: %.c
 	@printf "$(GRAY)Compiling $(GREEN)$(<:src/%.c=%) $(NO_COLOR)"
-	@gcc -c $< -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\"    `pkg-config --cflags pocketsphinx sphinxbase` -o $@
+	@gcc -I. -c $< -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\"    `pkg-config --cflags pocketsphinx sphinxbase` -o $@
 	@if [ -a $(<) ] ; \
 	then \
 		printf "\e[31G$(GREEN)✓$(NO_COLOR)\n" ; \
