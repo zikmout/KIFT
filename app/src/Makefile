@@ -1,47 +1,30 @@
+NAME	=	kift
+CC		=   gcc -D_GNU_SOURCE
+CFLAGS	= 	-Wall 
+RM		=   rm -f
+LIBFT	=	 -L../libft -lft
+SRCS	=	kift.c \
+		get_hyp.c \
 
+OBJS	=   $(SRCS:%.c=%.o)
 
-NAME		:= kift
+LIBFT_PATH	= ../libft
 
-SRC			:=	kift.c
+all:	$(NAME)
 
-OBJ			:= $(SRC:%.c=%.o)
-
-# Colors
-NO_COLOR	:= \x1b[0m
-GREEN		:= \x1b[32;01m
-RED			:= \x1b[31;01m
-YELLOW		:= \x1b[33;01m
-GRAY		:= \x1b[30;01m
-
-
-.PHONY: all re clean fclean
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	@printf "$(GRAY)Creating $(RED)$(NAME) $(NO_COLOR)"
-	@gcc -I. $< -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\"    `pkg-config --cflags --libs pocketsphinx sphinxbase` -o $@ 
-	@if [ -a $(NAME) ] ; \
-	then \
-		printf "\e[31G$(GREEN)✓$(NO_COLOR)\n" ; \
-	fi;
+$(NAME):$(OBJS)
+	@gcc -D_GNU_SOURCE -I. $< -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\"    `pkg-config --cflags --libs pocketsphinx sphinxbase` -o $@
 
 %.o: %.c
-	@printf "$(GRAY)Compiling $(GREEN)$(<:src/%.c=%) $(NO_COLOR)"
-	@gcc -I. -c $< -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\"    `pkg-config --cflags pocketsphinx sphinxbase` -o $@
-	@if [ -a $(<) ] ; \
-	then \
-		printf "\e[31G$(GREEN)✓$(NO_COLOR)\n" ; \
-	fi;
+	@gcc -D_GNU_SOURCE -I. -c $< -DMODELDIR=\"`pkg-config --variable=modeldir pocketsphinx`\"    `pkg-config --cflags pocketsphinx sphinxbase` -o $@
 
 clean:
-	@printf "$(GRAY)Removing objects$(NO_COLOR)"
-	@rm -f $(OBJ)
-	@printf "\e[31G$(GREEN)✓$(NO_COLOR)\n"
+	@rm -f $(OBJS)
 
-fclean: clean
-	@printf "$(GRAY)Removing library/executable$(NO_COLOR)"
+fclean:	clean
 	@rm -f $(NAME)
-	@printf "\e[31G$(GREEN)✓$(NO_COLOR)\n"
 
-re: fclean all
+re:		fclean all
+
+.PHONY:		all clean fclean re
+

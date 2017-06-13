@@ -49,7 +49,7 @@ function gotBuffers( buffers ) {
 }
 
 function doneEncoding( blob ) {
-    Recorder.setupDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
+    Recorder.setupDownload( blob, userName + '_' + Date.now() + ".wav" );
     recIndex++;
 }
 
@@ -58,7 +58,7 @@ function toggleRecording( e ) {
         // stop recording
         audioRecorder.stop();
         e.classList.remove("recording");
-        audioRecorder.getBuffers( gotBuffers );
+        audioRecorder.exportWAV( doneEncoding );
     } else {
         // start recording
         if (!audioRecorder)

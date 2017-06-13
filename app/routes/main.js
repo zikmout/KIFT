@@ -5,10 +5,17 @@ const express = require('express'),
   say = require('say'),
   login = require('./login'),
   async = require('async'),
-  child_process = require('child_process');
+  ensureAuthenticated = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+      return res.redirect('/login');
+    } else {
+      next();
+    }
+  };
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.test1 = 'lmao';
   res.locals.errors = req.flash('error');
   res.locals.infos = req.flash('info');
   res.locals.isKift = false;
@@ -47,20 +54,26 @@ router.get('/:user/getgeoloc/', (req, res) => {
 	say.speak('Here is your geolocalisation ' + req.params.user);
 	res.render('getgeoloc', {title: 'User' + req.params.user + ' has been geolocalized here :'});
 })
-/*
-router.get('/:user/kift/', (req, res) => {
-	console.log('beginning executing kift...');
-	var cmd1 = "./../public/src/kift " + "../tutorial/test_simon.wav " + req.params.user;
-	async.series([
-		async.apply(child_process.execFile, cmd1),
-		async.apply(child_process.execFile, "echo 'finito is YES' > finito.txt")
-		],
-		function (err, res) {
-			console.log(res);
-		});
-})
-*/
-router.get('/kift', (req, res) => {
+
+router.get('/:user/kift/:audio', (req, res) => {
+	//need other parameter audio in the URI
+console.log('beginning executing kift...');
+	var cmd1 = "./src/kift " + req.params.audio + " " + req.params.user;
+	console.log(cmd1);
+	console.log(req.params);
+
+var exec = require('child_process').exec;
+exec(cmd1, function(error, stdout, stderr) {
+    console.log('stdout: ', stdout);
+    console.log('stderr: ', stderr);
+    if (error !== null) {
+        console.log('exec error: ', error);
+    }
+});
+
+});
+
+router.get('/kift', ensureAuthenticated, (req, res) => {
   res.render('kift', {title: 'Kift - Personal assistant', isKift: true});
 })
 

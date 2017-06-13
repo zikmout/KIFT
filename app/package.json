@@ -10,14 +10,17 @@
     "child-process": "^1.0.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
+    "delivery": "0.0.6",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
+    "fs": "0.0.1-security",
     "mongoose": "^4.10.5",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "say": "^0.11.0"
+    "say": "^0.11.0",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
