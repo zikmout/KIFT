@@ -12,7 +12,6 @@
 <script src="js/kift/recorder.js"></script>
 <script src="js/kift/main.js"></script>
 <script src="js/jquery.min.js"></script>
-
 <script>
 	var allowed = true;
 
@@ -21,16 +20,16 @@
 			allowed = !event.repeat;
 		}
 		if (allowed && event.which == 32 ) {
-			console.log("ok");
-   			toggleRecording(this);
-   			allowed = false;
-  		}
+				console.log("nice");
+				toggleRecording(this);
+				allowed = false;
+			}
 	});
 	$( "body" ).keyup(function( event ) {
-  		if ( event.which == 32 ) {
-   			toggleRecording(this);
-   			allowed = true;
-  		}
+		if ( event.which == 32 ) {
+			toggleRecording(this);
+			allowed = true;
+		}
 	});
 </script>
 

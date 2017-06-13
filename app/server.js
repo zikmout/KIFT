@@ -45,3 +45,22 @@ app.use(routes);
 let server = app.listen(app.get('port'), () => {
     console.log(`KIFT listening on port ${app.get('port')}`);
 });
+
+var io = require('socket.io')(server);
+dl = require('delivery'),
+fs  = require('fs');
+
+io.sockets.on('connection', function(socket){
+  delivery = dl.listen(socket);
+  delivery.on('receive.success',function(file){
+
+    console.log(file);
+    fs.writeFile(file.params.path,file.buffer, function(err){
+      if(err){
+        console.log('File could not be saved.');
+      }else{
+        console.log('File saved.');
+      };
+    });
+  });
+});
