@@ -8,5 +8,29 @@
 
 <!-- <script src="http://connect.soundcloud.com/sdk.js"></script> -->
 <script src="js/kift/visualizer.js"></script>
+<script src="js/kift/audiodisplay.js"></script>
+<script src="js/kift/recorder.js"></script>
+<script src="js/kift/main.js"></script>
+<script src="js/jquery.min.js"></script>
+<script>
+	var allowed = true;
+
+	$( "body" ).keydown(function( event ) {
+		if (event.repeat != undefined) {
+			allowed = !event.repeat;
+		}
+		if (allowed && event.which == 32 ) {
+				console.log("nice");
+				toggleRecording(this);
+				allowed = false;
+			}
+	});
+	$( "body" ).keyup(function( event ) {
+		if ( event.which == 32 ) {
+			toggleRecording(this);
+			allowed = true;
+		}
+	});
+</script>
 
 <% include _footer.html %>
