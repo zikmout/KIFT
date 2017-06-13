@@ -10,7 +10,8 @@ const express = require('express'),
   routes = require('./routes/main'),
   app = express(),
   dotenv = require('dotenv'),
-  staticDir = path.resolve(__dirname, 'public');
+  staticDir = path.resolve(__dirname, 'public'),
+  User = require("./models/user");
 
 dotenv.config();
 
@@ -54,13 +55,18 @@ io.sockets.on('connection', function(socket){
   delivery = dl.listen(socket);
   delivery.on('receive.success',function(file){
 
-    console.log(file);
-    fs.writeFile(file.params.path,file.buffer, function(err){
+    var userName = file.params.name.match(/([a-z_]+)_/)[1];
+
+    if (!fs.existsSync('./audio/' + userName)) {
+      fs.mkdirSync('./audio/' + userName);
+    }
+    
+    fs.writeFile('./audio/' + userName + '/' + file.params.name, file.buffer, function(err){
       if(err){
         console.log('File could not be saved.');
       }else{
         console.log('File saved.');
-      };
+      }
     });
   });
 });
