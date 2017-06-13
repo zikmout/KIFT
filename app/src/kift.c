@@ -24,7 +24,9 @@ const char *get_hyp(char *argv[])
 		fprintf(stderr, "Failed to create recognizer, see log for  details\n");
 		return NULL;
 	}
-	fh = fopen(argv[1], "rb");
+	char *tmp;
+	asprintf(&tmp, "%s%s/%s", BASE_AUDIO, argv[2], argv[1]);
+	fh = fopen(tmp, "rb");
 	if (fh == NULL) {
 		fprintf(stderr, "Unable to open input file %s\n", argv[1]);
 		return NULL;
@@ -58,8 +60,8 @@ const char *get_hyp(char *argv[])
 static t_cmd g_cmds[NB_INSTRUCTIONS]=
 {
 	{0, NULL, NULL, 0},
-	{1, "ALARM", "SET ALARM", 0},
-	{2, "WEATHER RAIN", "GET WEATHER", 0},
+	{1, "ALARM", "SET ALARM", 1},
+	{2, "WEATHER RAIN", "GET WEATHER", 1},
 	{3, "KITCHEN", "BRIAN IS IN THE KITCHEN", 1},
 	{4, "MUSIC", "PLAY MUSIC", 0}
 };
@@ -75,7 +77,6 @@ t_cmd *get_cmd_by_hyp(const char *hyp)
 			return (g_cmds + i);
 	}
 	return (NULL);
-
 }
 
 int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
@@ -87,7 +88,7 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 	user_files_path = NULL;
 	if (!cmd->is_train)
 	{
-		asprintf(&user_files_path, "%s%s%s",USER_FILE_PATH, argv[2], LOG_FILE);
+		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], LOG_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 			return (-1);
 		write(fd, hyp, strlen(hyp));
@@ -95,13 +96,13 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 		write(fd, argv[1], strlen(argv[1]));
 		write(fd, ")\n", 2);
 		close(fd);
-		asprintf(&user_files_path, "%s%s%s",USER_FILE_PATH, argv[2], ID_INSTRUCTION_FILE);
+		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], ID_INSTRUCTION_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT , 0666)) == -1)
 			return (-1);
 		dprintf(fd, "%i", cmd->id);
-		write(fd, "\0", 1);
+				write(fd, "h", 1);
 		close(fd);
-		asprintf(&user_files_path,"%s%s%s",USER_FILE_PATH, argv[2], NEXT_TRAIN_FILE);
+		asprintf(&user_files_path,"%s%s%s", BASE_LOG, argv[2], NEXT_TRAIN_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT, 0666)) == -1)
 			return (-1);
 		write(fd, "\0", 1);
@@ -109,7 +110,7 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 	}
 	else
 	{
-		asprintf(&user_files_path, "%s%s%s",USER_FILE_PATH, argv[2], NEXT_TRAIN_FILE);
+		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], NEXT_TRAIN_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT, 0666)) == -1)
 			return (-1);
 		if (cmd->id + 1 < NB_INSTRUCTIONS)
@@ -118,7 +119,7 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 			dprintf(fd, "%s", END_OF_TRAIN);
 		write(fd, "\0", 1);
 		close(fd);
-		asprintf(&user_files_path, "%s%s%s",USER_FILE_PATH, argv[2], ID_INSTRUCTION_FILE);
+		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], ID_INSTRUCTION_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT , 0666)) == -1)
 			return (-1);
 		write(fd, "\0", 1);
@@ -129,17 +130,19 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 
 int write_for_train(t_cmd *cmd, char *argv[])
 {
-	int fd;
-
+  int fd;
+  char *path;
 	fd = -1;
-	if ((fd = open(TRANSCRIPTION_FILE, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
+	asprintf(&path, "%s%s%s", BASE_TRANSC, argv[2], TRANSCRIPTION_FILE);
+	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
 	write(fd, cmd->train_sentence , strlen(cmd->train_sentence));
 	write(fd, " (", 2);
 	write(fd, argv[1], strlen(argv[1]));
 	write(fd, ")\n", 2);
 	close(fd);
-	if ((fd = open(FILEIDS_FILE, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
+	asprintf(&path, "%s%s%s", BASE_TRANSC, argv[2], FILEIDS_FILE);
+	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
 	write(fd, argv[1], strlen(argv[1]));
 	write(fd, "\n", 1);
@@ -151,7 +154,7 @@ int main(int argc, char *argv[])
 {
 	char *username;
 	char *hyp = (char*)get_hyp(argv);
-	printf("Recognized: %s\n", hyp);
+	//	printf("Recognized: %s\n", hyp);
 	int fd = 0;
 	char *filename = argv[1];
 	t_cmd *cmd = NULL;
@@ -165,7 +168,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Failed to recognize instruction\n");
 		return (-1);
 	}
-	printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
+	//	printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
 	if (write_logs_response(cmd, argv, hyp) == -1)
 		return (-1);
 	if (write_for_train(cmd, argv))

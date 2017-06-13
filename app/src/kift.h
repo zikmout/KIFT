@@ -13,14 +13,15 @@
 # include <stdarg.h>
 
 #define NB_INSTRUCTIONS 5
-#define TRANSCRIPTION_FILE "../tutorial/instruction.transcription"
-#define FILEIDS_FILE "../tutorial/instruction.fileids"
+#define TRANSCRIPTION_FILE "/instruction.transcription"
+#define FILEIDS_FILE "/instruction.fileids"
 #define LOG_FILE "/log.txt"
 #define ID_INSTRUCTION_FILE "/response_instruction.txt"
 #define NEXT_TRAIN_FILE "/response_train.txt"
 #define END_OF_TRAIN  "END OF TRAIN"
-#define USER_FILE_PATH "../logs/"
-
+#define BASE_LOG "logs/"
+#define BASE_AUDIO "audios/"
+#define BASE_TRANSC "trans_fileids/"
 typedef struct s_cmd
 {
   int id;

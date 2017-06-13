@@ -4,8 +4,7 @@ const express = require('express'),
   signup = require('./signup'),
   say = require('say'),
   login = require('./login'),
-  async = require('async'),
-  child_process = require('child_process');
+  async = require('async');
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
@@ -47,24 +46,25 @@ router.get('/:user/getgeoloc/', (req, res) => {
 	say.speak('Here is your geolocalisation ' + req.params.user);
 	res.render('getgeoloc', {title: 'User' + req.params.user + ' has been geolocalized here :'});
 })
-/*
+
 router.get('/:user/kift/', (req, res) => {
-console.log('beginning executing kift...');
-	var cmd1 = "../src/kift " + "../tutorial/test_simon.wav " + req.params.user;
-	console.log(cmd1);
-	async.series([
-	process.env.LD_LIBRARY_PATH='/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/lib:/home/ubuntu/SITE_WEB/app/tutorial/sphinxbase-5prealpha/lib',
-	process.env.PKG_CONFIG_PATH='/home/ubuntu/SITE_WEB/app/tutorial/sphinxbase-5prealpha:/home/ubuntu/SITE_WEB/app/tutorial/sphinxbase-5prealpha/src:/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha',
-	process.env.PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/ubuntu/SITE_WEB/app/tutorial/sphinxbase-5prealpha/bin:/home/ubuntu/SITE_WEB/app/tutorial/pocketsphinx-5prealpha/bin:/home/ubuntu/SITE_WEB/app/tutorial/sphinxtrain-4prealpha/bin',
 	
-		async.apply(child_process.execFile, cmd1),
-		async.apply(child_process.execFile, "echo 'finito is YES' > finito.txt")
-		],
-		function (err, res) {
-			console.log(res);
-		});
+console.log('beginning executing kift...');
+	var cmd1 = "./src/kift ./src/imon_11juin.wav simon";// + req.params.user;
+	console.log(cmd1);
+	console.log(req.params);
+
+var exec = require('child_process').exec;
+exec(cmd1, function(error, stdout, stderr) {
+    console.log('stdout: ', stdout);
+    console.log('stderr: ', stderr);
+    if (error !== null) {
+        console.log('exec error: ', error);
+    }
+});
+
 })
-*/
+
 router.get('/kift', (req, res) => {
   res.render('kift', {title: 'Kift - Personal assistant', isKift: true});
 })
