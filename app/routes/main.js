@@ -5,6 +5,7 @@ const express = require('express'),
   say = require('say'),
   login = require('./login'),
   async = require('async'),
+  fs = require('fs'),
   ensureAuthenticated = (req, res, next) => {
     if (!req.isAuthenticated()) {
       return res.redirect('/login');
@@ -55,6 +56,11 @@ router.get('/:user/getgeoloc/', (req, res) => {
 	res.render('getgeoloc', {title: 'User' + req.params.user + ' has been geolocalized here :'});
 })
 
+router.get('/:user/history', (req, res) => {
+  const folder = './logs/' + req.params.user + '/log.txt';
+  res.render('history', {title: 'History of user commands', files:fs.readFileSync(folder, {encoding: 'utf-8'})});
+})
+
 router.get('/:user/kift/:audio', (req, res) => {
 	//need other parameter audio in the URI
 console.log('beginning executing kift...');
@@ -69,6 +75,7 @@ exec(cmd1, function(error, stdout, stderr) {
     if (error !== null) {
         console.log('exec error: ', error);
     }
+    res.send("OK");
 });
 
 });
