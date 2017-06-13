@@ -4,3 +4,4 @@
 *.aiff
 *node_modules*
 rethinkdb_data
+app/audio/*
