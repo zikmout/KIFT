@@ -33,4 +33,11 @@
 	});
 </script>
 
+<% if (currentUser) { %>
+	<script type="text/javascript">
+		userName = '<%= currentUser.firstName + "_" + currentUser.lastName %>';
+		userName = userName.toLowerCase();
+	</script>
+<% } %>
+
 <% include _footer.html %>

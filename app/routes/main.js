@@ -4,10 +4,18 @@ const express = require('express'),
   signup = require('./signup'),
   say = require('say'),
   login = require('./login'),
-  async = require('async');
+  async = require('async'),
+  ensureAuthenticated = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+      return res.redirect('/login');
+    } else {
+      next();
+    }
+  };
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.test1 = 'lmao';
   res.locals.errors = req.flash('error');
   res.locals.infos = req.flash('info');
   res.locals.isKift = false;
@@ -63,9 +71,9 @@ exec(cmd1, function(error, stdout, stderr) {
     }
 });
 
-})
+});
 
-router.get('/kift', (req, res) => {
+router.get('/kift', ensureAuthenticated, (req, res) => {
   res.render('kift', {title: 'Kift - Personal assistant', isKift: true});
 })
 

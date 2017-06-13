@@ -12,7 +12,7 @@ router.post('/', passport.authenticate('login', {
   failureRedirect: '/login',
   failureFlash: true
 }), (req, res) => {
-  res.redirect(req.session.returnTo || '/');
+  res.redirect('/kift');
 });
 
 module.exports = router;
