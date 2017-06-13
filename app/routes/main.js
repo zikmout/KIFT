@@ -47,10 +47,10 @@ router.get('/:user/getgeoloc/', (req, res) => {
 	res.render('getgeoloc', {title: 'User' + req.params.user + ' has been geolocalized here :'});
 })
 
-router.get('/:user/kift', (req, res) => {
+router.get('/:user/kift/:audio', (req, res) => {
 	//need other parameter audio in the URI
 console.log('beginning executing kift...');
-	var cmd1 = "./src/kift simon.wav " + req.params.user;
+	var cmd1 = "./src/kift " + req.params.audio + " " + req.params.user;
 	console.log(cmd1);
 	console.log(req.params);
 
