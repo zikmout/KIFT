@@ -20,8 +20,9 @@
 #define NEXT_TRAIN_FILE "/response_train.txt"
 #define END_OF_TRAIN  "END OF TRAIN"
 #define BASE_LOG "logs/"
-#define BASE_AUDIO "audios/"
-#define BASE_TRANSC "trans_fileids/"
+#define BASE_AUDIO "audio/"
+#define BASE_TRANSC "train_utils/"
+
 typedef struct s_cmd
 {
   int id;

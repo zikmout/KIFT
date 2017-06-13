@@ -60,8 +60,8 @@ const char *get_hyp(char *argv[])
 static t_cmd g_cmds[NB_INSTRUCTIONS]=
 {
 	{0, NULL, NULL, 0},
-	{1, "ALARM", "SET ALARM", 1},
-	{2, "WEATHER RAIN", "GET WEATHER", 1},
+	{1, "ALARM", "SET ALARM", 0},
+	{2, "WEATHER RAIN", "GET WEATHER", 0},
 	{3, "KITCHEN", "BRIAN IS IN THE KITCHEN", 1},
 	{4, "MUSIC", "PLAY MUSIC", 0}
 };
@@ -91,22 +91,15 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], LOG_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 			return (-1);
-		write(fd, hyp, strlen(hyp));
-		write(fd, " (", 2);
-		write(fd, argv[1], strlen(argv[1]));
-		write(fd, ")\n", 2);
+		dprintf(fd, "%s (%s)\n", hyp, argv[1]);
 		close(fd);
 		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], ID_INSTRUCTION_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT , 0666)) == -1)
 			return (-1);
 		dprintf(fd, "%i", cmd->id);
-				write(fd, "h", 1);
 		close(fd);
 		asprintf(&user_files_path,"%s%s%s", BASE_LOG, argv[2], NEXT_TRAIN_FILE);
-		if ((fd = open(user_files_path, O_RDWR | O_CREAT, 0666)) == -1)
-			return (-1);
-		write(fd, "\0", 1);
-		close(fd);
+		remove(user_files_path);
 	}
 	else
 	{
@@ -114,16 +107,13 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT, 0666)) == -1)
 			return (-1);
 		if (cmd->id + 1 < NB_INSTRUCTIONS)
-			dprintf(fd, "%s", (cmd + 1)->train_sentence);
+			dprintf(fd, "%s\n", (cmd + 1)->train_sentence);
 		else
-			dprintf(fd, "%s", END_OF_TRAIN);
+			dprintf(fd, "%s\n", END_OF_TRAIN);
 		write(fd, "\0", 1);
 		close(fd);
 		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], ID_INSTRUCTION_FILE);
-		if ((fd = open(user_files_path, O_RDWR | O_CREAT , 0666)) == -1)
-			return (-1);
-		write(fd, "\0", 1);
-		close(fd);
+		remove(user_files_path);
 	}
 	return (1);
 }
@@ -136,16 +126,12 @@ int write_for_train(t_cmd *cmd, char *argv[])
 	asprintf(&path, "%s%s%s", BASE_TRANSC, argv[2], TRANSCRIPTION_FILE);
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
-	write(fd, cmd->train_sentence , strlen(cmd->train_sentence));
-	write(fd, " (", 2);
-	write(fd, argv[1], strlen(argv[1]));
-	write(fd, ")\n", 2);
+	dprintf(fd, "%s (%s)\n", cmd->train_sentence, argv[1]);
 	close(fd);
 	asprintf(&path, "%s%s%s", BASE_TRANSC, argv[2], FILEIDS_FILE);
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
-	write(fd, argv[1], strlen(argv[1]));
-	write(fd, "\n", 1);
+	dprintf(fd, "%s\n", argv[1]);
 	close(fd);
 	return (1);
 }
@@ -175,6 +161,30 @@ int main(int argc, char *argv[])
 		return (-1);
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    config = cmd_ln_init(NULL, ps_args(), TRUE,
 //           "-hmm", MODELDIR "/en-us/en-us",
 //           "-lm", MODELDIR "/en-us/en-us.lm.bin",

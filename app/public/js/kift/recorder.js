@@ -107,23 +107,29 @@ DEALINGS IN THE SOFTWARE.
   };
 
   Recorder.setupDownload = function(blob, filename){
-    // var url = (window.URL || window.webkitURL).createObjectURL(blob);
+    var url = (window.URL || window.webkitURL).createObjectURL(blob);
     // var link = document.getElementById("save");
     // link.href = url;
     // link.download = filename || 'output.wav';
+  
 
-    var fd = new FormData();
-    fd.append('fname', filename);
-    fd.append('data', blob);
-    $.ajax({
-        type: 'POST',
-        url: '/upload',
-        data: fd,
-        processData: false,
-        contentType: false
-    }).done(function(data) {
-           console.log(data);
-    });
+      console.dir(url);
+      console.dir(filename);
+      var socket = io();
+
+      var delivery = new Delivery(socket);
+   
+      delivery.on('delivery.connect',function(delivery){
+        
+        var file = blob;
+        var extraParams = {name: filename, path: "./uploads/" + filename};
+        delivery.send(file, extraParams);
+      });
+   
+      delivery.on('send.success',function(fileUID){
+        console.log("file was successfully sent.");
+      });
+
   }
 
   window.Recorder = Recorder;
