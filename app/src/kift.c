@@ -10,11 +10,18 @@ const char *get_hyp(char *argv[])
 	int32 score;
 	FILE *fh;
 
-	config = cmd_ln_init(NULL, ps_args(), TRUE,
-			"-hmm", MODELDIR "/en-us/en-us",
-			"-lm","/var/www/html/app/tutorial/init.lm",
-			"-dict", "/var/www/html/app/tutorial/init.dic",
-			NULL);
+//	config = cmd_ln_init(NULL, ps_args(), TRUE,
+//			"-hmm", MODELDIR "/en-us/en-us",
+//			"-lm","/var/www/html/app/tutorial/init.lm",
+//			"-dict", "/var/www/html/app/tutorial/init.dic",
+//			NULL);
+	  config = cmd_ln_init(NULL, ps_args(), TRUE,
+	           "-hmm", "/var/www/html/app/tutorial/en-us-adapt",
+//			"-hmm", MODELDIR "/en-us/en-us",
+	           "-lm",  "/var/www/html/app/tutorial/en-us.lm.bin",
+	           "-jsgf", "/var/www/html/app/src/hello_team.gram",
+	           "-dict", "/var/www/html/app/tutorial/cmudict-en-us.dict",
+	           NULL);
 	if (config == NULL) {
 		fprintf(stderr, "Failed to create config object, see log for  details\n");
 		return NULL;
@@ -61,9 +68,21 @@ static t_cmd g_cmds[NB_INSTRUCTIONS]=
 {
 	{0, NULL, NULL, 0},
 	{1, "ALARM", "SET ALARM", 0},
-	{2, "WEATHER RAIN", "GET WEATHER", 0},
+	{2, "GVU", "GET WEATHER", 0},
 	{3, "KITCHEN", "BRIAN IS IN THE KITCHEN", 1},
-	{4, "MUSIC", "PLAY MUSIC", 0}
+	{4, "PLAY", "PLAY MUSIC", 1},
+	{5, "CHECK", "CHECK WEATHER", 1},
+	{6, "EMAIL", "SEND EMAIL", 1},
+	{7, "GOOGLE", "SEARCH ON GOOGLE", 1},
+	{8, "GET UP", "I DON'T SET THE ALARM TO GET UP", 1},
+	{9, "FEEL", "I GET UP WHEN I FEEL LIKE IT", 1},
+	{10, "LOVE", "I LOVE THE RAIN", 1},
+	{11, "FAVORITE", "IT'S MY FAVORITE WEATHER", 1},
+	{12, "IF", "IF IT ISN'T ON GOOGLE", 1},
+	{13, "EXIT", "IT DOESN'T EXIST", 1},
+	{14, "WHEREVER", "WHEREVER YOU GO", 1},
+	{15, "MATTER", "NO MATTER WHAT THE WEATHER", 1},
+	{16, "BRING", "ALWAYS BRING YOUR OWN SUNSHINE", 1}
 };
 
 t_cmd *get_cmd_by_hyp(const char *hyp)
@@ -140,7 +159,7 @@ int main(int argc, char *argv[])
 {
 	char *username;
 	char *hyp = (char*)get_hyp(argv);
-	//	printf("Recognized: %s\n", hyp);
+	printf("Recognized: %s\n", hyp);
 	int fd = 0;
 	char *filename = argv[1];
 	t_cmd *cmd = NULL;
@@ -154,7 +173,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Failed to recognize instruction\n");
 		return (-1);
 	}
-	//	printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
+		printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
 	if (write_logs_response(cmd, argv, hyp) == -1)
 		return (-1);
 	if (write_for_train(cmd, argv))

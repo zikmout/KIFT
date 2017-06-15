@@ -12,7 +12,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-#define NB_INSTRUCTIONS 5
+#define NB_INSTRUCTIONS 17
 #define TRANSCRIPTION_FILE "/instruction.transcription"
 #define FILEIDS_FILE "/instruction.fileids"
 #define LOG_FILE "/log.txt"

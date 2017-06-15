@@ -43,7 +43,7 @@ app.use(passport.session());
 app.use(routes);
 
 // Start server
-let server = app.listen(app.get('port'), () => {
+let server = app.listen(app.get('port'), '0.0.0.0', () => {
     console.log(`KIFT listening on port ${app.get('port')}`);
 });
 
