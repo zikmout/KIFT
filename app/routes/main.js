@@ -57,8 +57,17 @@ router.get('/:user/getgeoloc/', (req, res) => {
 })
 
 router.get('/:user/history', (req, res) => {
-  const folder = './logs/' + req.params.user + '/log.txt';
-  res.render('history', {title: 'History of user commands', files:fs.readFileSync(folder, {encoding: 'utf-8'})});
+  const folder = './logs/' + req.params.user + '/log.txt',
+		lines = [];
+
+	fs.readFileSync(folder, {encoding: 'utf-8'}).split('\n').forEach(function(line) {
+		if (line != '') {
+			//console.log('HAHA', line.match(/_(\d+)/)[1]);
+			lines.push({ msg: line.match(/(.+)\(/)[1], date: line.match(/_(\d+)/)[1] });
+		}
+	});
+
+  res.render('history', {title: 'History of user commands', files:lines});
 })
 
 router.get('/:user/kift/:audio', (req, res) => {
