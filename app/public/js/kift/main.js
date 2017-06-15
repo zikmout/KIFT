@@ -58,7 +58,7 @@ function toggleRecording( e ) {
         // stop recording
         audioRecorder.stop();
         e.classList.remove("recording");
-        audioRecorder.exportWAV( doneEncoding );
+        audioRecorder.exportMonoWAV( doneEncoding );
     } else {
         // start recording
         if (!audioRecorder)
