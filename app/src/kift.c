@@ -33,6 +33,7 @@ const char *get_hyp(char *argv[])
 	}
 	char *tmp;
 	asprintf(&tmp, "%s%s/%s", BASE_AUDIO, argv[2], argv[1]);
+	printf("|n\nwhich AUDIO %s\n\n", tmp);
 	fh = fopen(tmp, "rb");
 	if (fh == NULL) {
 		fprintf(stderr, "Unable to open input file %s\n", argv[1]);
@@ -177,7 +178,7 @@ int main(int argc, char *argv[])
 {
 	char *username;
 	char *path;
-	asprintf(&path, "sox %s%s/%s -r 16k --bits 16 --encoding signed-integer --endian little %s%s/new_%s", BASE_AUDIO, argv[2],argv[1], BASE_AUDIO, argv[2], argv[1]);
+	asprintf(&path, "sox %s%s/%s -r 16k -c 1 --bits 16 --encoding signed-integer --endian little %s%s/new_%s", BASE_AUDIO, argv[2],argv[1], BASE_AUDIO, argv[2], argv[1]);
 
 	system(path);
 //	fprintf(stderr, " CMD  =  %s\n", path);
@@ -218,7 +219,7 @@ int main(int argc, char *argv[])
 	//execute script train_model.sh (username)
 	if (update_model(argv[2]) == -1)
 		return(-1);
-	return (0);
+	return (cmd->id);
 }
 //    config = cmd_ln_init(NULL, ps_args(), TRUE,
 //           "-hmm", MODELDIR "/en-us/en-us",
