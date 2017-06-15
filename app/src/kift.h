@@ -12,16 +12,18 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
+
 #define NB_INSTRUCTIONS 17
 #define TRANSCRIPTION_FILE "/instruction.transcription"
 #define FILEIDS_FILE "/instruction.fileids"
 #define LOG_FILE "/log.txt"
-#define ID_INSTRUCTION_FILE "/response_instruction.txt"
-#define NEXT_TRAIN_FILE "/response_train.txt"
+#define RESPONSE_INSTRUCTION_FILE "/response_instruction.txt"
+#define RESPONSE_TRAIN_FILE "/response_train.txt"
 #define END_OF_TRAIN  "END OF TRAIN"
 #define BASE_LOG "logs/"
 #define BASE_AUDIO "audio/"
-#define BASE_TRANSC "train_utils/"
+#define BASE_TRAIN_UTILS "train_utils/"
+#define TRAIN_SH_FILE "/tutorial/train_model.sh"
 
 typedef struct s_cmd
 {

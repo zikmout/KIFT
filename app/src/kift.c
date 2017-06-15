@@ -10,18 +10,18 @@ const char *get_hyp(char *argv[])
 	int32 score;
 	FILE *fh;
 
-//	config = cmd_ln_init(NULL, ps_args(), TRUE,
-//			"-hmm", MODELDIR "/en-us/en-us",
-//			"-lm","/var/www/html/app/tutorial/init.lm",
-//			"-dict", "/var/www/html/app/tutorial/init.dic",
-//			NULL);
-	  config = cmd_ln_init(NULL, ps_args(), TRUE,
-	           "-hmm", "/var/www/html/app/tutorial/en-us-adapt",
-//			"-hmm", MODELDIR "/en-us/en-us",
-	           "-lm",  "/var/www/html/app/tutorial/en-us.lm.bin",
-	           "-jsgf", "/var/www/html/app/src/hello_team.gram",
-	           "-dict", "/var/www/html/app/tutorial/cmudict-en-us.dict",
-	           NULL);
+	//	config = cmd_ln_init(NULL, ps_args(), TRUE,
+	//			"-hmm", MODELDIR "/en-us/en-us",
+	//			"-lm","/var/www/html/app/tutorial/init.lm",
+	//			"-dict", "/var/www/html/app/tutorial/init.dic",
+	//			NULL);
+	config = cmd_ln_init(NULL, ps_args(), TRUE,
+			"-hmm", "/var/www/html/app/tutorial/en-us-adapt",
+			//			"-hmm", MODELDIR "/en-us/en-us",
+			"-lm",  "/var/www/html/app/tutorial/en-us.lm.bin",
+			"-jsgf", "/var/www/html/app/src/hello_team.gram",
+			"-dict", "/var/www/html/app/tutorial/cmudict-en-us.dict",
+			NULL);
 	if (config == NULL) {
 		fprintf(stderr, "Failed to create config object, see log for  details\n");
 		return NULL;
@@ -99,7 +99,7 @@ t_cmd *get_cmd_by_hyp(const char *hyp)
 }
 
 int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
-{ 
+{
 	char *user_files_path;
 	int fd;
 
@@ -112,17 +112,17 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 			return (-1);
 		dprintf(fd, "%s (%s)\n", hyp, argv[1]);
 		close(fd);
-		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], ID_INSTRUCTION_FILE);
+		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT , 0666)) == -1)
 			return (-1);
 		dprintf(fd, "%i", cmd->id);
 		close(fd);
-		asprintf(&user_files_path,"%s%s%s", BASE_LOG, argv[2], NEXT_TRAIN_FILE);
+		asprintf(&user_files_path,"%s%s%s", BASE_LOG, argv[2], RESPONSE_TRAIN_FILE);
 		remove(user_files_path);
 	}
 	else
 	{
-		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], NEXT_TRAIN_FILE);
+		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_TRAIN_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT, 0666)) == -1)
 			return (-1);
 		if (cmd->id + 1 < NB_INSTRUCTIONS)
@@ -131,7 +131,7 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 			dprintf(fd, "%s\n", END_OF_TRAIN);
 		write(fd, "\0", 1);
 		close(fd);
-		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], ID_INSTRUCTION_FILE);
+		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
 		remove(user_files_path);
 	}
 	return (1);
@@ -139,20 +139,28 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 
 int write_for_train(t_cmd *cmd, char *argv[])
 {
-  int fd;
-  char *path;
+	int fd;
+	char *path;
 	fd = -1;
-	asprintf(&path, "%s%s%s", BASE_TRANSC, argv[2], TRANSCRIPTION_FILE);
+	asprintf(&path, "%s%s%s", BASE_TRAIN_UTILS, argv[2], TRANSCRIPTION_FILE);
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
-	dprintf(fd, "%s (%s)\n", cmd->train_sentence, argv[1]);
+	dprintf(fd, "<s> %s </s> (%s)\n", cmd->train_sentence, argv[1]);
 	close(fd);
-	asprintf(&path, "%s%s%s", BASE_TRANSC, argv[2], FILEIDS_FILE);
+	asprintf(&path, "%s%s%s", BASE_TRAIN_UTILS, argv[2], FILEIDS_FILE);
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
 	dprintf(fd, "%s\n", argv[1]);
 	close(fd);
 	return (1);
+}
+
+int update_model(char *username)
+{
+	char *path;
+
+	asprintf(&path, "%s %s", TRAIN_SH_FILE, username);
+	return (system(path));
 }
 
 int main(int argc, char *argv[])
@@ -173,37 +181,16 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Failed to recognize instruction\n");
 		return (-1);
 	}
-		printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
+	printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
 	if (write_logs_response(cmd, argv, hyp) == -1)
 		return (-1);
-	if (write_for_train(cmd, argv))
+	if (write_for_train(cmd, argv) == -1)
 		return (-1);
+	//execute script train_model.sh (username)
+	if (update_model(argv[2]) == -1)
+		return(-1);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //    config = cmd_ln_init(NULL, ps_args(), TRUE,
 //           "-hmm", MODELDIR "/en-us/en-us",
 //           "-lm", MODELDIR "/en-us/en-us.lm.bin",
