@@ -70,10 +70,12 @@ router.get('/:user/history', (req, res) => {
   res.render('history', {title: 'History of user commands', files:lines});
 })
 
-router.get('/:user/kift/:audio', (req, res) => {
+router.get('/process/:audio', (req, res) => {
 	//need other parameter audio in the URI
 console.log('beginning executing kift...');
-	var cmd1 = "./src/kift " + req.params.audio + " " + req.params.user;
+	var user = req.user,
+		userName = (user.firstName + '_' + user.lastName).toLowerCase();
+	var cmd1 = "./src/kift " + req.params.audio + " " + userName;
 	console.log(cmd1);
 	console.log(req.params);
 

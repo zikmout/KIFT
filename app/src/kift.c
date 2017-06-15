@@ -85,6 +85,16 @@ static t_cmd g_cmds[NB_INSTRUCTIONS]=
 	{16, "BRING", "ALWAYS BRING YOUR OWN SUNSHINE", 1}
 };
 
+char *toupper_str(char *str)
+{
+  int i = -1;
+  if (!str || !str[0])
+    return (str);
+  while (++i && str[i] )
+    str[i] = toupper(str[i]);
+  return (str);
+}
+
 t_cmd *get_cmd_by_hyp(const char *hyp)
 {
 	int i;
@@ -166,12 +176,20 @@ int update_model(char *username)
 int main(int argc, char *argv[])
 {
 	char *username;
+	char *path;
+	asprintf(&path, "sox %s%s/%s -r 16k --bits 16 --encoding signed-integer --endian little %s%s/new_%s", BASE_AUDIO, argv[2],argv[1], BASE_AUDIO, argv[2], argv[1]);
+
+	system(path);
+//	fprintf(stderr, " CMD  =  %s\n", path);
+	asprintf(&path, "mv %s%s/new_%s %s%s/%s", BASE_AUDIO, argv[2], argv[1], BASE_AUDIO, argv[2], argv[1]);
+//	fprintf(stderr, " CMD  = %s\n", path);
+	system(path);
 	char *hyp = (char*)get_hyp(argv);
 	printf("Recognized: %s\n", hyp);
 	int fd = 0;
 	char *filename = argv[1];
 	t_cmd *cmd = NULL;
-	char *path = NULL;
+
 	
 	if (argc != 3 || !argv[1] || !argv[2])
 			return (-1);

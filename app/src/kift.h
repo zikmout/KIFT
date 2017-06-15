@@ -11,7 +11,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdarg.h>
-
+#include <ctype.h>
 
 #define NB_INSTRUCTIONS 17
 #define TRANSCRIPTION_FILE "/instruction.transcription"

@@ -49,6 +49,7 @@ let server = app.listen(app.get('port'), '0.0.0.0', () => {
 
 var io = require('socket.io')(server);
 dl = require('delivery'),
+file_saved = 0,
 fs  = require('fs');
 
 io.sockets.on('connection', function(socket){
@@ -60,13 +61,15 @@ io.sockets.on('connection', function(socket){
     if (!fs.existsSync('./audio/' + userName)) {
       fs.mkdirSync('./audio/' + userName);
     }
-    
+   console.log('LOG :' + './audio/' + userName + '/' + file.params.name);
     fs.writeFile('./audio/' + userName + '/' + file.params.name, file.buffer, function(err){
       if(err){
         console.log('File could not be saved.');
       }else{
         console.log('File saved.');
+  //      file_saved = 1;
       }
     });
-  });
+    });
 });
+
