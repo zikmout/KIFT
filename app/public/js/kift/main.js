@@ -45,7 +45,7 @@ function gotBuffers( buffers ) {
 
     // the ONLY time gotBuffers is called is right after a new recording is completed -
     // so here's where we should set up the download.
-    audioRecorder.exportWAV( doneEncoding );
+    audioRecorder.exportMonoWAV( doneEncoding );
 }
 
 function doneEncoding( blob ) {
@@ -58,7 +58,7 @@ function toggleRecording( e ) {
         // stop recording
         audioRecorder.stop();
         e.classList.remove("recording");
-        audioRecorder.exportWAV( doneEncoding );
+        audioRecorder.exportMonoWAV( doneEncoding );
     } else {
         // start recording
         if (!audioRecorder)
