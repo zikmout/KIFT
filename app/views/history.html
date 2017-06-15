@@ -2,6 +2,11 @@
 
 <h2>History of commands:</h2>
 
-	<p><%= files %></p>
+<% files.forEach(function(file) { %>
+<div>
+	<h4><%= new Date(file.date * 1000).toUTCString(); %></h4>
+	<p><%= file.msg; %></p>
+</div>
+<% }) %>
 
 <% include _footer.html %>

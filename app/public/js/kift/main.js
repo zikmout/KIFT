@@ -34,6 +34,7 @@ var volume;
 
 function saveAudio() {
     audioRecorder.exportWAV( doneEncoding );
+	console.log('WATH YEAH\n');
     // could get mono instead bgetByteFrequencyDatay saying
     // audioRecorder.exportMonoWAV( doneEncoding );
 }

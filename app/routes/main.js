@@ -57,14 +57,25 @@ router.get('/:user/getgeoloc/', (req, res) => {
 })
 
 router.get('/:user/history', (req, res) => {
-  const folder = './logs/' + req.params.user + '/log.txt';
-  res.render('history', {title: 'History of user commands', files:fs.readFileSync(folder, {encoding: 'utf-8'})});
+  const folder = './logs/' + req.params.user + '/log.txt',
+		lines = [];
+
+	fs.readFileSync(folder, {encoding: 'utf-8'}).split('\n').forEach(function(line) {
+		if (line != '') {
+			//console.log('HAHA', line.match(/_(\d+)/)[1]);
+			lines.push({ msg: line.match(/(.+)\(/)[1], date: line.match(/_(\d+)/)[1] });
+		}
+	});
+
+  res.render('history', {title: 'History of user commands', files:lines});
 })
 
-router.get('/:user/kift/:audio', (req, res) => {
+router.get('/process/:audio', (req, res) => {
 	//need other parameter audio in the URI
 console.log('beginning executing kift...');
-	var cmd1 = "./src/kift " + req.params.audio + " " + req.params.user;
+	var user = req.user,
+		userName = (user.firstName + '_' + user.lastName).toLowerCase();
+	var cmd1 = "./src/kift " + req.params.audio + " " + userName;
 	console.log(cmd1);
 	console.log(req.params);
 

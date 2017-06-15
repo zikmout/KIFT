@@ -120,7 +120,17 @@ DEALINGS IN THE SOFTWARE.
    
       delivery.on('send.success',function(fileUID){
         console.log("file was successfully sent.");
-      });
+
+  //url: "http://fiddle.jshell.net/favicon.png",
+$.ajax({
+  url: 'http://54.172.192.199:3000/process/' + filename,
+  method: 'GET'
+})
+  .done(function() {
+	console.log('Request sent');
+ });
+
+     });
 
   }
 
