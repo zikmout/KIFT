@@ -35,12 +35,12 @@ router.get('/playsong', (req, res) => {
 })
 
 router.get('/searchweb/:word', (req, res) => {
-	say.speak('Lets go on google find out what ' + req.params.word + ' means');
+	//say.speak('Lets go on google find out what ' + req.params.word + ' means');
 	res.redirect('http://www.google.com/search?q=' + req.params.word);
 })
 
 router.get('/:user/getgeoloc/', (req, res) => {
-	say.speak('Here is your geolocalisation ' + req.params.user);
+	//say.speak('Here is your geolocalisation ' + req.params.user);
 	res.render('getgeoloc', {title: 'User' + req.params.user + ' has been geolocalized here :'});
 })
 
@@ -74,7 +74,7 @@ exec(cmd1, function(error, stdout, stderr) {
     if (error !== null) {
         console.log('exec error: ', error);
     }
-    res.send("OK");
+    res.send(stdout);
 });
 
 });
