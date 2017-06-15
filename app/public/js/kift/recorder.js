@@ -128,13 +128,25 @@ DEALINGS IN THE SOFTWARE.
 
     delivery.on('send.success', function() {
       console.log('file was successfully sent.');
-      $.ajax({
+      
+	$.ajax({
+          url: 'http://54.172.192.199:3000/process/' + filename,
+          method: 'GET'
+        })
+        .done(function() {
+          console.log('Request sent');
+/*
+	//if ret < 20
+      	$.ajax({
           url: 'http://54.172.192.199:3000/process/' + filename,
           method: 'GET'
         })
         .done(function() {
           console.log('Request sent');
         });
+*/
+    });
+
 
     });
   };
