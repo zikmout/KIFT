@@ -95,7 +95,7 @@ t_cmd *get_cmd_by_hyp(const char *hyp)
 		if (strstr(hyp, g_cmds[i].key_words))
 			return (g_cmds + i);
 	}
-	return (NULL);
+	return (g_cmds);
 }
 
 int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
@@ -171,16 +171,27 @@ int main(int argc, char *argv[])
 	int fd = 0;
 	char *filename = argv[1];
 	t_cmd *cmd = NULL;
-
-	if (argc != 2 || !argv[1] || !argv[2])
-		if (hyp == NULL)
+	char *path = NULL;
+	
+	if (argc != 3 || !argv[1] || !argv[2])
 			return (-1);
-	filename[strlen(argv[1]) - 4] = '\0';
-	if ((cmd = get_cmd_by_hyp(hyp)) == NULL)
+ 	filename[strlen(argv[1]) - 4] = '\0';
+	if ((cmd = get_cmd_by_hyp(hyp)) && cmd->id == 0)
+	{
+	  asprintf(&path, "%s%s/%s", BASE_LOG, argv[2], "log_err.txt");
+		fprintf(stderr, "Failed to recognize instruction. More info in %s.\n", path);
+		if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND , 0666)) == -1)
+			return (-1);
+		dprintf(fd, "%s (%s)\n", hyp, argv[1]);
+		close(fd);
+		return (-1);        
+	}
+/*	if ((cmd = get_cmd_by_hyp(hyp)) && cmd->id == 0)
 	{
 		fprintf(stderr, "Failed to recognize instruction\n");
-		return (-1);
+		//	return (-1);
 	}
+*/
 	printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
 	if (write_logs_response(cmd, argv, hyp) == -1)
 		return (-1);
