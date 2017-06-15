@@ -33,7 +33,7 @@ const char *get_hyp(char *argv[])
 	}
 	char *tmp;
 	asprintf(&tmp, "%s%s/%s", BASE_AUDIO, argv[2], argv[1]);
-	printf("|n\nwhich AUDIO %s\n\n", tmp);
+	printf("\n\nwhich AUDIO >>>>>>>>>> %s\n\n", tmp);
 	fh = fopen(tmp, "rb");
 	if (fh == NULL) {
 		fprintf(stderr, "Unable to open input file %s\n", argv[1]);
