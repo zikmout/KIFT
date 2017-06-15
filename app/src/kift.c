@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
 {
 	char *username;
 	char *path;
-	asprintf(&path, "sox %s%s/%s -r 16k --bits 16 --encoding signed-integer --endian little %s%s/new_%s", BASE_AUDIO, argv[2],argv[1], BASE_AUDIO, argv[2], argv[1]);
+	asprintf(&path, "sox %s%s/%s -r 16k -c 1 --bits 16 --encoding signed-integer --endian little %s%s/new_%s", BASE_AUDIO, argv[2],argv[1], BASE_AUDIO, argv[2], argv[1]);
 
 	system(path);
 //	fprintf(stderr, " CMD  =  %s\n", path);
