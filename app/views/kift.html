@@ -7,11 +7,12 @@
 </footer>
 
 <!-- <script src="http://connect.soundcloud.com/sdk.js"></script> -->
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/kift/artyom.min.js"></script>
 <script src="js/kift/visualizer.js"></script>
 <script src="js/kift/audiodisplay.js"></script>
 <script src="js/kift/recorder.js"></script>
 <script src="js/kift/main.js"></script>
-<script src="js/jquery.min.js"></script>
 <script>
 	var allowed = true;
 
@@ -31,6 +32,7 @@
 			allowed = true;
 		}
 	});
+	artyom.say('Hello, welcome to kift, how may I help you?');
 </script>
 
 <% if (currentUser) { %>
