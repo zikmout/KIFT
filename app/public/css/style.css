@@ -76,6 +76,12 @@ footer {
 	cursor: pointer;
 }
 
+form input,
+form p
+{
+	margin: 10px 0;
+}
+
 .mark-read:hover {
 	background: #285f8f;
 }

@@ -23,24 +23,12 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/', (req, res, next) => {
-  User.find()
-    .sort({
-      createdAt: 'descending'
-    })
-    .exec((err, users) => {
-      if (err) {
-        return next(err);
-      }
-      res.render('index', {
-        users,
-        title: 'Home'
-      });
-    });
-});
-
 router.use('/signup', signup);
 router.use('/login', login);
+
+router.get('/', (req, res) => {
+  res.render('index', {title: 'Kift - Smart Online Personal assistant', isKift: true});
+});
 
 router.get('/playsong', (req, res) => {
 	res.render('playsong', {title: 'Listen and enjoy the music now'});
@@ -90,10 +78,6 @@ exec(cmd1, function(error, stdout, stderr) {
 });
 
 });
-
-router.get('/kift', ensureAuthenticated, (req, res) => {
-  res.render('kift', {title: 'Kift - Personal assistant', isKift: true});
-})
 
 router.get('/logout', (req, res) => {
   req.logout();
