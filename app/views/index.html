@@ -2,28 +2,13 @@
 
 <div id="visualizer"></div>
 
-<div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-				<h2>Become a Member</h2>
-				<form action="/signup" method="post">
-			    <input type="text" class="form-control" name="firstName" placeholder="First Name" required="">
-			      <input type="text" class="form-control" name="lastName" placeholder="Last Name" required="">
-			    <input type="email" class="form-control" name="email" placeholder="Email" required="">
-			    <input type="password" class="form-control" name="password" placeholder="Password" required="">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    <button type="submit" class="btn btn-primary">Sign Up</button>
-					<p>Do you already have an account? Please <a class="show-signup-modal" href="/login">Sign in</a></p>
-			  </form>
-      </div>
-    </div>
-  </div>
-</div>
+<section id="info-msg">
+		<p>Hold down the space bar to send a command.</p>
+</section>
 
-<footer>
-    <p>Hold down the space bar, then release to send a command</p>
-</footer>
+<section id="text-msg">
+	<p></p>
+</section>
 
 <!-- <script src="http://connect.soundcloud.com/sdk.js"></script> -->
 <script src="js/jquery.min.js"></script>
@@ -36,11 +21,12 @@
 	var allowed = true;
 
 	$( "body" ).keydown(function( event ) {
+		artyom.shutUp();
 		if (event.repeat != undefined) {
 			allowed = !event.repeat;
 		}
 		if (allowed && event.which == 32 ) {
-				console.log("nice");
+				console.log("recording");
 				toggleRecording(this);
 				allowed = false;
 			}
@@ -57,17 +43,22 @@
 	<script type="text/javascript">
 		userName = '<%= currentUser.firstName + "_" + currentUser.lastName %>';
 		userName = userName.toLowerCase();
+		artyom.say('Welcome back <%= currentUser.firstName %>!');
+		artyom.say('How may I help you today?');
 	</script>
 <% } else { %>
-		<script>
-			artyom.say('Welcome stranger! My name is Deep Thought.');
-			artyom.say('I am a smart online personal assistant.');
-			artyom.say('To get started, please, sign up or login.',{
-				onEnd: function() {
-					$('#login-modal').modal('show');
+	<script>
+		userName = '';
+		artyom.say('Hello stranger! welcome to kift, My name is Deep Thought.');
+		artyom.say('I am a smart online personal assistant.');
+		artyom.say('To get started, please, sign up or login.',{
+			onEnd: function() {
+				if (!$('#signup-modal').is(':visible') && !$('#login-modal').is(':visible')) {
+					$('#signup-modal').modal('show');
 				}
-			});
-		</script>
+			}
+		});
+	</script>
 <% }%>
 
 <% include _footer.html %>

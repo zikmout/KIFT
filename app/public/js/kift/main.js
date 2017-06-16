@@ -49,8 +49,10 @@ function gotBuffers( buffers ) {
 }
 
 function doneEncoding( blob ) {
-    Recorder.setupDownload( blob, userName + '_' + Date.now() + ".wav" );
-    recIndex++;
+    if (userName !== '') {
+      Recorder.setupDownload( blob, userName + '_' + Date.now() + ".wav" );
+      recIndex++;
+    }
 }
 
 function toggleRecording( e ) {
@@ -162,7 +164,6 @@ function gotStream(stream) {
     zeroGain.gain.value = 0.0;
     inputPoint.connect( zeroGain );
     zeroGain.connect( audioContext.destination );
-    setInterval()
     updateAnalysers();
 }
 
