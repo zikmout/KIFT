@@ -5,6 +5,7 @@ const express = require('express'),
   say = require('say'),
   login = require('./login'),
   async = require('async'),
+  opn = require('opn'),
   fs = require('fs'),
   ensureAuthenticated = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -36,7 +37,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/playsong', ensureAuthenticated, (req, res) => {
-  res.render('playsong', {
+res.render('playsong', {
     title: 'Listen and enjoy the music now'
   });
 });
@@ -80,19 +81,59 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/process/:audio', (req, res) => {
-  console.log('beginning executing kift...');
+    
+    console.log('beginning executing kift...');
+    
     var userName = req.user.username,
-    cmd1 = "./src/kift " + req.params.audio + " " + userName;
-
-  console.log(cmd1);
-  console.log(req.params);
-  exec(cmd1, function(error, stdout, stderr) {
+    cmd1 = "./src/kift " + req.params.audio + " " + userName,
+    instruction = 0,
+    path = './logs/' + userName + '/response_instruction.txt';
+  
+    console.log(cmd1);
+    console.log(req.params);
+    
+    exec(cmd1, function(error, stdout, stderr) {
     console.log('stdout: ', stdout);
-    if (error !== null) {
-      console.log('exec error: ', error);
-    }
-    res.send(stdout);
+    
+
+    //if (error !== null) {
+//console.log("error");
+      //console.log('exec error: ', error);
+   // }
+ //   else {
+
+//	if (!fs.existsSync(path))
+//	{
+//	res.send('ERROR: Instruction not recognized');
+//	}
+        fs.readFile(path, function (err, data) {
+    
+        if (err) {
+    	    return console.error;
+        }
+	else
+	{
+            instruction = data.toString();
+            console.log('(Simon) **___---->> read instruction : ' + instruction); 
+   
+    	    if (parseInt(instruction) == 4)	
+    	    {
+               console.log('REDIRECT NOW !!!!!!!!!!!!!');
+               return res.send({redirect: '/playsong'});
+    	    }
+            else
+            {
+               console.log('OUT NOW !!!!!!!!!!!!!');
+               return res.send({redirect: 'http://www.google.com'});
+               //res.send(stdout);
+   	    }
+            console.log("im here 1");
+        };
+ 	console.log("im here 2");
+        });
+
   });
+
 });
 
 router.get('/logout', (req, res) => {

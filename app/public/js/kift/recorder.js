@@ -118,7 +118,6 @@ DEALINGS IN THE SOFTWARE.
     var delivery = new Delivery(socket);
 
     delivery.on('delivery.connect', function(delivery) {
-
       var file = blob;
       var extraParams = {
         name: filename
@@ -131,8 +130,11 @@ DEALINGS IN THE SOFTWARE.
 
 	$.ajax({
           url: 'http://54.172.192.199:3000/process/' + filename,
-          method: 'GET'
-        })
+          method: 'GET',
+	  success: function(data) {
+		window.location = data.redirect;
+          }
+	})
         .done(function() {
           console.log('Request sent');
     });

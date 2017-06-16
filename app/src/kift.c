@@ -33,10 +33,10 @@ const char *get_hyp(char *argv[])
 	}
 	char *tmp;
 	asprintf(&tmp, "%s%s/%s", BASE_AUDIO, argv[2], argv[1]);
-	//printf("\n\nwhich AUDIO >>>>>>>>>> %s\n\n", tmp);
+	//	printf("\nwhich AUDIO >>>>>>>>>> %s\n\n", tmp);
 	fh = fopen(tmp, "rb");
 	if (fh == NULL) {
-		fprintf(stderr, "Unable to open input file %s\n", argv[1]);
+		fprintf(stderr, "Unable to open input file %s\n", tmp);
 		return NULL;
 	}
 	rv = ps_start_utt(ps);
@@ -69,20 +69,20 @@ static t_cmd g_cmds[NB_INSTRUCTIONS]=
 {
 	{0, NULL, NULL, 0},
 	{1, "ALARM", "SET ALARM", 0},
-	{2, "GVU", "GET WEATHER", 0},
-	{3, "KITCHEN", "BRIAN IS IN THE KITCHEN", 1},
-	{4, "PLAY", "PLAY MUSIC", 1},
-	{5, "CHECK", "CHECK WEATHER", 1},
-	{6, "EMAIL", "SEND EMAIL", 1},
-	{7, "GOOGLE", "SEARCH ON GOOGLE", 1},
-	{8, "GET UP", "I DON'T SET THE ALARM TO GET UP", 1},
-	{9, "FEEL", "I GET UP WHEN I FEEL LIKE IT", 1},
+	{2, "WEATHER", "GET WEATHER", 0},
+	{3, "HISTORY", "SHOW ME HISTORY", 0},
+	{4, "MUSIC", "PLAY MUSIC", 0},
+	{5, "CHECK", "CHECK WEATHER", 0},
+	{6, "EMAIL", "SEND EMAIL", 0},
+	{7, "GOOGLE", "SEARCH ON GOOGLE", 0},
+	{8, "GEOLOCALISATION", "GIVE ME MY GEOLOCALISATION", 0},
+	{9, "FEEL", "I GET UP WHEN I FEEL LIKE IT", 0},
 	{10, "LOVE", "I LOVE THE RAIN", 1},
 	{11, "FAVORITE", "IT'S MY FAVORITE WEATHER", 1},
-	{12, "IF", "IF IT ISN'T ON GOOGLE", 1},
+	{11, "IF", "IF IT ISN'T ON GOOGLE", 1},
 	{13, "EXIT", "IT DOESN'T EXIST", 1},
 	{14, "WHEREVER", "WHEREVER YOU GO", 1},
-	{15, "MATTER", "NO MATTER WHAT THE WEATHER", 1},
+	{15, "MATTER", "NO MATTER WHAT THE WEATHER IS", 1},
 	{16, "BRING", "ALWAYS BRING YOUR OWN SUNSHINE", 1}
 };
 
@@ -119,13 +119,18 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 
 	fd = -1;
 	user_files_path = NULL;
+	asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], LOG_FILE);
+	if ((fd = open(user_files_path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
+	  return (-1);
+	dprintf(fd, "%s (%s)\n", hyp, argv[1]);
+	close(fd);
 	if (!cmd->is_train)
 	{
-		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], LOG_FILE);
-		if ((fd = open(user_files_path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
-			return (-1);
-		dprintf(fd, "%s (%s)\n", hyp, argv[1]);
-		close(fd);
+	  //	asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], LOG_FILE);
+	  //	if ((fd = open(user_files_path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
+	  //		return (-1);
+	  //	dprintf(fd, "%s (%s)\n", hyp, argv[1]);
+	  //	close(fd);
 		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT , 0666)) == -1)
 			return (-1);
@@ -189,7 +194,7 @@ int main(int argc, char *argv[])
 //	fprintf(stderr, " CMD  = %s\n", path);
 	system(path);
 	char *hyp = (char*)get_hyp(argv);
-	//	printf("Recognized: %s\n", hyp);
+	printf("Recognized: %s\n", hyp);
 	int fd = 0;
 	char *filename = argv[1];
 	t_cmd *cmd = NULL;
@@ -206,6 +211,8 @@ int main(int argc, char *argv[])
 			return (-1);
 		dprintf(fd, "%s (%s)\n", hyp, argv[1]);
 		close(fd);
+		asprintf(&path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
+		remove(path);
 		return (-1);        
 	}
 /*	if ((cmd = get_cmd_by_hyp(hyp)) && cmd->id == 0)
@@ -214,7 +221,7 @@ int main(int argc, char *argv[])
 		//	return (-1);
 	}
 */
-//	printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
+	printf("CMD TO EXEC : \ncmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
 	if (write_logs_response(cmd, argv, hyp) == -1)
 		return (-1);
 	if (write_for_train(cmd, argv) == -1)
