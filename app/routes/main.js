@@ -73,7 +73,14 @@ exec(cmd1, function(error, stdout, stderr) {
     if (error !== null) {
         console.log('exec error: ', error);
     }
-    res.send(stdout);
+    if (stdout < 20)
+    {
+    	res.redirect('http://54.172.192.199:3000/playsong');
+    }
+    else
+    {
+	res.send(stdout);
+    }
 });
 
 });
