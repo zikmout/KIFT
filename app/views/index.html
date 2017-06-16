@@ -33,6 +33,7 @@
 	});
 	$( "body" ).keyup(function( event ) {
 		if ( event.which == 32 ) {
+			console.log("Done recording");
 			toggleRecording(this);
 			allowed = true;
 		}
@@ -43,12 +44,34 @@
 	<script type="text/javascript">
 		userName = '<%= currentUser.firstName + "_" + currentUser.lastName %>';
 		userName = userName.toLowerCase();
-		artyom.say('Welcome back <%= currentUser.firstName %>!');
-		artyom.say('How may I help you today?');
+		<% if (currentUser.hasTrained) { %>
+			artyom.shutUp();
+			artyom.say('Welcome back <%= currentUser.firstName %>!');
+			artyom.say('How may I help you today?');
+		<% } else {%>
+			artyom.shutUp();
+			artyom.say('Thank you for signing up. Before we can start interacting, I need to get to know your voice.');
+			artyom.say('So please, read this little poem as clearly as possible then press Enter.', {
+				onEnd: function() {
+					console.log('recording');
+					toggleRecording(document.querySelector('body'));
+					$( "body" ).keypress(function( event ) {
+						if (event.which == 13 ) {
+								console.log("Done recording");
+								toggleRecording(this);
+							}
+					});
+				},
+				onStart: function() {
+					display_poem();
+				}
+			});
+		<% } %>
 	</script>
 <% } else { %>
 	<script>
 		userName = '';
+		artyom.shutUp();
 		artyom.say('Hello stranger! welcome to kift, My name is Deep Thought.');
 		artyom.say('I am a smart online personal assistant.');
 		artyom.say('To get started, please, sign up or login.',{

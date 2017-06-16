@@ -35,6 +35,10 @@ const bcrypt = require('bcrypt-nodejs'),
       validate: /[^@]+@[^@]+/,
       unique: true,
       required: true
+    },
+    hasTrained: {
+      default: false,
+      type: Boolean
     }
   }),
   SALT_FACTOR = 10,
