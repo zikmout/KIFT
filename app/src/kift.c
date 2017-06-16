@@ -33,7 +33,7 @@ const char *get_hyp(char *argv[])
 	}
 	char *tmp;
 	asprintf(&tmp, "%s%s/%s", BASE_AUDIO, argv[2], argv[1]);
-	printf("\n\nwhich AUDIO >>>>>>>>>> %s\n\n", tmp);
+	//printf("\n\nwhich AUDIO >>>>>>>>>> %s\n\n", tmp);
 	fh = fopen(tmp, "rb");
 	if (fh == NULL) {
 		fprintf(stderr, "Unable to open input file %s\n", argv[1]);
@@ -71,7 +71,7 @@ static t_cmd g_cmds[NB_INSTRUCTIONS]=
 	{1, "ALARM", "SET ALARM", 0},
 	{2, "GVU", "GET WEATHER", 0},
 	{3, "KITCHEN", "BRIAN IS IN THE KITCHEN", 1},
-	{4, "PLAY", "PLAY MUSIC", 1},
+	{4, "play", "PLAY MUSIC", 1},
 	{5, "CHECK", "CHECK WEATHER", 1},
 	{6, "EMAIL", "SEND EMAIL", 1},
 	{7, "GOOGLE", "SEARCH ON GOOGLE", 1},
@@ -89,21 +89,24 @@ static t_cmd g_cmds[NB_INSTRUCTIONS]=
 char *toupper_str(char *str)
 {
   int i = -1;
+  int diff = 'A' - 'a';
+  //printf(">>>>>>>>>>>>>>>>>>>>>>%s\n", str);
   if (!str || !str[0])
     return (str);
   while (++i && str[i] )
-    str[i] = toupper(str[i]);
+    str[i] = str[i] + diff;
+  //printf(">>>>>>>>>>>>>>>>>>>>>>>>>> %s\n", str);
   return (str);
 }
 
-t_cmd *get_cmd_by_hyp(const char *hyp)
+t_cmd *get_cmd_by_hyp(char *hyp)
 {
 	int i;
 
 	i = 0;
 	while (++i < NB_INSTRUCTIONS)
 	{
-		if (strstr(hyp, g_cmds[i].key_words))
+	  if (strstr(toupper_str(hyp), g_cmds[i].key_words))
 			return (g_cmds + i);
 	}
 	return (g_cmds);
@@ -186,7 +189,7 @@ int main(int argc, char *argv[])
 //	fprintf(stderr, " CMD  = %s\n", path);
 	system(path);
 	char *hyp = (char*)get_hyp(argv);
-	printf("Recognized: %s\n", hyp);
+	//	printf("Recognized: %s\n", hyp);
 	int fd = 0;
 	char *filename = argv[1];
 	t_cmd *cmd = NULL;
@@ -211,7 +214,7 @@ int main(int argc, char *argv[])
 		//	return (-1);
 	}
 */
-	printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
+//	printf("cmd->id instruction %i  \ncmd->train_sentence %s\n", cmd->id, cmd->train_sentence);
 	if (write_logs_response(cmd, argv, hyp) == -1)
 		return (-1);
 	if (write_for_train(cmd, argv) == -1)
@@ -219,6 +222,7 @@ int main(int argc, char *argv[])
 	//execute script train_model.sh (username)
 	if (update_model(argv[2]) == -1)
 		return(-1);
+	printf("%d", cmd->id);
 	return (cmd->id);
 }
 //    config = cmd_ln_init(NULL, ps_args(), TRUE,
