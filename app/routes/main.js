@@ -50,7 +50,6 @@ router.get('/:user/history', (req, res) => {
 
 	fs.readFileSync(folder, {encoding: 'utf-8'}).split('\n').forEach(function(line) {
 		if (line != '') {
-			//console.log('HAHA', line.match(/_(\d+)/)[1]);
 			lines.push({ msg: line.match(/(.+)\(/)[1], date: line.match(/_(\d+)/)[1] });
 		}
 	});
@@ -59,7 +58,6 @@ router.get('/:user/history', (req, res) => {
 })
 
 router.get('/process/:audio', (req, res) => {
-	//need other parameter audio in the URI
 console.log('beginning executing kift...');
 	var user = req.user,
 		userName = (user.firstName + '_' + user.lastName).toLowerCase();
@@ -70,18 +68,10 @@ console.log('beginning executing kift...');
 var exec = require('child_process').exec;
 exec(cmd1, function(error, stdout, stderr) {
     console.log('stdout: ', stdout);
-    //console.log('stderr: ', stderr);
     if (error !== null) {
         console.log('exec error: ', error);
     }
-    if (stdout < 20)
-    {
-    	res.redirect('http://54.172.192.199:3000/playsong');
-    }
-    else
-    {
-	res.send(stdout);
-    }
+    res.send(stdout);
 });
 
 });
