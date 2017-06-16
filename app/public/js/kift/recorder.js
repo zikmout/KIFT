@@ -132,7 +132,10 @@ DEALINGS IN THE SOFTWARE.
           url: 'http://54.172.192.199:3000/process/' + filename,
           method: 'GET',
 	  success: function(data) {
-		window.location = data.redirect;
+//		if (!data.redirect && data.speach)
+//			say(data.speach);
+//		else
+			window.location = data.redirect;
           }
 	})
         .done(function() {

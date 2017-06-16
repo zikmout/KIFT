@@ -55,12 +55,13 @@ router.get('/getgeoloc/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/history', ensureAuthenticated, (req, res) => {
-  const logFile = './logs/' + req.user.username + '/logs.txt',
+  const logFile = './logs/' + req.user.username + '/log.txt',
     lines = [];
 
+	
     if (!fs.existsSync('./logs/' + req.user.username)) {
       fs.mkdirSync('./logs/' + req.user.username);
-      touch('./logs/' + req.user.username + '/logs.txt');
+      touch('./logs/' + req.user.username + '/log.txt');
     }
 
   fs.readFileSync(logFile, {
@@ -94,19 +95,7 @@ router.get('/process/:audio', (req, res) => {
     
     exec(cmd1, function(error, stdout, stderr) {
     console.log('stdout: ', stdout);
-    
-
-    //if (error !== null) {
-//console.log("error");
-      //console.log('exec error: ', error);
-   // }
- //   else {
-
-//	if (!fs.existsSync(path))
-//	{
-//	res.send('ERROR: Instruction not recognized');
-//	}
-        fs.readFile(path, function (err, data) {
+    fs.readFile(path, function (err, data) {
     
         if (err) {
     	    return console.error;
@@ -118,22 +107,22 @@ router.get('/process/:audio', (req, res) => {
    
     	    if (parseInt(instruction) == 4)	
     	    {
-               console.log('REDIRECT NOW !!!!!!!!!!!!!');
+               console.log('Command /playsong recognized');
                return res.send({redirect: '/playsong'});
     	    }
+	    else if (parseInt(instruction) == 7)
+            {
+               console.log('Command search on google recognized');
+	       return res.send({redirect: 'http://www.google.com'});
+	    }
             else
             {
-               console.log('OUT NOW !!!!!!!!!!!!!');
-               return res.send({redirect: 'http://www.google.com'});
-               //res.send(stdout);
+               console.log('NO command recognized');
+               return res.send({redirect: '/404.html'});
    	    }
-            console.log("im here 1");
         };
- 	console.log("im here 2");
-        });
-
+     });
   });
-
 });
 
 router.get('/logout', (req, res) => {
