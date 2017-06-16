@@ -35,7 +35,7 @@ DEALINGS IN THE SOFTWARE.
     worker.postMessage({
       command: 'init',
       config: {
-        sampleRate: 16000
+        sampleRate: this.context.sampleRate
       }
     });
     var recording = false,
