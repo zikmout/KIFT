@@ -71,7 +71,7 @@ static t_cmd g_cmds[NB_INSTRUCTIONS]=
 	{1, "ALARM", "SET ALARM", 0},
 	{2, "GVU", "GET WEATHER", 0},
 	{3, "KITCHEN", "BRIAN IS IN THE KITCHEN", 1},
-	{4, "play", "PLAY MUSIC", 1},
+	{4, "PLAY", "PLAY MUSIC", 1},
 	{5, "CHECK", "CHECK WEATHER", 1},
 	{6, "EMAIL", "SEND EMAIL", 1},
 	{7, "GOOGLE", "SEARCH ON GOOGLE", 1},
