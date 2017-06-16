@@ -14,16 +14,17 @@
 <script src="js/kift/visualizer.js"></script>
 <script src="js/kift/audiodisplay.js"></script>
 <script src="js/kift/recorder.js"></script>
+<script src="js/kift/kift.js"></script>
 <script src="js/kift/main.js"></script>
 <script>
 	var allowed = true;
-
 	$( "body" ).keydown(function( event ) {
-		artyom.shutUp();
+
 		if (event.repeat != undefined) {
 			allowed = !event.repeat;
 		}
 		if (allowed && event.which == 32 ) {
+				artyom.shutUp();
 				console.log("recording");
 				toggleRecording(this);
 				allowed = false;
@@ -40,36 +41,13 @@
 
 <% if (currentUser) { %>
 	<script type="text/javascript">
-		userName = '<%= currentUser.firstName + "_" + currentUser.lastName %>';
+		userName = '<%= currentUser.username %>';
 		userName = userName.toLowerCase();
-		<% if (currentUser.hasTrained) { %>
-			artyom.shutUp();
-			artyom.say('Welcome back <%= currentUser.firstName %>!\
-			How may I help you today?');
-		<% } else {%>
-			artyom.shutUp();
-			artyom.say('Thank you for signing up. Before we can start interacting, I need to get to know your voice.');
-			artyom.say('So please, read this little poem as clearly as possible then press Enter.', {
-				onEnd: function() {
-					console.log('recording');
-					toggleRecording(document.querySelector('body'));
-					$( "body" ).keypress(function( event ) {
-						if (event.which == 13 ) {
-								console.log("Done recording");
-								toggleRecording(this);
-							}
-					});
-				},
-				onStart: function() {
-					display_poem();
-				}
-			});
-		<% } %>
-	</script>
+			artyom.say('Welcome back <%= currentUser.firstName %>! How may I help you today?');
+	</script> -->
 <% } else { %>
 	<script>
 		userName = '';
-		artyom.shutUp();
 		artyom.say('Hello stranger! welcome to kift, My name is Deep Thought.\
 		 I am a smart online personal assistant.\
 		 To get started, please, sign up or login.',{

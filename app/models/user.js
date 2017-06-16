@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt-nodejs'),
   mongoose = require('mongoose'),
+  fs = require('fs'),
   userSchema = new mongoose.Schema({
     firstName: {
       type: String,
@@ -8,6 +9,10 @@ const bcrypt = require('bcrypt-nodejs'),
     lastName: {
       type: String,
       required: true
+    },
+    username: {
+      type: String,
+      unique: true
     },
     password: {
       type: String,
@@ -46,6 +51,9 @@ const bcrypt = require('bcrypt-nodejs'),
 
 userSchema.pre('save', function(done) {
   let user = this;
+
+  user.username = `${user.firstName}_${user.lastName}`.toLowerCase();
+
   if (!user.isModified('password')) {
     return done();
   }
