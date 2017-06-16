@@ -81,7 +81,7 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 
 router.get('/process/:audio', (req, res) => {
   console.log('beginning executing kift...');
-    var userName = req.user.userName,
+    var userName = req.user.username,
     cmd1 = "./src/kift " + req.params.audio + " " + userName;
 
   console.log(cmd1);
