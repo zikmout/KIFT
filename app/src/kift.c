@@ -10,18 +10,18 @@ const char *get_hyp(char *argv[])
 	int32 score;
 	FILE *fh;
 
-	//	config = cmd_ln_init(NULL, ps_args(), TRUE,
-	//			"-hmm", MODELDIR "/en-us/en-us",
-	//			"-lm","/var/www/html/app/tutorial/init.lm",
-	//			"-dict", "/var/www/html/app/tutorial/init.dic",
-	//			NULL);
-	config = cmd_ln_init(NULL, ps_args(), TRUE,
-			"-hmm", "/var/www/html/app/tutorial/en-us-adapt",
+		config = cmd_ln_init(NULL, ps_args(), TRUE,
+				"-hmm", MODELDIR "/en-us/en-us",
+				"-lm","/var/www/html/app/tutorial/basic.lm",
+				"-dict", "/var/www/html/app/tutorial/basic.dic",
+				NULL);
+	//config = cmd_ln_init(NULL, ps_args(), TRUE,
+	//		"-hmm", "/var/www/html/app/tutorial/en-us-adapt",
 			//			"-hmm", MODELDIR "/en-us/en-us",
-			"-lm",  "/var/www/html/app/tutorial/en-us.lm.bin",
-			"-jsgf", "/var/www/html/app/src/hello_team.gram",
-			"-dict", "/var/www/html/app/tutorial/cmudict-en-us.dict",
-			NULL);
+	//		"-lm",  "/var/www/html/app/tutorial/en-us.lm.bin",
+	//		"-jsgf", "/var/www/html/app/src/hello_team.gram",
+	//		"-dict", "/var/www/html/app/tutorial/cmudict-en-us.dict",
+	//		NULL);
 	if (config == NULL) {
 		fprintf(stderr, "Failed to create config object, see log for  details\n");
 		return NULL;
