@@ -70,7 +70,6 @@ console.log('beginning executing kift...');
 var exec = require('child_process').exec;
 exec(cmd1, function(error, stdout, stderr) {
     console.log('stdout: ', stdout);
-    console.log('stderr: ', stderr);
     if (error !== null) {
         console.log('exec error: ', error);
     }

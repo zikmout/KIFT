@@ -5,18 +5,6 @@
 body {
 	overflow: hidden;
 }
-
-footer {
-    position: absolute;
-    bottom: 0;
-    z-index: 100;
-    background-color: #111;
-    width: 100%;
-    text-align: center;
-		padding: 10px;
-    color: #999;
-}
-
 .navbar {
 	margin-bottom: 0;
 }
@@ -112,4 +100,23 @@ form p
 	-moz-transition: color .5s ease-in-out;
 	-ms-transition: color .5s ease-in-out;
 	-o-transition: color .5s ease-in-ou
+}
+
+/*Info message fade in, fade out loop effect*/
+@keyframes fadeIn {
+  from { opacity: 0; }
+}
+
+#info-msg {
+    animation: fadeIn 1s infinite alternate;
+    position: absolute;
+    bottom: 15%;
+    text-align: center;
+    width: 100%;
+    font-size: 27px;
+    color: #fff;
+}
+
+#text-msg {
+	display: none;
 }
