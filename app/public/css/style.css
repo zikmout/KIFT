@@ -117,6 +117,16 @@ form p
     color: #fff;
 }
 
+#info-msg .blink {
+	animation: fadeIn 1s infinite alternate;
+}
+
 #text-msg {
 	display: none;
+	position: absolute;
+	top: 15%;
+	text-align: center;
+	width: 100%;
+	font-size: 27px;
+	color: #fff;
 }
