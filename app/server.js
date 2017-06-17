@@ -11,13 +11,15 @@ const express = require('express'),
   app = express(),
   dotenv = require('dotenv'),
   staticDir = path.resolve(__dirname, 'public'),
-  User = require("./models/user");
+  User = require("./models/user"),
+  request = require('request');
 
 dotenv.config();
 
 console.log(process.env.DB_PATH);
 mongoose.connect(process.env.DB_PATH);
 setupPassport();
+
 app.use(express['static'](staticDir));
 
 app.set('port', process.env.PORT || 3000);
@@ -67,7 +69,7 @@ io.sockets.on('connection', function(socket){
         console.log('File could not be saved.');
       }else{
         console.log('File saved.');
-  //      file_saved = 1;
+	io.sockets.emit('file.saved');
       }
     });
     });

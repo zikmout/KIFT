@@ -13,7 +13,7 @@
 # include <stdarg.h>
 #include <ctype.h>
 
-#define NB_INSTRUCTIONS 17
+#define NB_INSTRUCTIONS 220
 #define TRANSCRIPTION_FILE "/instruction.transcription"
 #define FILEIDS_FILE "/instruction.fileids"
 #define LOG_FILE "/log.txt"

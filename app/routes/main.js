@@ -115,10 +115,15 @@ router.get('/process/:audio', (req, res) => {
                console.log('Command search on google recognized');
 	       return res.send({redirect: 'http://www.google.com'});
 	    }
+            else if (parseInt(instruction) == 9 || parseInt(instruction) == 10)
+            {
+               console.log('Command go on intra recognized');
+	       return res.send({redirect: 'http://intra.42.fr'});
+	    }
             else
             {
                console.log('NO command recognized');
-               return res.send({redirect: '/404.html'});
+               return res.send({speach: 'I did not recognize the command'});
    	    }
         };
      });

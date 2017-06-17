@@ -113,37 +113,7 @@ DEALINGS IN THE SOFTWARE.
   };
 
   Recorder.setupDownload = function(blob, filename) {
-    var socket = io();
-
-    var delivery = new Delivery(socket);
-
-    delivery.on('delivery.connect', function(delivery) {
-      var file = blob;
-      var extraParams = {
-        name: filename
-      };
-      delivery.send(file, extraParams);
-    });
-
-    delivery.on('send.success', function() {
-      console.log('file was successfully sent.');
-
-	$.ajax({
-          url: 'http://54.172.192.199:3000/process/' + filename,
-          method: 'GET',
-	  success: function(data) {
-//		if (!data.redirect && data.speach)
-//			say(data.speach);
-//		else
-			window.location = data.redirect;
-          }
-	})
-        .done(function() {
-          console.log('Request sent');
-    });
-
-
-    });
+	console.log("Called download");
   };
 
   window.Recorder = Recorder;
