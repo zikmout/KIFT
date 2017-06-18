@@ -54,14 +54,13 @@ function doneEncoding( blob ) {
       var fd = new FormData();
       fd.append('fname', filename);
       fd.append('data', blob);
-      console.log('sending this: ');
-      console.dir(fd);
       var request = $.ajax({
         method: 'POST',
         url: '/upload',
         data: fd,
         processData: false,
-        contentType: 'multipart/form-data'
+        contentType: 'multipart/form-data',
+        mimeType: 'multipart/form-data'
       });
 
       request.done(function(data) {
