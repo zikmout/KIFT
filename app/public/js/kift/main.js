@@ -53,20 +53,23 @@ function doneEncoding( blob ) {
 	var filename = userName + '_' + Date.now() + ".wav";
 	var reader = new FileReader();
 	reader.onload = function(e) {
-	    //console.log(e.target.result);
+	    var data =  new FormData();
+	    data.append('file', e.target.result);
+//	    console.log(e.target.result);
 	    $.ajax({
 		url :  "http://54.172.192.199:3000/upload/" + filename,
 		type: 'POST',
-		data:JSON.stringify({audio : e.target.result}),//audio:e.target.result}),
+		data: {test : "toto", audio: e.target.result}, //audio:e.target.result}),
 		dataType : "json",
-		contentType: "application/json",
-		processData: false,
+		//contentType: false,
+		//processData: false,
 		success: function(data) {
 		    console.log("Got response : ");
 		    console.log(data);
 		},
-		error: function() {
+		error: function(e) {
 		    console.log("Error");
+		    console.log(e);
 		}
 	    });
 	};

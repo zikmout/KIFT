@@ -7,7 +7,8 @@ const express = require('express'),
   async = require('async'),
   opn = require('opn'),
   fs = require('fs'),
-  ensureAuthenticated = (req, res, next) => {
+      atob = require('atob');
+      ensureAuthenticated = (req, res, next) => {
     if (!req.isAuthenticated()) {
       return res.redirect('/login');
     } else {
@@ -83,26 +84,33 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 
 router.post('/upload/:filename', (req, res) => {
   console.log("Trying to save file");
-  // var audio = JSON.parse(req.body); 
+  //var audio = JSON.parse(req.body); 
 	//var content = atob(req.body);
   console.log("ici ")
-console.log(req.body.audio); 
-//var test = JSON.parse(req.body);
-//console.log("la : " + test);
+//    console.log(req.body); 
+   
+    //  console.log(req.body.test);
+//    var b64;
+//    new Buffer(b64, 'base64');
+//    var toto = new Buffer(req.body.audio, 'base64')
+    //  console.log(toto);
+//    var toto = atob(req.body.audio.replace(/^[^,]*,/,''));
+    var toto = req.body.audio;
+    //console.log("la : " + test);
  var userName = req.params.filename.match(/([a-z_]+)_/)[1];
 
    if (!fs.existsSync('./audio/' + userName)) {
       fs.mkdirSync('./audio/' + userName);
     }
    console.log('LOG :' + './audio/' + userName + '/' + req.params.filename);
-    fs.writeFile('./audio/' + userName + '/' + req.params.filename,req.body.audio, function(err){
+    fs.writeFile('./audio/' + userName + '/' + req.params.filename, toto, function(err){
       if(err){
         console.log('File could not be saved.');
       }else{
         console.log('File saved.');
       }
   });
-res.json(req.body.audio);
+res.json(toto);
   //res.send("Good");
 });
 

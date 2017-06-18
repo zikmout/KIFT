@@ -1,12 +1,11 @@
-NAME	=	kift
-CC		=   gcc -D_GNU_SOURCE
+NAME	=	kift2
+CC	=  	gcc -D_GNU_SOURCE
 CFLAGS	= 	-Wall 
-RM		=   rm -f
+RM	=	 rm -f
 LIBFT	=	 -L../libft -lft
-SRCS	=	kift.c \
-		get_hyp.c \
-
-OBJS	=   $(SRCS:%.c=%.o)
+SRCS	=	get_hyp.c kift2.c \
+ 
+OBJS	=   $(SRCS:.c=.o)
 
 LIBFT_PATH	= ../libft
 

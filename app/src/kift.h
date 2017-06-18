@@ -34,5 +34,5 @@ typedef struct s_cmd
 }              t_cmd;
 
 const char *get_hyp(char *argv[]);
-
+char *toupper_str(char *str);
 #endif
