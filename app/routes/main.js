@@ -82,9 +82,10 @@ router.get('/history', ensureAuthenticated, (req, res) => {
   });
 })
 
-router.post('/upload/:filename', (req, res) => {
+router.post('/upload', (req, res) => {
   console.log("Trying to save file");
   console.log('received:', req.body.fname);
+  res.send('Okay, getting there');
 //     var toto = req.body.audio;
 //     //console.log("la : " + test);
 //  var userName = req.params.filename.match(/([a-z_]+)_/)[1];

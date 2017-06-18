@@ -50,12 +50,10 @@ function gotBuffers( buffers ) {
 
 function doneEncoding( blob ) {
     if (userName !== '') {
-	var filename = userName + '_' + Date.now() + ".wav";
-	var reader = new FileReader();
-	reader.onload = function(e) {
+    	var filename = userName + '_' + Date.now() + ".wav";
       var fd = new FormData();
       fd.append('fname', filename);
-      fd.append('data', e.target.result);
+      fd.append('data', blob);
       $.ajax({
         type: 'POST',
         url: '/upload',
@@ -63,12 +61,9 @@ function doneEncoding( blob ) {
         processData: false,
         contentType: false
       }).done(function(data) {
-        console.log('serever said:', data);
+        console.log('server said:', data);
       });
-	};
-	reader.readAsText(blob);
-    recIndex++;
-  }
+    }
 }
 
 function toggleRecording( e ) {
