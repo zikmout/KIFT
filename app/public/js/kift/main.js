@@ -11,20 +11,20 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+   */
 
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
+   window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-var audioContext = new AudioContext();
-var audioInput = null,
-    realAudioInput = null,
-    inputPoint = null,
-    audioRecorder = null;
-var rafID = null;
-var analyserContext = null;
-var canvasWidth, canvasHeight;
-var recIndex = 0;
-var volume;
+   var audioContext = new AudioContext();
+   var audioInput = null,
+   realAudioInput = null,
+   inputPoint = null,
+   audioRecorder = null;
+   var rafID = null;
+   var analyserContext = null;
+   var canvasWidth, canvasHeight;
+   var recIndex = 0;
+   var volume;
 
 /* TODO:
 
@@ -51,55 +51,28 @@ function gotBuffers( buffers ) {
 function doneEncoding( blob ) {
     if (userName !== '') {
 
-	var filename = userName + '_' + Date.now() + ".wav";
+     var filename = userName + '_' + Date.now() + ".wav";
 
-    var socket = io();
+     var reader = new FileReader();
+     reader.onload = function() {       
+         $.ajax({
+          url :  "http://54.172.192.199:3000/upload/" + filename,
+          type: 'POST',
+          data: blob,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            console.log("Got response : ");
+            console.log(data);
+        },
+        error: function() {
+         console.log("Error");
+        }
+        });
+     };
 
-    var delivery = new Delivery(socket);
-
-    delivery.on('delivery.connect', function(delivery) {
-      var file = blob;
-      var extraParams = {
-        name: filename
-      };
-      delivery.send(file, extraParams);
-    });
-
-    delivery.on('send.success', function() {
-      console.log('file was successfully sent.');
-	})
-//        .done(function() {
-//          console.log('Request sent');
-//    });
-
-    socket.on('file.saved', function() {
-	console.log("Received THAT SHIT");
-	$.ajax({
-          url: 'http://54.172.192.199:3000/process/' + filename,
-          method: 'GET',
-	  error : function(e)
-{
-console.log(e);
-},
-	  success: function(data) {
-		if (!data.redirect && data.speach)
-		{
-			artyom.shutUp();
-			artyom.say(data.speach);
-			console.log('success 1');
-			window.location = 'http://54.172.192.199:3000';
-		}
-		else
-		{
-			console.log('succes 2');
-			window.location = data.redirect;
-		}
-          }
-    });
-
-    });
-      recIndex++;
-    }
+     reader.readAsText(blob);
+ };
 }
 
 function toggleRecording( e ) {
@@ -201,42 +174,42 @@ function gotStream(stream) {
 
 //    audioInput = convertToMono( input );
 
-    analyserNode = audioContext.createAnalyser();
-    analyserNode.fftSize = 2048;
-    inputPoint.connect( analyserNode );
+analyserNode = audioContext.createAnalyser();
+analyserNode.fftSize = 2048;
+inputPoint.connect( analyserNode );
 
-    audioRecorder = new Recorder( inputPoint );
+audioRecorder = new Recorder( inputPoint );
 
-    zeroGain = audioContext.createGain();
-    zeroGain.gain.value = 0.0;
-    inputPoint.connect( zeroGain );
-    zeroGain.connect( audioContext.destination );
-    updateAnalysers();
+zeroGain = audioContext.createGain();
+zeroGain.gain.value = 0.0;
+inputPoint.connect( zeroGain );
+zeroGain.connect( audioContext.destination );
+updateAnalysers();
 }
 
 function initAudio() {
-        if (!navigator.getUserMedia)
-            navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        if (!navigator.cancelAnimationFrame)
-            navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
-        if (!navigator.requestAnimationFrame)
-            navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
+    if (!navigator.getUserMedia)
+        navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    if (!navigator.cancelAnimationFrame)
+        navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
+    if (!navigator.requestAnimationFrame)
+        navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
 
     navigator.getUserMedia(
-        {
-            "audio": {
-                "mandatory": {
-                    "googEchoCancellation": "false",
-                    "googAutoGainControl": "false",
-                    "googNoiseSuppression": "false",
-                    "googHighpassFilter": "false"
-                },
-                "optional": []
+    {
+        "audio": {
+            "mandatory": {
+                "googEchoCancellation": "false",
+                "googAutoGainControl": "false",
+                "googNoiseSuppression": "false",
+                "googHighpassFilter": "false"
             },
-        }, gotStream, function(e) {
-            alert('Error getting audio');
-            console.log(e);
-        });
+            "optional": []
+        },
+    }, gotStream, function(e) {
+        alert('Error getting audio');
+        console.log(e);
+    });
 }
 
 window.addEventListener('load', initAudio );

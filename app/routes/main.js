@@ -80,6 +80,24 @@ router.get('/history', ensureAuthenticated, (req, res) => {
     files: lines
   });
 })
+router.get('/upload/:filename', (req, res) => {
+  console.log("Trying to save file");
+  console.log(req);
+  
+    var userName = req.filename.match(/([a-z_]+)_/)[1];
+
+
+   if (!fs.existsSync('./audio/' + userName)) {
+      fs.mkdirSync('./audio/' + userName);
+    }
+   console.log('LOG :' + './audio/' + userName + '/' + req.filename);
+    fs.writeFile('./audio/' + userName + '/' + req.filename, req.data, function(err){
+      if(err){
+        console.log('File could not be saved.');
+      }else{
+        console.log('File saved.');
+  return "Good";
+}
 
 router.get('/process/:audio', (req, res) => {
     
