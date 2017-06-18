@@ -80,24 +80,31 @@ router.get('/history', ensureAuthenticated, (req, res) => {
     files: lines
   });
 })
-router.get('/upload/:filename', (req, res) => {
-  console.log("Trying to save file");
-  console.log(req);
-  
-    var userName = req.filename.match(/([a-z_]+)_/)[1];
 
+router.post('/upload/:filename', (req, res) => {
+  console.log("Trying to save file");
+  // var audio = JSON.parse(req.body); 
+	//var content = atob(req.body);
+  console.log("ici ")
+console.log(req.body.audio); 
+//var test = JSON.parse(req.body);
+//console.log("la : " + test);
+ var userName = req.params.filename.match(/([a-z_]+)_/)[1];
 
    if (!fs.existsSync('./audio/' + userName)) {
       fs.mkdirSync('./audio/' + userName);
     }
-   console.log('LOG :' + './audio/' + userName + '/' + req.filename);
-    fs.writeFile('./audio/' + userName + '/' + req.filename, req.data, function(err){
+   console.log('LOG :' + './audio/' + userName + '/' + req.params.filename);
+    fs.writeFile('./audio/' + userName + '/' + req.params.filename,req.body.audio, function(err){
       if(err){
         console.log('File could not be saved.');
       }else{
         console.log('File saved.');
-  return "Good";
-}
+      }
+  });
+res.json(req.body.audio);
+  //res.send("Good");
+});
 
 router.get('/process/:audio', (req, res) => {
     

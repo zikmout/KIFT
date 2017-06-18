@@ -22,14 +22,19 @@ setupPassport();
 
 app.use(express['static'](staticDir));
 
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+app.use(bodyParser.json({limit:'50mb'}));
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
-
+/*
 app.use(bodyParser.urlencoded({
   extended: false
-}));
+}));*/
 app.use(cookieParser());
 app.use(session({
   secret: '!@$%^&*())()_+_)(*&^%$#@<?',
