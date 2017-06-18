@@ -59,7 +59,7 @@ router.get('/history', ensureAuthenticated, (req, res) => {
   const logFile = './logs/' + req.user.username + '/log.txt',
     lines = [];
 
-	
+
     if (!fs.existsSync('./logs/' + req.user.username)) {
       fs.mkdirSync('./logs/' + req.user.username);
       touch('./logs/' + req.user.username + '/log.txt');
@@ -84,61 +84,50 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 
 router.post('/upload/:filename', (req, res) => {
   console.log("Trying to save file");
-  //var audio = JSON.parse(req.body); 
-	//var content = atob(req.body);
-  console.log("ici ")
-//    console.log(req.body); 
-   
-    //  console.log(req.body.test);
-//    var b64;
-//    new Buffer(b64, 'base64');
-//    var toto = new Buffer(req.body.audio, 'base64')
-    //  console.log(toto);
-//    var toto = atob(req.body.audio.replace(/^[^,]*,/,''));
-    var toto = req.body.audio;
-    //console.log("la : " + test);
- var userName = req.params.filename.match(/([a-z_]+)_/)[1];
-
-   if (!fs.existsSync('./audio/' + userName)) {
-      fs.mkdirSync('./audio/' + userName);
-    }
-   console.log('LOG :' + './audio/' + userName + '/' + req.params.filename);
-    fs.writeFile('./audio/' + userName + '/' + req.params.filename, toto, function(err){
-      if(err){
-        console.log('File could not be saved.');
-      }else{
-        console.log('File saved.');
-      }
-  });
-res.json(toto);
-  //res.send("Good");
+  console.log('received:', req.body.fname);
+//     var toto = req.body.audio;
+//     //console.log("la : " + test);
+//  var userName = req.params.filename.match(/([a-z_]+)_/)[1];
+//
+//    if (!fs.existsSync('./audio/' + userName)) {
+//       fs.mkdirSync('./audio/' + userName);
+//     }
+//    console.log('LOG :' + './audio/' + userName + '/' + req.params.filename);
+//     fs.writeFile('./audio/' + userName + '/' + req.params.filename, toto, function(err){
+//       if(err){
+//         console.log('File could not be saved.');
+//       }else{
+//         console.log('File saved.');
+//       }
+//   });
+// res.json(toto);
 });
 
 router.get('/process/:audio', (req, res) => {
-    
+
     console.log('beginning executing kift...');
-    
+
     var userName = req.user.username,
     cmd1 = "./src/kift " + req.params.audio + " " + userName,
     instruction = 0,
     path = './logs/' + userName + '/response_instruction.txt';
-  
+
     console.log(cmd1);
     console.log(req.params);
-    
+
     exec(cmd1, function(error, stdout, stderr) {
     console.log('stdout: ', stdout);
     fs.readFile(path, function (err, data) {
-    
+
         if (err) {
     	    return console.error;
         }
 	else
 	{
             instruction = data.toString();
-            console.log('(Simon) **___---->> read instruction : ' + instruction); 
-   
-    	    if (parseInt(instruction) == 4)	
+            console.log('(Simon) **___---->> read instruction : ' + instruction);
+
+    	    if (parseInt(instruction) == 4)
     	    {
                console.log('Command /playsong recognized');
                return res.send({redirect: '/playsong'});
