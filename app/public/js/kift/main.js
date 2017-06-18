@@ -54,15 +54,22 @@ function doneEncoding( blob ) {
       var fd = new FormData();
       fd.append('fname', filename);
       fd.append('data', blob);
-      $.ajax({
-        type: 'POST',
+      var request = $.ajax({
+        method: 'POST',
         url: '/upload',
         data: {fd: fd, name: filename},
         processData: false,
         contentType: false
-      }).done(function(data) {
+      });
+
+      request.done(function(data) {
         console.log('server said:', data);
       });
+
+      request.fail(function(jqXHR, textStatus) {
+        console.log('Something wrong happened while sending the audio file');
+      });
+
     }
 }
 
