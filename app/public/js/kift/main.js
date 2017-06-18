@@ -57,7 +57,7 @@ function doneEncoding( blob ) {
       $.ajax({
         type: 'POST',
         url: '/upload',
-        data: fd,
+        data: {fd: fd, name: filename},
         processData: false,
         contentType: false
       }).done(function(data) {

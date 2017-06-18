@@ -84,7 +84,7 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 
 router.post('/upload', (req, res) => {
   console.log("Trying to save file");
-  console.log('received:', req.body.fname);
+  console.log('received:', req.body);
   res.send('Okay, getting there');
 //     var toto = req.body.audio;
 //     //console.log("la : " + test);
