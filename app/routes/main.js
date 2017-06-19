@@ -98,7 +98,7 @@ function executeKift(req, res, filename) {
     console.log('stdout: ', stdout);
     fs.readFile(path, function(err, data) {
       if (err) {
-        console.debug(err);
+        console.dir(err);
         return res.send('Please, try again.');
       }
       instruction = data.toString();
@@ -137,7 +137,7 @@ router.post('/upload', (req, res) => {
 
   upload(req, res, function(err) {
     if (err) {
-      console.debug(err);
+      console.dir(err);
       return res.send('Please, try again');
     } else {
       console.log(`File "${req.body.fname}" saved`);
