@@ -2,9 +2,10 @@
   padding: 0;
 }
 
-body {
+.container-fluid {
 	overflow: hidden;
 }
+
 .navbar {
 	margin-bottom: 0;
 }

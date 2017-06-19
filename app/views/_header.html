@@ -18,7 +18,10 @@
         </li>
         <% if (currentUser) { %>
           <li>
-            <a href="/history">History</a>
+            <a href="/history">My History</a>
+          </li>
+          <li>
+            <a href="/alarm">My Alarm</a>
           </li>
           <li>
             <a href="/profile"><%= currentUser.firstName %> <%= currentUser.lastName %></a>

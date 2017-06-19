@@ -1,0 +1,36 @@
+<% include _header.html %>
+
+<div class="timer">
+</div>
+
+<script src="js/jquery.min.js"></script>
+
+<% if (currentUser.alarm) { %>
+<script>
+	jQuery(document).ready(function() {
+		var countDownDate = <%= currentUser.alarm %>;
+		var x = setInterval(function() {
+		    var now = new Date().getTime();
+
+		    var distance = countDownDate - now;
+
+		    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		    $("demo").html('<p>'+ hours + "h " + minutes + "m " + seconds + "s " +'</p>');
+
+		    if (distance < 0) {
+		        clearInterval(x);
+		        $("demo").html("<p>Your last alarm expired!</p>");
+		    }
+		}, 1000);
+	});
+</script>
+<% } else { %>
+<script type="text/javascript">
+	$('demo').html('<p>No Alarms yet!</p>');
+</script>
+<% }%>
+
+<% include _footer.html %>

@@ -19,10 +19,18 @@ ensureAuthenticated = (req, res, next) => {
   touch = require("touch"),
   multer = require('multer'),
   request = require('request'),
-  songs = [
-	{name: 'Feu! Chatterton - Fou à lier', path: 'feu-fou-a-lier.mp3'},
-	{name: 'Flume - Insane feat. Moon Holiday', path: 'flume-insane-feat-moon-holiday.mp3'},
-	{name: 'M83 - Midnight City', path: 'm83-midnight-city.mp3'}
+  songs = [{
+      name: 'Feu! Chatterton - Fou à lier',
+      path: 'feu-fou-a-lier.mp3'
+    },
+    {
+      name: 'Flume - Insane feat. Moon Holiday',
+      path: 'flume-insane-feat-moon-holiday.mp3'
+    },
+    {
+      name: 'M83 - Midnight City',
+      path: 'm83-midnight-city.mp3'
+    }
   ];
 
 router.use((req, res, next) => {
@@ -42,6 +50,10 @@ router.get('/', (req, res) => {
     title: 'Kift - Smart Online Personal assistant',
     isKift: true
   });
+});
+
+router.get('/alarm', function(req, res) => {
+  res.render('alarm', {title: 'My Current Alarm'});
 });
 
 router.get('/searchweb/:word', (req, res) => {
@@ -84,7 +96,7 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 });
 
 function randNum(min, max) {
-	return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 function executeKift(req, res, filename) {
@@ -109,19 +121,45 @@ function executeKift(req, res, filename) {
 
       if (parseInt(instruction) == 4) {
         console.log('Command /playsong recognized');
-        return res.send({cmd: 'play', song: songs[randNum(0, songs.length)]});
+        return res.send({
+          cmd: 'play',
+          song: songs[randNum(0, songs.length)]
+        });
       } else if (parseInt(instruction) == 7) {
         console.log('Command search on google recognized');
-        return res.send({path: 'http://www.google.com'});
+        return res.send({
+          path: 'http://www.google.com'
+        });
       } else if (parseInt(instruction) == 9 || parseInt(instruction) == 10) {
         console.log('Command go on intra recognized');
-        return res.send({path: 'http://intra.42.fr'});
+        return res.send({
+          path: 'http://intra.42.fr'
+        });
       } else if (parseInt(instruction) == 21) {
         console.log('Command turn light on recognized');
-        return res.send({cmd: 'light', state: 'on'});
+        return res.send({
+          cmd: 'light',
+          state: 'on'
+        });
       } else if (parseInt(instruction) == 22) {
         console.log('Command turn light off recognized');
-        return res.send({cmd: 'light', state: 'off'});
+        return res.send({
+          cmd: 'light',
+          state: 'off'
+        });
+      } else if (parseInt(instruction) == 1) {
+        console.log('Command set alarm recognized');
+        User.findById(req.user._id, function(err, user) {
+          if (err) {
+            return res.send('Something wrong happened, please, try again.');
+          }
+
+          user.alarm = Date.now() + (60 * 60 * 24);
+          user.save(function() {
+            return res.send('Alarm set. Please, check your Alarm page.');
+          });
+        })
+        return res.send('Please, try again.');
       } else {
         console.log('No command recognized');
         return res.send('I did not recognize that command');

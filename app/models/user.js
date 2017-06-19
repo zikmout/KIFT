@@ -22,6 +22,10 @@ const bcrypt = require('bcrypt-nodejs'),
       type: Date,
       default: Date.now
     },
+    alarm: {
+      type: Date,
+      default: null
+    },
     bio: {
       type: String,
       default: 'No user bio'
