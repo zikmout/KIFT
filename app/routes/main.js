@@ -87,7 +87,12 @@ router.post('/upload', (req, res) => {
   console.og('Saving file...');
 
   var storage = multer.diskStorage({
-      destination: '/'
+      destination: function(req, file, cb) {
+        cb(null, './audio/'+ req.file.username + '/');
+      },
+      filename: function (req, file, cb) {
+        cb(null, req.file.fname);
+      }
   });
   var upload = multer({storage}).any();
 
@@ -97,10 +102,6 @@ router.post('/upload', (req, res) => {
           return res.send('Error');
       } else {
           console.log(req.body);
-          req.files.forEach(function(item) {
-              console.log(item);
-              // move your file to destination
-          });
           res.end('File uploaded');
       }
   });

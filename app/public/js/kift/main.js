@@ -54,6 +54,7 @@ function doneEncoding( blob ) {
       var fd = new FormData();
       fd.append('fname', filename);
       fd.append('data', blob);
+      fd.append('username', userName);
       var request = $.ajax({
         method: 'POST',
         url: '/upload',
