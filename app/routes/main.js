@@ -52,7 +52,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/alarm', (req, res) => {
+router.get('/alarm', ensureAuthenticated, (req, res) => {
   res.render('alarm', {title: 'My Current Alarm'});
 });
 
@@ -153,6 +153,8 @@ function executeKift(req, res, filename) {
             return res.send('Alarm set. Please, check your Alarm page.');
           });
         })
+      } else if (parseInt(instruction) == 2) {
+        return res.send({ path: 'https://www.google.com/search?q=what+is+the+weather&oq=what+is+the+weather&aqs=chrome..69i57.3679j0j1&sourceid=chrome&ie=UTF-8'});
       } else {
         console.log('No command recognized');
         return res.send('I did not recognize that command');
@@ -166,7 +168,7 @@ router.post('/upload', (req, res) => {
     destination: function(req, file, cb) {
  	if (!fs.existsSync('./audio/' + req.body.username)) {
       		fs.mkdirSync('./audio/' + req.body.username);
-  	 } 
+  	 }
 
   	if (!fs.existsSync('./logs/' + req.body.username)) {
     		fs.mkdirSync('./logs/' + req.body.username);
