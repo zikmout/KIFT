@@ -20,8 +20,8 @@ ensureAuthenticated = (req, res, next) => {
   multer = require('multer'),
   request = require('request'),
   songs = [
-	{name: 'Feu! Chatterton - Fou à lier', path: 'feu-fou-a-lier.mp3'}
-	{name: 'Flume - Insane feat. Moon Holiday', path: 'flume-insane-feat-moon-holiday.mp3'}
+	{name: 'Feu! Chatterton - Fou à lier', path: 'feu-fou-a-lier.mp3'},
+	{name: 'Flume - Insane feat. Moon Holiday', path: 'flume-insane-feat-moon-holiday.mp3'},
 	{name: 'M83 - Midnight City', path: 'm83-midnight-city.mp3'}
   ];
 
