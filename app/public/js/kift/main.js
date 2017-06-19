@@ -66,8 +66,11 @@ function doneEncoding(blob) {
     });
 
     request.done(function(data) {
-      artyom.say(data);
-      console.log('Server answered', data);
+      if (typeof data === 'object') {
+        window.location.replace(data.path);
+      } else {
+        artyom.say(data);
+      }
     });
 
     request.fail(function(jqXHR, textStatus) {

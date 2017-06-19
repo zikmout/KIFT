@@ -106,13 +106,13 @@ function executeKift(req, res, filename) {
 
       if (parseInt(instruction) == 4) {
         console.log('Command /playsong recognized');
-        return res.redirect('/playsong');
+        return res.send({path: '/playsong'});
       } else if (parseInt(instruction) == 7) {
         console.log('Command search on google recognized');
-        return res.redirect('http://www.google.com');
+        return res.send({path: 'http://www.google.com'});
       } else if (parseInt(instruction) == 9 || parseInt(instruction) == 10) {
         console.log('Command go on intra recognized');
-        return res.redirect('http://intra.42.fr');
+        return res.send({path: 'http://intra.42.fr'});
       } else {
         console.log('No command recognized');
         return res.send('I did not recognize that command');
