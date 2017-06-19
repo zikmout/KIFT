@@ -54,7 +54,7 @@ function handlePlayCommand(data) {
       var audio = new Audio('/music/' + data.song.path);
       audio.play();
 
-      audio.on("ended", function(){
+      $(audio).on("ended", function(){
            audio.currentTime = 0;
            $('#info-msg').html('<p>Hold down the space bar to send a command.</p>');
       });
