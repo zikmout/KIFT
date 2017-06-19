@@ -84,24 +84,23 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 })
 
 router.post('/upload', (req, res) => {
-  console.og('Saving file...');
+  console.log('Saving file...');
 
   var storage = multer.diskStorage({
       destination: function(req, file, cb) {
-        cb(null, './audio/'+ req.file.username + '/');
+        cb(null, './audio/'+ req.body.username + '/');
       },
       filename: function (req, file, cb) {
-        cb(null, req.file.fname);
+        cb(null, req.body.fname);
       }
   });
   var upload = multer({storage}).any();
 
   upload(req, res, function(err) {
       if (err) {
-          console.log(err);
           return res.send('Error');
       } else {
-          console.log(req.body);
+	  console.log(`File "${req.body.fname}" saved`);
           res.end('File uploaded');
       }
   });

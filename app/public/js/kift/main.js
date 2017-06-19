@@ -52,9 +52,9 @@ function doneEncoding( blob ) {
     if (userName !== '') {
     	var filename = userName + '_' + Date.now() + ".wav";
       var fd = new FormData();
+      fd.append('username', userName);
       fd.append('fname', filename);
       fd.append('data', blob);
-      fd.append('username', userName);
       var request = $.ajax({
         method: 'POST',
         url: '/upload',
