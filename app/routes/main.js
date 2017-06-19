@@ -93,7 +93,6 @@ function executePocketsphinx(req, res, filename) {
     path = './logs/' + userName + '/response_instruction.txt';
 
   console.log(cmd1);
-  console.log(req.params);
 
   exec(cmd1, function(error, stdout, stderr) {
     console.log('stdout: ', stdout);
