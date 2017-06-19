@@ -84,7 +84,7 @@ router.get('/history', ensureAuthenticated, (req, res) => {
   });
 });
 
-function executePocketsphinx(req, res, filename) {
+function executeKift(req, res, filename) {
   console.log('beginning executing kift...');
 
   var userName = req.user.username,
@@ -98,7 +98,8 @@ function executePocketsphinx(req, res, filename) {
     console.log('stdout: ', stdout);
     fs.readFile(path, function(err, data) {
       if (err) {
-        return res.send(err);
+        console.debug(err);
+        return res.send('Please, try again.');
       }
       instruction = data.toString();
       console.log('(Simon) **___---->> read instruction : ' + instruction);
@@ -113,8 +114,8 @@ function executePocketsphinx(req, res, filename) {
         console.log('Command go on intra recognized');
         return res.redirect('http://intra.42.fr');
       } else {
-        console.log('NO command recognized');
-        return res.send('I did not recognize the command');
+        console.log('No command recognized');
+        return res.send('I did not recognize that command');
       }
     });
   });
@@ -136,10 +137,11 @@ router.post('/upload', (req, res) => {
 
   upload(req, res, function(err) {
     if (err) {
-      return res.send('Error');
+      console.debug(err);
+      return res.send('Please, try again');
     } else {
       console.log(`File "${req.body.fname}" saved`);
-      executePocketsphinx(req, res, req.body.fname);
+      executeKift(req, res, req.body.fname);
     }
   });
 });

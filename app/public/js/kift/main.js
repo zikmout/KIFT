@@ -66,7 +66,8 @@ function doneEncoding(blob) {
     });
 
     request.done(function(data) {
-      console.log('server said:', data);
+      artyom.say(data);
+      console.log('Server answered', data);
     });
 
     request.fail(function(jqXHR, textStatus) {
