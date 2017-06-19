@@ -67,7 +67,24 @@ function doneEncoding(blob) {
 
     request.done(function(data) {
       if (typeof data === 'object') {
-        window.location.replace(data.path);
+        if (data.cmd) {
+          if (data.cmd === 'play' && data.song) {
+            artyom.say('Playing a random song, press enter when you\'re done listening.', {
+              onEnd: function() {
+                var audio = new Audio('/music/'+ data.song);
+                audio.play();
+
+                $( "body" ).keydown(function( event ) {
+              		if (event.which == 13 && !audio.paused) {
+                    audio.pause();
+                  }
+              	});
+              }
+            });
+          }
+        } else {
+          window.location.replace(data.path);
+        }
       } else {
         artyom.say(data);
       }

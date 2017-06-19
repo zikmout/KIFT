@@ -18,7 +18,10 @@ ensureAuthenticated = (req, res, next) => {
   exec = require('child_process').exec,
   touch = require("touch"),
   multer = require('multer'),
-  request = require('request');
+  request = require('request'),
+  songs = [
+    'feu-fou-a-lier.mp3'
+  ];
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
@@ -87,7 +90,7 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 function executeKift(req, res, filename) {
   console.log('beginning executing kift...');
 
-  var userName = req.user.username,
+  let userName = req.user.username,
     cmd1 = "./src/kift " + filename + " " + userName,
     instruction = 0,
     path = './logs/' + userName + '/response_instruction.txt';
@@ -105,8 +108,9 @@ function executeKift(req, res, filename) {
       console.log('(Simon) **___---->> read instruction : ' + instruction);
 
       if (parseInt(instruction) == 4) {
+        let randNum = Math.random() * (1 - 0) + 0; // (max - min) + min
         console.log('Command /playsong recognized');
-        return res.send({path: '/playsong'});
+        return res.send({cmd: 'play', song: songs[randNum]});
       } else if (parseInt(instruction) == 7) {
         console.log('Command search on google recognized');
         return res.send({path: 'http://www.google.com'});
@@ -122,7 +126,7 @@ function executeKift(req, res, filename) {
 }
 
 router.post('/upload', (req, res) => {
-  var storage = multer.diskStorage({
+  let storage = multer.diskStorage({
     destination: function(req, file, cb) {
       cb(null, './audio/' + req.body.username + '/');
     },
@@ -131,7 +135,7 @@ router.post('/upload', (req, res) => {
     }
   });
 
-  var upload = multer({
+  let upload = multer({
     storage
   }).any();
 
