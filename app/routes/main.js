@@ -7,8 +7,8 @@ const express = require('express'),
   async = require('async'),
   opn = require('opn'),
   fs = require('fs'),
-      atob = require('atob');
-      ensureAuthenticated = (req, res, next) => {
+  atob = require('atob');
+ensureAuthenticated = (req, res, next) => {
     if (!req.isAuthenticated()) {
       return res.redirect('/login');
     } else {
@@ -17,7 +17,8 @@ const express = require('express'),
   },
   exec = require('child_process').exec,
   touch = require("touch"),
-  multer = require('multer');
+  multer = require('multer'),
+  request = require('request');
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
@@ -39,7 +40,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/playsong', ensureAuthenticated, (req, res) => {
-res.render('playsong', {
+  res.render('playsong', {
     title: 'Listen and enjoy the music now'
   });
 });
@@ -61,10 +62,10 @@ router.get('/history', ensureAuthenticated, (req, res) => {
     lines = [];
 
 
-    if (!fs.existsSync('./logs/' + req.user.username)) {
-      fs.mkdirSync('./logs/' + req.user.username);
-      touch('./logs/' + req.user.username + '/log.txt');
-    }
+  if (!fs.existsSync('./logs/' + req.user.username)) {
+    fs.mkdirSync('./logs/' + req.user.username);
+    touch('./logs/' + req.user.username + '/log.txt');
+  }
 
   fs.readFileSync(logFile, {
     encoding: 'utf-8'
@@ -84,94 +85,78 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 })
 
 router.post('/upload', (req, res) => {
-  console.log('Saving file...');
-
   var storage = multer.diskStorage({
-      destination: function(req, file, cb) {
-        cb(null, './audio/'+ req.body.username + '/');
-      },
-      filename: function (req, file, cb) {
-        cb(null, req.body.fname);
-      }
+    destination: function(req, file, cb) {
+      cb(null, './audio/' + req.body.username + '/');
+    },
+    filename: function(req, file, cb) {
+      cb(null, req.body.fname);
+    }
   });
-  var upload = multer({storage}).any();
+
+  var upload = multer({
+    storage
+  }).any();
 
   upload(req, res, function(err) {
-      if (err) {
-          return res.send('Error');
-      } else {
-	  console.log(`File "${req.body.fname}" saved`);
-          res.end('File uploaded');
-      }
+    if (err) {
+      return res.send('Error');
+    } else {
+      console.log(`File "${req.body.fname}" saved`);
+      request('/process/'+ req.body.fname, function(err, res, body) {
+        if (err) {
+          return res.send("Error: " + err);
+        }
+        console.log('Said:', response);
+        console.log('Or said:', body);
+      });
+    }
   });
-
-  // console.log("Trying to save file");
-  // console.log('received:', req.body);
-  // res.send('Okay, getting there');
-//     var toto = req.body.audio;
-//     //console.log("la : " + test);
-//  var userName = req.params.filename.match(/([a-z_]+)_/)[1];
-//
-//    if (!fs.existsSync('./audio/' + userName)) {
-//       fs.mkdirSync('./audio/' + userName);
-//     }
-//    console.log('LOG :' + './audio/' + userName + '/' + req.params.filename);
-//     fs.writeFile(, toto, function(err){
-//       if(err){
-//         console.log('File could not be saved.');
-//       }else{
-//         console.log('File saved.');
-//       }
-//   });
-// res.json(toto);
 });
 
 router.get('/process/:audio', (req, res) => {
 
-    console.log('beginning executing kift...');
+  console.log('beginning executing kift...');
 
-    var userName = req.user.username,
+  var userName = req.user.username,
     cmd1 = "./src/kift " + req.params.audio + " " + userName,
     instruction = 0,
     path = './logs/' + userName + '/response_instruction.txt';
 
-    console.log(cmd1);
-    console.log(req.params);
+  console.log(cmd1);
+  console.log(req.params);
 
-    exec(cmd1, function(error, stdout, stderr) {
+  exec(cmd1, function(error, stdout, stderr) {
     console.log('stdout: ', stdout);
-    fs.readFile(path, function (err, data) {
+    fs.readFile(path, function(err, data) {
+      if (err) {
+        return res.send(err);
+      }
+      instruction = data.toString();
+      console.log('(Simon) **___---->> read instruction : ' + instruction);
 
-        if (err) {
-    	    return console.error;
-        }
-	else
-	{
-            instruction = data.toString();
-            console.log('(Simon) **___---->> read instruction : ' + instruction);
-
-    	    if (parseInt(instruction) == 4)
-    	    {
-               console.log('Command /playsong recognized');
-               return res.send({redirect: '/playsong'});
-    	    }
-	    else if (parseInt(instruction) == 7)
-            {
-               console.log('Command search on google recognized');
-	       return res.send({redirect: 'http://www.google.com'});
-	    }
-            else if (parseInt(instruction) == 9 || parseInt(instruction) == 10)
-            {
-               console.log('Command go on intra recognized');
-	       return res.send({redirect: 'http://intra.42.fr'});
-	    }
-            else
-            {
-               console.log('NO command recognized');
-               return res.send({speach: 'I did not recognize the command'});
-   	    }
-        };
-     });
+      if (parseInt(instruction) == 4) {
+        console.log('Command /playsong recognized');
+        return res.send({
+          redirect: '/playsong'
+        });
+      } else if (parseInt(instruction) == 7) {
+        console.log('Command search on google recognized');
+        return res.send({
+          redirect: 'http://www.google.com'
+        });
+      } else if (parseInt(instruction) == 9 || parseInt(instruction) == 10) {
+        console.log('Command go on intra recognized');
+        return res.send({
+          redirect: 'http://intra.42.fr'
+        });
+      } else {
+        console.log('NO command recognized');
+        return res.send({
+          speach: 'I did not recognize the command'
+        });
+      }
+    });
   });
 });
 

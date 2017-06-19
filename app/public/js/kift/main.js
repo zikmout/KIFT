@@ -17,9 +17,9 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audioContext = new AudioContext();
 var audioInput = null,
-    realAudioInput = null,
-    inputPoint = null,
-    audioRecorder = null;
+  realAudioInput = null,
+  inputPoint = null,
+  audioRecorder = null;
 var rafID = null;
 var analyserContext = null;
 var canvasWidth, canvasHeight;
@@ -33,182 +33,183 @@ var volume;
 */
 
 function saveAudio() {
-    // audioRecorder.exportWAV( doneEncoding );
-    // could get mono instead bgetByteFrequencyDatay saying
-    audioRecorder.exportMonoWAV( doneEncoding );
+  // audioRecorder.exportWAV( doneEncoding );
+  // could get mono instead bgetByteFrequencyDatay saying
+  audioRecorder.exportMonoWAV(doneEncoding);
 }
 
-function gotBuffers( buffers ) {
-    var canvas = document.getElementById( "wavedisplay" );
+function gotBuffers(buffers) {
+  var canvas = document.getElementById("wavedisplay");
 
-    drawBuffer( canvas.width, canvas.height, canvas.getContext('2d'), buffers[0] );
+  drawBuffer(canvas.width, canvas.height, canvas.getContext('2d'), buffers[0]);
 
-    // the ONLY time gotBuffers is called is right after a new recording is completed -
-    // so here's where we should set up the download.
-    audioRecorder.exportMonoWAV( doneEncoding );
+  // the ONLY time gotBuffers is called is right after a new recording is completed -
+  // so here's where we should set up the download.
+  audioRecorder.exportMonoWAV(doneEncoding);
 }
 
-function doneEncoding( blob ) {
-    if (userName !== '') {
-    	var filename = userName + '_' + Date.now() + ".wav";
-      var fd = new FormData();
-      fd.append('username', userName);
-      fd.append('fname', filename);
-      fd.append('data', blob);
-      var request = $.ajax({
-        method: 'POST',
-        url: '/upload',
-        data: fd,
-        processData: false,
-        contentType: false
-      });
+function doneEncoding(blob) {
+  if (userName !== '') {
+    var filename = userName + '_' + Date.now() + ".wav";
+    var fd = new FormData();
 
-      request.done(function(data) {
-        console.log('server said:', data);
-      });
+    fd.append('username', userName);
+    fd.append('fname', filename);
+    fd.append('data', blob);
 
-      request.fail(function(jqXHR, textStatus) {
-        console.log('Something wrong happened while sending the audio file');
-      });
+    var request = $.ajax({
+      method: 'POST',
+      url: '/upload',
+      data: fd,
+      processData: false,
+      contentType: false
+    });
 
-    }
+    request.done(function(data) {
+      console.log('server said:', data);
+    });
+
+    request.fail(function(jqXHR, textStatus) {
+      console.log('Something wrong happened while sending the audio file');
+    });
+
+  }
 }
 
-function toggleRecording( e ) {
-    if (e.classList.contains("recording")) {
-        // stop recording
-        audioRecorder.stop();
-        e.classList.remove("recording");
-        audioRecorder.exportMonoWAV( doneEncoding );
-    } else {
-        // start recording
-        if (!audioRecorder)
-            return;
-        e.classList.add("recording");
-        audioRecorder.clear();
-        audioRecorder.record();
-    }
+function toggleRecording(e) {
+  if (e.classList.contains("recording")) {
+    // stop recording
+    audioRecorder.stop();
+    e.classList.remove("recording");
+    audioRecorder.exportMonoWAV(doneEncoding);
+  } else {
+    // start recording
+    if (!audioRecorder)
+      return;
+    e.classList.add("recording");
+    audioRecorder.clear();
+    audioRecorder.record();
+  }
 }
 
-function convertToMono( input ) {
-    var splitter = audioContext.createChannelSplitter(2);
-    var merger = audioContext.createChannelMerger(2);
+function convertToMono(input) {
+  var splitter = audioContext.createChannelSplitter(2);
+  var merger = audioContext.createChannelMerger(2);
 
-    input.connect( splitter );
-    splitter.connect( merger, 0, 0 );
-    splitter.connect( merger, 0, 1 );
-    return merger;
+  input.connect(splitter);
+  splitter.connect(merger, 0, 0);
+  splitter.connect(merger, 0, 1);
+  return merger;
 }
 
 function cancelAnalyserUpdates() {
-    window.cancelAnimationFrame( rafID );
-    rafID = null;
+  window.cancelAnimationFrame(rafID);
+  rafID = null;
 }
 
 var sampleAudioStream = function(freqByteData) {
-   // calculate an overall volume value
-   var total = 0;
-   for (var i = 0; i < 80; i++) { // get the volume from the first 80 bins, else it gets too loud with treble
-       total += freqByteData[i];
-   }
-   volume = total;
+  // calculate an overall volume value
+  var total = 0;
+  for (var i = 0; i < 80; i++) { // get the volume from the first 80 bins, else it gets too loud with treble
+    total += freqByteData[i];
+  }
+  volume = total;
 };
 
 function updateAnalysers(time) {
-    var canvas;
-    if (!analyserContext) {
-        canvas = document.getElementById('analyser');
-        canvasWidth = canvas.width;
-        canvasHeight = canvas.height;
-        analyserContext = canvas.getContext('2d');
-    }
+  var canvas;
+  if (!analyserContext) {
+    canvas = document.getElementById('analyser');
+    canvasWidth = canvas.width;
+    canvasHeight = canvas.height;
+    analyserContext = canvas.getContext('2d');
+  }
 
-    // analyzer draw code here
-    {
-        var freqByteData = new Uint8Array(analyserNode.frequencyBinCount);
+  // analyzer draw code here
+  {
+    var freqByteData = new Uint8Array(analyserNode.frequencyBinCount);
 
-        analyserNode.getByteFrequencyData(freqByteData);
+    analyserNode.getByteFrequencyData(freqByteData);
 
-        analyserContext.clearRect(0, 0, canvasWidth, canvasHeight);
-        drawBg();
-        makePolygonArray(analyserContext);
-        resizeCanvas(canvas, analyserContext);
-        tiles.forEach(function(tile) {
-            tile.drawPolygon();
-        });
+    analyserContext.clearRect(0, 0, canvasWidth, canvasHeight);
+    drawBg();
+    makePolygonArray(analyserContext);
+    resizeCanvas(canvas, analyserContext);
+    tiles.forEach(function(tile) {
+      tile.drawPolygon();
+    });
 
-        tiles.forEach(function(tile) {
-            if (tile.highlight > 0) {
-                tile.drawHighlight();
-            }
-        });
-        setInterval(rotateForeground, 20);
-        // resize the canvas to fill browser window dynamically
-        window.addEventListener('resize', this.resizeCanvas, false);
-    }
+    tiles.forEach(function(tile) {
+      if (tile.highlight > 0) {
+        tile.drawHighlight();
+      }
+    });
+    setInterval(rotateForeground, 20);
+    // resize the canvas to fill browser window dynamically
+    window.addEventListener('resize', this.resizeCanvas, false);
+  }
 
-    rafID = window.requestAnimationFrame( updateAnalysers );
+  rafID = window.requestAnimationFrame(updateAnalysers);
 }
 
 function toggleMono() {
-    if (audioInput != realAudioInput) {
-        audioInput.disconnect();
-        realAudioInput.disconnect();
-        audioInput = realAudioInput;
-    } else {
-        realAudioInput.disconnect();
-        audioInput = convertToMono( realAudioInput );
-    }
+  if (audioInput != realAudioInput) {
+    audioInput.disconnect();
+    realAudioInput.disconnect();
+    audioInput = realAudioInput;
+  } else {
+    realAudioInput.disconnect();
+    audioInput = convertToMono(realAudioInput);
+  }
 
-    audioInput.connect(inputPoint);
+  audioInput.connect(inputPoint);
 }
 
 function gotStream(stream) {
-    inputPoint = audioContext.createGain();
+  inputPoint = audioContext.createGain();
 
-    // Create an AudioNode from the stream.
-    realAudioInput = audioContext.createMediaStreamSource(stream);
-    audioInput = realAudioInput;
-    audioInput.connect(inputPoint);
+  // Create an AudioNode from the stream.
+  realAudioInput = audioContext.createMediaStreamSource(stream);
+  audioInput = realAudioInput;
+  audioInput.connect(inputPoint);
 
-//    audioInput = convertToMono( input );
+  //    audioInput = convertToMono( input );
 
-    analyserNode = audioContext.createAnalyser();
-    analyserNode.fftSize = 2048;
-    inputPoint.connect( analyserNode );
+  analyserNode = audioContext.createAnalyser();
+  analyserNode.fftSize = 2048;
+  inputPoint.connect(analyserNode);
 
-    audioRecorder = new Recorder( inputPoint );
+  audioRecorder = new Recorder(inputPoint);
 
-    zeroGain = audioContext.createGain();
-    zeroGain.gain.value = 0.0;
-    inputPoint.connect( zeroGain );
-    zeroGain.connect( audioContext.destination );
-    updateAnalysers();
+  zeroGain = audioContext.createGain();
+  zeroGain.gain.value = 0.0;
+  inputPoint.connect(zeroGain);
+  zeroGain.connect(audioContext.destination);
+  updateAnalysers();
 }
 
 function initAudio() {
-        if (!navigator.getUserMedia)
-            navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        if (!navigator.cancelAnimationFrame)
-            navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
-        if (!navigator.requestAnimationFrame)
-            navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
+  if (!navigator.getUserMedia)
+    navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+  if (!navigator.cancelAnimationFrame)
+    navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
+  if (!navigator.requestAnimationFrame)
+    navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
 
-    navigator.getUserMedia(
-        {
-            "audio": {
-                "mandatory": {
-                    "googEchoCancellation": "false",
-                    "googAutoGainControl": "false",
-                    "googNoiseSuppression": "false",
-                    "googHighpassFilter": "false"
-                },
-                "optional": []
-            },
-        }, gotStream, function(e) {
-            alert('Error getting audio');
-            console.log(e);
-        });
+  navigator.getUserMedia({
+    "audio": {
+      "mandatory": {
+        "googEchoCancellation": "false",
+        "googAutoGainControl": "false",
+        "googNoiseSuppression": "false",
+        "googHighpassFilter": "false"
+      },
+      "optional": []
+    },
+  }, gotStream, function(e) {
+    alert('Error getting audio');
+    console.log(e);
+  });
 }
 
-window.addEventListener('load', initAudio );
+window.addEventListener('load', initAudio);
