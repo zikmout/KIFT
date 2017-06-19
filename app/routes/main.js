@@ -16,7 +16,8 @@ const express = require('express'),
     }
   },
   exec = require('child_process').exec,
-  touch = require("touch");
+  touch = require("touch"),
+  multer = require('multer');
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
@@ -83,9 +84,30 @@ router.get('/history', ensureAuthenticated, (req, res) => {
 })
 
 router.post('/upload', (req, res) => {
-  console.log("Trying to save file");
-  console.log('received:', req.body);
-  res.send('Okay, getting there');
+  console.og('Saving file...');
+
+  var storage = multer.diskStorage({
+      destination: '/'
+  });
+  var upload = multer({storage}).any();
+
+  upload(req, res, function(err) {
+      if (err) {
+          console.log(err);
+          return res.send('Error');
+      } else {
+          console.log(req.body);
+          req.files.forEach(function(item) {
+              console.log(item);
+              // move your file to destination
+          });
+          res.end('File uploaded');
+      }
+  });
+
+  // console.log("Trying to save file");
+  // console.log('received:', req.body);
+  // res.send('Okay, getting there');
 //     var toto = req.body.audio;
 //     //console.log("la : " + test);
 //  var userName = req.params.filename.match(/([a-z_]+)_/)[1];
@@ -94,7 +116,7 @@ router.post('/upload', (req, res) => {
 //       fs.mkdirSync('./audio/' + userName);
 //     }
 //    console.log('LOG :' + './audio/' + userName + '/' + req.params.filename);
-//     fs.writeFile('./audio/' + userName + '/' + req.params.filename, toto, function(err){
+//     fs.writeFile(, toto, function(err){
 //       if(err){
 //         console.log('File could not be saved.');
 //       }else{

@@ -59,8 +59,7 @@ function doneEncoding( blob ) {
         url: '/upload',
         data: fd,
         processData: false,
-        contentType: 'multipart/form-data',
-        mimeType: 'multipart/form-data'
+        contentType: false
       });
 
       request.done(function(data) {
