@@ -166,12 +166,12 @@ int write_for_train(t_cmd *cmd, char *argv[])
 	int fd;
 	char *path;
 	fd = -1;
-	asprintf(&path, "%s%s%s", BASE_TRAIN_UTILS, argv[2], TRANSCRIPTION_FILE);
+	asprintf(&path, "%s%s/%s", BASE_TRAIN_UTILS, argv[2], TRANSCRIPTION_FILE);
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
 	dprintf(fd, "<s> %s </s> (%s)\n", cmd->train_sentence, argv[1]);
 	close(fd);
-	asprintf(&path, "%s%s%s", BASE_TRAIN_UTILS, argv[2], FILEIDS_FILE);
+	asprintf(&path, "%s%s/%s", BASE_TRAIN_UTILS, argv[2], FILEIDS_FILE);
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
 	dprintf(fd, "%s\n", argv[1]);
