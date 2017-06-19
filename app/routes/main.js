@@ -82,7 +82,44 @@ router.get('/history', ensureAuthenticated, (req, res) => {
     title: 'History of user commands',
     files: lines
   });
-})
+});
+
+function executePocketsphinx(req, res, filename) {
+  console.log('beginning executing kift...');
+
+  var userName = req.user.username,
+    cmd1 = "./src/kift " + filename + " " + userName,
+    instruction = 0,
+    path = './logs/' + userName + '/response_instruction.txt';
+
+  console.log(cmd1);
+  console.log(req.params);
+
+  exec(cmd1, function(error, stdout, stderr) {
+    console.log('stdout: ', stdout);
+    fs.readFile(path, function(err, data) {
+      if (err) {
+        return res.send(err);
+      }
+      instruction = data.toString();
+      console.log('(Simon) **___---->> read instruction : ' + instruction);
+
+      if (parseInt(instruction) == 4) {
+        console.log('Command /playsong recognized');
+        return res.redirect('/playsong');
+      } else if (parseInt(instruction) == 7) {
+        console.log('Command search on google recognized');
+        return res.redirect('http://www.google.com');
+      } else if (parseInt(instruction) == 9 || parseInt(instruction) == 10) {
+        console.log('Command go on intra recognized');
+        return res.redirect('http://intra.42.fr');
+      } else {
+        console.log('NO command recognized');
+        return res.send('I did not recognize the command');
+      }
+    });
+  });
+}
 
 router.post('/upload', (req, res) => {
   var storage = multer.diskStorage({
@@ -103,60 +140,8 @@ router.post('/upload', (req, res) => {
       return res.send('Error');
     } else {
       console.log(`File "${req.body.fname}" saved`);
-      request('/process/'+ req.body.fname, function(err, res, body) {
-        if (err) {
-          return res.send("Error: " + err);
-        }
-        console.log('Said:', response);
-        console.log('Or said:', body);
-      });
+      executePocketsphinx(req, res, req.body.fname);
     }
-  });
-});
-
-router.get('/process/:audio', (req, res) => {
-
-  console.log('beginning executing kift...');
-
-  var userName = req.user.username,
-    cmd1 = "./src/kift " + req.params.audio + " " + userName,
-    instruction = 0,
-    path = './logs/' + userName + '/response_instruction.txt';
-
-  console.log(cmd1);
-  console.log(req.params);
-
-  exec(cmd1, function(error, stdout, stderr) {
-    console.log('stdout: ', stdout);
-    fs.readFile(path, function(err, data) {
-      if (err) {
-        return res.send(err);
-      }
-      instruction = data.toString();
-      console.log('(Simon) **___---->> read instruction : ' + instruction);
-
-      if (parseInt(instruction) == 4) {
-        console.log('Command /playsong recognized');
-        return res.send({
-          redirect: '/playsong'
-        });
-      } else if (parseInt(instruction) == 7) {
-        console.log('Command search on google recognized');
-        return res.send({
-          redirect: 'http://www.google.com'
-        });
-      } else if (parseInt(instruction) == 9 || parseInt(instruction) == 10) {
-        console.log('Command go on intra recognized');
-        return res.send({
-          redirect: 'http://intra.42.fr'
-        });
-      } else {
-        console.log('NO command recognized');
-        return res.send({
-          speach: 'I did not recognize the command'
-        });
-      }
-    });
   });
 });
 
