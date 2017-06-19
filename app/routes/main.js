@@ -155,6 +155,8 @@ function executeKift(req, res, filename) {
         })
       } else if (parseInt(instruction) == 2) {
         return res.send({ path: 'https://www.google.com/search?q=what+is+the+weather&oq=what+is+the+weather&aqs=chrome..69i57.3679j0j1&sourceid=chrome&ie=UTF-8'});
+      } else if (parseInt(instruction) == 12) {
+        return res.send({ path: 'http://wikipedia.com'});
       } else {
         console.log('No command recognized');
         return res.send('I did not recognize that command');
