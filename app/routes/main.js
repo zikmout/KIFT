@@ -47,12 +47,12 @@ router.use('/login', login);
 
 router.get('/', (req, res) => {
   res.render('index', {
-    title: 'Kift - Smart Online Personal assistant',
+    title: 'Smart Online Personal assistant',
     isKift: true
   });
 });
 
-router.get('/alarm', function(req, res) => {
+router.get('/alarm', (req, res) => {
   res.render('alarm', {title: 'My Current Alarm'});
 });
 
@@ -71,12 +71,6 @@ router.get('/getgeoloc/', ensureAuthenticated, (req, res) => {
 router.get('/history', ensureAuthenticated, (req, res) => {
   const logFile = './logs/' + req.user.username + '/log.txt',
     lines = [];
-
-
-  if (!fs.existsSync('./logs/' + req.user.username)) {
-    fs.mkdirSync('./logs/' + req.user.username);
-    touch('./logs/' + req.user.username + '/log.txt');
-  }
 
   fs.readFileSync(logFile, {
     encoding: 'utf-8'
@@ -154,12 +148,11 @@ function executeKift(req, res, filename) {
             return res.send('Something wrong happened, please, try again.');
           }
 
-          user.alarm = Date.now() + (60 * 60 * 24);
+          user.alarm = new Date(new Date().getTime() + 60 * 60 * 24 * 1000).getTime();
           user.save(function() {
             return res.send('Alarm set. Please, check your Alarm page.');
           });
         })
-        return res.send('Please, try again.');
       } else {
         console.log('No command recognized');
         return res.send('I did not recognize that command');
@@ -171,6 +164,14 @@ function executeKift(req, res, filename) {
 router.post('/upload', (req, res) => {
   let storage = multer.diskStorage({
     destination: function(req, file, cb) {
+ 	if (!fs.existsSync('./audio/' + req.body.username)) {
+      		fs.mkdirSync('./audio/' + req.body.username);
+  	 } 
+
+  	if (!fs.existsSync('./logs/' + req.body.username)) {
+    		fs.mkdirSync('./logs/' + req.body.username);
+    		touch('./logs/' + req.user.username + '/log.txt');
+  	}
       cb(null, './audio/' + req.body.username + '/');
     },
     filename: function(req, file, cb) {

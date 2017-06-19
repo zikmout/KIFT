@@ -2,10 +2,6 @@
   padding: 0;
 }
 
-.container-fluid {
-	overflow: hidden;
-}
-
 .navbar {
 	margin-bottom: 0;
 }
@@ -22,6 +18,11 @@
   position: relative;
 }
 
+.timer {
+    text-align: center;
+    margin-top: 50%;
+    font-size: 100px;
+}
 
 .challenge {
 	border-color: #337ab7;
