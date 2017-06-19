@@ -116,6 +116,12 @@ function executeKift(req, res, filename) {
       } else if (parseInt(instruction) == 9 || parseInt(instruction) == 10) {
         console.log('Command go on intra recognized');
         return res.send({path: 'http://intra.42.fr'});
+      } else if (parseInt(instruction) == 21) {
+        console.log('Command turn light on recognized');
+        return res.send({cmd: 'light', state: 'on'});
+      } else if (parseInt(instruction) == 22) {
+        console.log('Command turn light off recognized');
+        return res.send({cmd: 'light', state: 'off'});
       } else {
         console.log('No command recognized');
         return res.send('I did not recognize that command');

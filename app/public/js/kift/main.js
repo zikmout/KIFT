@@ -48,6 +48,37 @@ function gotBuffers(buffers) {
   audioRecorder.exportMonoWAV(doneEncoding);
 }
 
+function handlePlayCommand(data) {
+  artyom.say('Playing a random song, press enter when you are done listening.', {
+    onEnd: function() {
+      var audio = new Audio('/music/' + data.song.path);
+      audio.play();
+
+      audio.on("ended", function(){
+           audio.currentTime = 0;
+           $('#info-msg').html('<p>Hold down the space bar to send a command.</p>');
+      });
+
+      $('#info-msg').html('<p>Playing ' + data.song.name + '</p>Press Enter to stop');
+
+      $("body").keydown(function(event) {
+        if (event.which == 13 && !audio.paused) {
+          audio.pause();
+          $('#info-msg').html('<p>Hold down the space bar to send a command.</p>');
+        }
+      });
+    }
+  });
+}
+
+function handleLightCommand(data) {
+  if (data.state === 'off') {
+    $('.dark-bg').show();
+  } else {
+    $('.dark-bg').hide();
+  }
+}
+
 function doneEncoding(blob) {
   if (userName !== '') {
     var filename = userName + '_' + Date.now() + ".wav";
@@ -69,21 +100,9 @@ function doneEncoding(blob) {
       if (typeof data === 'object') {
         if (data.cmd) {
           if (data.cmd === 'play' && data.song.path) {
-            artyom.say('Playing a random song, press enter when you are done listening.', {
-              onEnd: function() {
-                var audio = new Audio('/music/'+ data.song.path);
-                audio.play();
-
-		$('#info-msg').html('<p>Playing '+ data.song.name +'</p>Press Enter to stop');
-
-                $( "body" ).keydown(function( event ) {
-              		if (event.which == 13 && !audio.paused) {
-			    audio.pause();
-				$('#info-msg').html('<p>Hold down the space bar to send a command.</p>');
-			  } 
-              	});
-              }
-            });
+            handlePlayCommand(data);
+          } else if (data.cmd === 'light') {
+            handleLightCommand(data);
           }
         } else {
           window.location.replace(data.path);
