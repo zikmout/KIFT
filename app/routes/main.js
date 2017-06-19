@@ -20,7 +20,9 @@ ensureAuthenticated = (req, res, next) => {
   multer = require('multer'),
   request = require('request'),
   songs = [
-    'feu-fou-a-lier.mp3'
+	{name: 'Feu! Chatterton - Fou à lier', path: 'feu-fou-a-lier.mp3'}
+	{name: 'Flume - Insane feat. Moon Holiday', path: 'flume-insane-feat-moon-holiday.mp3'}
+	{name: 'M83 - Midnight City', path: 'm83-midnight-city.mp3'}
   ];
 
 router.use((req, res, next) => {
@@ -39,12 +41,6 @@ router.get('/', (req, res) => {
   res.render('index', {
     title: 'Kift - Smart Online Personal assistant',
     isKift: true
-  });
-});
-
-router.get('/playsong', ensureAuthenticated, (req, res) => {
-  res.render('playsong', {
-    title: 'Listen and enjoy the music now'
   });
 });
 
@@ -87,6 +83,10 @@ router.get('/history', ensureAuthenticated, (req, res) => {
   });
 });
 
+function randNum(min, max) {
+	return Math.floor(Math.random() * (max - min) + min);
+}
+
 function executeKift(req, res, filename) {
   console.log('beginning executing kift...');
 
@@ -108,9 +108,8 @@ function executeKift(req, res, filename) {
       console.log('(Simon) **___---->> read instruction : ' + instruction);
 
       if (parseInt(instruction) == 4) {
-        let randNum = Math.random() * (1 - 0) + 0; // (max - min) + min
         console.log('Command /playsong recognized');
-        return res.send({cmd: 'play', song: songs[randNum]});
+        return res.send({cmd: 'play', song: songs[randNum(0, songs.length)]});
       } else if (parseInt(instruction) == 7) {
         console.log('Command search on google recognized');
         return res.send({path: 'http://www.google.com'});

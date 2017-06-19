@@ -68,16 +68,19 @@ function doneEncoding(blob) {
     request.done(function(data) {
       if (typeof data === 'object') {
         if (data.cmd) {
-          if (data.cmd === 'play' && data.song) {
-            artyom.say('Playing a random song, press enter when you\'re done listening.', {
+          if (data.cmd === 'play' && data.song.path) {
+            artyom.say('Playing a random song, press enter when you are done listening.', {
               onEnd: function() {
-                var audio = new Audio('/music/'+ data.song);
+                var audio = new Audio('/music/'+ data.song.path);
                 audio.play();
+
+		$('#info-msg').html('<p>Playing '+ data.song.name +'</p>Press Enter to stop');
 
                 $( "body" ).keydown(function( event ) {
               		if (event.which == 13 && !audio.paused) {
-                    audio.pause();
-                  }
+			    audio.pause();
+				$('#info-msg').html('<p>Hold down the space bar to send a command.</p>');
+			  } 
               	});
               }
             });
