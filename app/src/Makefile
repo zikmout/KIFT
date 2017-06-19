@@ -3,7 +3,7 @@ CC	=  	gcc -D_GNU_SOURCE
 CFLAGS	= 	-Wall 
 RM	=	 rm -f
 LIBFT	=	 -L../libft -lft
-SRCS	=	get_hyp.c kift2.c \
+SRCS	=	get_hyp.c kift2.c
  
 OBJS	=   $(SRCS:.c=.o)
 

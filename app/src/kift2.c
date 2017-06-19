@@ -111,7 +111,7 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 
 	fd = -1;
 	user_files_path = NULL;
-	asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], LOG_FILE);
+	asprintf(&user_files_path, "%s%s/%s", BASE_LOG, argv[2], LOG_FILE);
 	if ((fd = open(user_files_path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 	  return (-1);
 	dprintf(fd, "%s (%s)\n", hyp, argv[1]);
@@ -123,17 +123,17 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 	  //		return (-1);
 	  //	dprintf(fd, "%s (%s)\n", hyp, argv[1]);
 	  //	close(fd);
-		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
+		asprintf(&user_files_path, "%s%s/%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT , 0666)) == -1)
 			return (-1);
 		dprintf(fd, "%i", cmd->id);
 		close(fd);
-		asprintf(&user_files_path,"%s%s%s", BASE_LOG, argv[2], RESPONSE_TRAIN_FILE);
+		asprintf(&user_files_path,"%s%s/%s", BASE_LOG, argv[2], RESPONSE_TRAIN_FILE);
 		remove(user_files_path);
 	}
 	else
 	{
-		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_TRAIN_FILE);
+		asprintf(&user_files_path, "%s%s/%s", BASE_LOG, argv[2], RESPONSE_TRAIN_FILE);
 		if ((fd = open(user_files_path, O_RDWR | O_CREAT, 0666)) == -1)
 			return (-1);
 		if (cmd->id + 1 < NB_INSTRUCTIONS)
@@ -142,7 +142,7 @@ int write_logs_response(t_cmd *cmd, char *argv[], char *hyp)
 			dprintf(fd, "%s\n", END_OF_TRAIN);
 		write(fd, "\0", 1);
 		close(fd);
-		asprintf(&user_files_path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
+		asprintf(&user_files_path, "%s%s/%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
 		remove(user_files_path);
 	}
 	return (1);
@@ -153,12 +153,12 @@ int write_for_train(t_cmd *cmd, char *argv[])
 	int fd;
 	char *path;
 	fd = -1;
-	asprintf(&path, "%s%s%s", BASE_TRAIN_UTILS, argv[2], TRANSCRIPTION_FILE);
+	asprintf(&path, "%s%s/%s", BASE_TRAIN_UTILS, argv[2], TRANSCRIPTION_FILE);
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
 	dprintf(fd, "<s> %s </s> (%s)\n", cmd->train_sentence, argv[1]);
 	close(fd);
-	asprintf(&path, "%s%s%s", BASE_TRAIN_UTILS, argv[2], FILEIDS_FILE);
+	asprintf(&path, "%s%s/%s", BASE_TRAIN_UTILS, argv[2], FILEIDS_FILE);
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND, 0666)) == -1)
 		return (-1);
 	dprintf(fd, "%s\n", argv[1]);
@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
 			return (-1);
 		dprintf(fd, "%s (%s)\n", hyp, argv[1]);
 		close(fd);
-		asprintf(&path, "%s%s%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
+		asprintf(&path, "%s%s/%s", BASE_LOG, argv[2], RESPONSE_INSTRUCTION_FILE);
 		remove(path);
 		return (-1);        
 	}
